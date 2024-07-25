@@ -47,7 +47,7 @@ pip install ninja
 
 #### 1. 安装 `winget` (win11一般自带)
 
-`winget` 是 Windows 包管理器。最新版本的 Windows 10 和 Windows 11 默认包含 `winget`。如果没有，可以按照以下步骤安装：
+`winget` 是 Windows 包管理器。**最新版本的 Windows 10 和 Windows 11 默认包含 `winget`**。如果没有，可以按照以下步骤安装：
 
 1. 打开 [Windows Package Manager](https://github.com/microsoft/winget-cli/releases) 的 GitHub 页面。
 2. 下载最新的 `Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle` 文件并安装。
@@ -127,6 +127,29 @@ gcc --version
 ![image-20240725230449604](./assets/image-20240725230449604.png)
 
 ![image-20240725230551985](./assets/image-20240725230551985.png)
+
+#### 2. 安装插件依赖项
+
+![image-20240725230757660](./assets/image-20240725230757660.png)
+
+按下ctrl+shift+p，输入clangd，选择clangd:Download Language Server，下载完成后重启vscode。
+
+#### 3. 编译项目
+
+打开终端，输入以下命令：(注意,在CMakeLists.txt目录下)
+
+```powershell
+.\build_win.bat
+```
+
+看到如下输出，说明编译成功：
+
+```powershell
+============Running MyProject.exe=============
+next:-1 0 1 2 3 4 5 6 7 
+pos = -1
+Press any key to continue . . .
+```
 
 ## 构建和运行 - 可以只看2和3步
 
