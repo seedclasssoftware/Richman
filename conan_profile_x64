@@ -1,0 +1,8 @@
+[settings]
+compiler=gcc
+compiler.version=14.1
+compiler.libcxx=libstdc++
+compiler.cppstd=14
+arch=x86_64
+build_type=Release
+os=Windows
