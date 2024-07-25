@@ -163,10 +163,10 @@ conan install . --build=missing --profile=conan_profile_x64
 
 ### 2. 配置和构建项目
 
-运行 build_x64.bat 脚本来配置和构建项目：
+运行 build_win.bat 脚本来配置和构建项目：
 
 ```powershell
-build_x64.bat
+.\build_win.bat
 ```
 
 ### 3. 运行可执行文件
