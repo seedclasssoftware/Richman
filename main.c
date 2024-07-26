@@ -24,29 +24,11 @@
  *   under the License.
  * 
  */
-
-#include <stdio.h>
-#include "kmp.h"
-#include <string.h>
 #include <windows.h>
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-    char *s = "ababcabcacbab";
-    char *p = "aaaaaaaab";
-    Str str1 = {strlen(s), s};
-    Str str2 = {strlen(p), p};
-    const int strlen2 = str1.len;
-    int next[strlen2];
-    GetNext(str2, next);
-    printf("next:");
-    for (int i = 0; i < str2.len; i++)
-    {
-        printf("%d ", next[i]);
-    }
-    printf("\n");
-    int pos = KMP(str1, str2, next);
-    printf("pos = %d\n", pos);
+
     return 0;
 }
