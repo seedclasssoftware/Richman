@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *getPlayerName(wanjia[i]->number) {
+const char *getPlayerName(uint8_t number) {
   switch (number) {
   case QIAN_Madam:
     return "钱夫人";
@@ -138,25 +138,32 @@ void chooseRoll(char players[]){
         }
     }
     for(int i=0;i<len;i++){
-        wanjia[i]=(pPlayers)malloc(sizeof(Players));
-        wanjia[i]->name=(char*)malloc(sizeof(char)*50);
-        wanjia[i]->money=initMoney;
-        wanjia[i]->point=0;
-        wanjia[i]->number=i;
-        wanjia[i]->block=0;
-        wanjia[i]->robot=0;
-        wanjia[i]->bomb=0;
-        wanjia[i]->god=0;
-        wanjia[i]->prison=0;
-        wanjia[i]->hospital=0;
-        wanjia[i]->magic=0;
-        wanjia[i]->position=0;
-        wanjia[i]->name=names[(int)(players[i])];
+        wanjia[i+1]=(pPlayers)malloc(sizeof(Players));
+        wanjia[i+1]->name=(char*)malloc(sizeof(char)*50);
+        wanjia[i+1]->money=initMoney;
+        wanjia[i+1]->point=0;
+        wanjia[i+1]->number=i;
+        wanjia[i+1]->block=0;
+        wanjia[i+1]->robot=0;
+        wanjia[i+1]->bomb=0;
+        wanjia[i+1]->god=0;
+        wanjia[i+1]->prison=0;
+        wanjia[i+1]->hospital=0;
+        wanjia[i+1]->magic=0;
+        wanjia[i+1]->position=0;
+        wanjia[i+1]->name=names[(int)(players[i])];
     }
     printf("您选择的角色是：");
-    for(int i=0;i<len;i++){
-        
-        printf("%s ",wanjia[i]->name);
+    for(int i=1;i<=len;i++){
+        if(i==1)
+            printf("\033[31m%s\033[31m ",wanjia[i]->name);
+        else if(i==2)
+            printf("\033[32m%s\033[32m ",wanjia[i]->name);
+        else if(i==3)
+            printf("\033[34m%s\033[34m ",wanjia[i]->name);
+        else if(i==4)
+            printf("\033[33m%s\033[33m ",wanjia[i]->name);
+    
     }
     return;
 }
