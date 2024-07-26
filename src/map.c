@@ -33,7 +33,6 @@ void map_init(Map *map) {
   for (int i = 64; i < 70; i++) {
     map->cells[i].kind = 4;
   }
-
   // 初始化rank
   for (int i = 0; i < 29; i++) {
     map->cells[i].rank = 1;
