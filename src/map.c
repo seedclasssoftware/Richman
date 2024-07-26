@@ -1,5 +1,6 @@
 void map_init(Map *map);
 void map_print(Map *map);
+
 void map_init(Map *map)
 {
     for (int i = 0; i < 70; i++)
@@ -82,8 +83,12 @@ void map_print(Map *map)
     {
         printf(" ");
     }
-    printf("%c", map->cells[32].show_char);
+    printf("%c", map->cells[34].show_char);
     printf("\n");
 
-
+    for (int i = 63; i > 34; i--)
+    {
+        printf("%c", map->cells[i].show_char);
+        printf("\n");
+    }
 }
