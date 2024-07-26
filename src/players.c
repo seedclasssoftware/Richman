@@ -104,3 +104,16 @@ void initializePlayers(const char *json_data, Players players[],
     printf("\n");
   }
 }
+
+void chooseRoll(char players[]){
+    int len=strlen(players);
+    if(len < 2||len > 4){
+        printf("人数不符合标准，请重新输入！");
+        getPlayers(char *players)
+    }
+}
+
+void getPlayers(char players[]){
+    printf("请选择2~4位不重复玩家，输入编号即可（1、钱夫人；2、阿土伯；3、孙小美；4、金贝贝；），如输入：12");
+    scanf("%s",players);
+}

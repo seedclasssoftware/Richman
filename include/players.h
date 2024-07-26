@@ -74,7 +74,13 @@ typedef struct Players {
   /// properties
 } Players, *pPlayers;
 
+Players wanjia[10];
+
 void initializePlayers(const char *json_data, Players players[],
                        int num_players);
+                  
+void chooseRoll(char players[]);
+
+void getPlayers(char players[]);
 
 #endif ///< PLAYERS_H
