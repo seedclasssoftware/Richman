@@ -73,8 +73,36 @@ typedef struct Players {
   uint8_t position;
   /// properties
 } Players, *pPlayers;
-
+/**
+ * @brief 初始化玩家
+ * 
+ * @param json_data json数据
+ * @param players 玩家数组
+ * @param num_players 玩家数量
+ */
 void initializePlayers(const char *json_data, Players players[],
                        int num_players);
+
+/**
+ * @brief Get the Player Name object
+ * 
+ * @param number 玩家编号
+ * @return const char* 玩家名字
+ */
+const char *getPlayerName(uint8_t number);
+
+/**
+ * @brief 打印玩家信息
+ * 
+ * @param players 玩家数组
+ * @param num_players 玩家数量
+ */
+void printPlayers(Players players[], int num_players);
+
+/**
+ * @brief 从文件打印
+ * 
+ */
+void print_from_file();
 
 #endif ///< PLAYERS_H
