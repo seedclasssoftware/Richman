@@ -22,4 +22,8 @@ echo ============Running MyProject.exe=============
 
 .\MyProject
 
+echo ============Running MyProject.exe with argument=============
+
+.\MyProject ".res/users.json"
+
 pause
