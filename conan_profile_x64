@@ -1,6 +1,6 @@
 [settings]
 compiler=gcc
-compiler.version=13,1
+compiler.version=14
 compiler.libcxx=libstdc++
 compiler.cppstd=14
 arch=x86_64
