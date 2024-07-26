@@ -35,10 +35,10 @@
  *
  */
 enum Players_Name {
-  ATUB = 0,   ///< 阿土伯 = 0
-  QIAN_Madam, ///< 钱夫人 = 1
-  SUN_Miss,   ///< 孙小姐 = 2
-  JIN_Bei,    ///< 金贝 = 3
+  QIAN_Madam = 1, ///< 钱夫人 = 1
+  ATUB,           ///< 阿土伯 = 2
+  SUN_Miss,       ///< 孙小姐 = 2
+  JIN_Bei,        ///< 金贝 = 3
 };
 
 /**

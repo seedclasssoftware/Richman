@@ -1,9 +1,10 @@
 # include "players.h"
-# include <json/json.h>
+# include <cjson/cjson.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+
 
 void initializePlayers(const char *json_data, Players players[], int num_players) {
     cJSON *json = cJSON_Parse(json_data);
@@ -29,11 +30,9 @@ void initializePlayers(const char *json_data, Players players[], int num_players
             players[i].block = cJSON_GetObjectItem(player_json, "tool1")->valueint;
             players[i].robot = cJSON_GetObjectItem(player_json, "tool2")->valueint;
             players[i].bomb = cJSON_GetObjectItem(player_json, "tool3")->valueint;
-            players[i].god = cJSON_GetObjectItem(player_json, "buff")->valueint ? 1 : 0;
-            players[i].god_duration = cJSON_GetObjectItem(player_json, "continue")->valueint;
-            players[i].prison = cJSON_GetObjectItem(player_json, "debuff0")->valueint ? 1 : 0;
-            players[i].hospital = cJSON_GetObjectItem(player_json, "debuff1")->valueint ? 1 : 0;
-            players[i].debuff_duration = cJSON_GetObjectItem(player_json, "decontinue")->valueint;
+            players[i].god = cJSON_GetObjectItem(player_json, "buff")->valueint ? cJSON_GetObjectItem(player_json, "continue")->valueint : 0;
+            players[i].prison = cJSON_GetObjectItem(player_json, "debuff0")->valueint ? cJSON_GetObjectItem(player_json, "decontinue")->valueint : 0;
+            players[i].hospital = cJSON_GetObjectItem(player_json, "debuff1")->valueint ? cJSON_GetObjectItem(player_json, "decontinue")->valueint : 0;
             players[i].magic = 0; // Assuming 'magic' is not provided in JSON
             players[i].position = cJSON_GetObjectItem(player_json, "position")->valueint;
             // properties not implemented
