@@ -13,7 +13,7 @@ void map_init(Map *map)
         map->cells[i].owner = 0;
     }
     
-
+    //map->cells[i].owner = 1;
     for (int i=64;i<70;i++ )
     {
         map->cells[i].show_char = '$';
