@@ -82,6 +82,6 @@ typedef struct Players {
  * @param num_players 玩家数量{int}
  */
 void initializePlayers(const char *json_data, Players players[],
-                       int num_players)
+                       int num_players);
 
 #endif ///< PLAYERS_H
