@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *getPlayerName(uint8_t number) {
+char *getPlayerName(uint8_t number) {
   switch (number) {
   case QIAN_Madam:
     return "钱夫人";
@@ -65,6 +65,7 @@ void printPlayers(Players players[], int num_players) {
   for (int i = 0; i < num_players; i++) {
     Players *player = &players[i];
     printf("玩家%d:\n", player->number);
+    printf("名字：%s\n", player->name);
     printf("金钱：%d\n", player->money);
     printf("点数：%d\n", player->point);
     printf("编号：%d\n", player->number);
