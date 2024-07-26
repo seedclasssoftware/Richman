@@ -30,9 +30,11 @@
  */
 #include "players.h"
 #include <stdio.h>
-#include "players.h"
-#include <stdio.h>
 #include <windows.h>
+#include "buy_earth.h"
+#include "earthup.h"
+#include "map.h"
+#include "tool_house.h"
 
 
 
@@ -40,34 +42,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
       CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
-  if (argc == 1) {
-    printf("游戏模式\n");
-    init_money();
-    chooseRoll(players);
-  } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
-    FILE *fp = fopen(argv[1], "r");
-    if (fp == NULL) {
-      printf("文件打开失败\n");
-      printf("文件打开失败\n");
-    }
-    // 获取文件大小
-    fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    // 读取文件内容
-    char *json_data = (char *)malloc(size + 1);
-    fread(json_data, 1, size, fp);
-    json_data[size] = '\0';
-    // 关闭文件
-    fclose(fp);
-    initializePlayers(json_data, players, 4);
-    printPlayers(players, 4);
-  }
-
-  while (1) {
-    //roll();
-    //wait_for_input();
-  }
-
+  test1_buy_earth1_when_money_is_199();
+  printf("hello\n");
   return 0;
 }

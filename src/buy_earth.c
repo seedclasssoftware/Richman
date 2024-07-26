@@ -57,20 +57,14 @@ struct Players buy_earth(Players players,Map *map)
 
 }
 
-/*void test1_buy_earth()
+void test1_buy_earth1_when_money_is_199()
 {
-    Players players;
-    players.money = 200;
-    players.name = "QIAN_Madam";
-    players.number = 1;
-    players.position = 1;
-    players = buy_earth(players);
-    //int should_money = players.money-500;
-    //if(players.money == should_money)
-    //{
-    //    printf("Success.");
-    //}
-    //else {
-    //    printf("Failed.");
-    //}
-}*/
+  Players player;
+  player.money = 199;
+  player.position = 1;
+  player.number = 1;
+  Map *map;
+  map->cells[player.position].owner = 0;
+  player = buy_earth(player,map);
+  printf("test1 result: money:%d,position:%d,map_owener:%d\n",player.money,player.position,map->cells[player.position].owner);
+}
