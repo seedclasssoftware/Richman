@@ -1,7 +1,7 @@
 /**
  * @file palyers.h
  * @author 王一赫 (wyihe5220@gmail.com)
- * @brief
+ * @brief   玩家功能实现
  * @version 0.1
  * @date 2024-07-26
  *
@@ -73,5 +73,13 @@ typedef struct Players {
   uint8_t position;
   /// properties
 } Players, *pPlayers;
+
+/**
+ * @brief 初始化玩家
+ *
+ * @param player 玩家指针
+ * @param name 玩家名
+ * @param number 玩家编号
+ */
 
 #endif ///< PLAYERS_H
