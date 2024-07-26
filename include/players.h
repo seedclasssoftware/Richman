@@ -74,13 +74,6 @@ typedef struct Players {
   /// properties
 } Players, *pPlayers;
 
-/**
- * @brief 初始化玩家,从json数据中读取
- *
- * @param json_data json数据{const char*}
- * @param players 玩家数组{Players[]}
- * @param num_players 玩家数量{int}
- */
 void initializePlayers(const char *json_data, Players players[],
                        int num_players);
 

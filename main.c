@@ -28,6 +28,9 @@
 #include <stdio.h>
 #include "players.h"
 
+
+
+
 int main(int argc, char const *argv[], char const *envp[])
 {
     SetConsoleOutputCP(CP_UTF8);///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
@@ -51,23 +54,6 @@ int main(int argc, char const *argv[], char const *envp[])
     // 初始化玩家
     Players players[4];
     initializePlayers(json_data, players, 4);
-    // 打印玩家信息
-    for (int i = 0; i < 4; i++)
-    {
-        printf("玩家%d:\n", i + 1);
-        printf("金钱：%d\n", players[i].money);
-        printf("点数：%d\n", players[i].point);
-        printf("编号：%d\n", players[i].number);
-        printf("障碍：%d\n", players[i].block);
-        printf("机器娃娃：%d\n", players[i].robot);
-        printf("炸弹：%d\n", players[i].bomb);
-        printf("财神：%d\n", players[i].god);
-        printf("财神持续回合：%d\n", players[i].god);
-        printf("监狱：%d\n", players[i].prison);
-        printf("医院：%d\n", players[i].hospital);
-        printf("魔法：%d\n", players[i].magic);
-        printf("位置：%d\n", players[i].position);
-        printf("\n");
-    }
+    
     return 0;
 }
