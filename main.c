@@ -25,10 +25,11 @@
  * 
  */
 #include <windows.h>
+#include <stdio.h>
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
-
+    printf("Hello, World!\n");
     return 0;
 }
