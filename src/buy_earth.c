@@ -2,7 +2,7 @@
 #include "buy_earth.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "map.h"
+
 
 struct Players buy_earth(Players players,Map *map)
 {
