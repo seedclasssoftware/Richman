@@ -51,9 +51,8 @@ int main(int argc, char const *argv[], char const *envp[])
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
-
-    
-
+    initializePlayers(json_data, players, 4);
+    printPlayers(players, 4);
     }
     SetConsoleOutputCP(CP_UTF8);///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
     // 打开文件
