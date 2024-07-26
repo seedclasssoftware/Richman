@@ -1,5 +1,5 @@
 /**
- * @file interaction.h
+ * @file interaction.c
  * @author 王一赫 (wyihe5220@gmail.com)
  * @brief
  * @version 0.1
@@ -24,13 +24,29 @@
  *   under the License.
  *
  */
+#include "interaction.h"
+#include <stdio.h>
 
-#ifndef INTERACTION_H
-#define INTERACTION_H
-/**
- * @brief 接受用户输入,等待用户输入
- *
- */
-void wait_for_input();
 
-#endif // INTERACTION_H
+extern pPlayers now_user;
+
+void wait_for_input() {
+  switch (now_user->number) {
+  case 1:
+    printf("\033[31m钱夫人>\033[31m");
+    break;
+  case 2:
+    printf("\033[32m阿土伯>\033[32m");
+    break;
+  case 3:
+    printf("\033[33m孙小美>\033[33m");
+    break;
+  case 4:
+    printf("\033[34m金贝贝>\033[34m");
+    break;
+  default:
+    printf("error\n");
+    break;
+  }
+  //创建接受缓冲区
+}

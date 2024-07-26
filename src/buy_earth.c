@@ -74,4 +74,3 @@ struct Players buy_earth(Players players,Map *map)
     //    printf("Failed.");
     //}
 }*/
-

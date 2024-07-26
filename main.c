@@ -4,7 +4,8 @@
  * @brief KMP算法的实现实验
  * @version 0.1
  * @date 2024-05-31
- * 
+ *
+ *
  * @copyright copyright (c) 2024
  *   Licensed to the Apache Software Foundation (ASF) under one
  *   or more contributor license agreements.  See the NOTICE file
@@ -13,37 +14,41 @@
  *   to you under the Apache License, Version 2.0 (the
  *   "License"); you may not use this file except in compliance
  *   with the License.  You may obtain a copy of the License at
- *  
+ *
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
+ *
  *   Unless required by applicable law or agreed to in writing,
  *   software distributed under the License is distributed on an
  *   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  *   KIND, either express or implied.  See the License for the
  *   specific language governing permissions and limitations
  *   under the License.
- * 
+ *
+ *
  */
-#include <windows.h>
+#include "players.h"
 #include <stdio.h>
 #include "players.h"
+#include <stdio.h>
+#include <windows.h>
 
-Players players[4];
 
-pPlayers now_user = &players[0];
 
-int main(int argc, char const *argv[], char const *envp[])
-{
-    SetConsoleOutputCP(CP_UTF8);///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
-    /// 无参数,默认为游戏模式
-    if (argc == 1)
-    {
-        printf("游戏模式\n");
-    }
-    else {/// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
+int main(int argc, char const *argv[], char const *envp[]) {
+  SetConsoleOutputCP(
+      CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
+  /// 无参数,默认为游戏模式
+  if (argc == 1) {
+    printf("游戏模式\n");
+    init_money();
+    chooseRoll(players);
+  } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
-        printf("文件打开失败\n");
+      printf("文件打开失败\n");
+      printf("文件打开失败\n");
     }
     // 获取文件大小
     fseek(fp, 0, SEEK_END);
@@ -57,13 +62,12 @@ int main(int argc, char const *argv[], char const *envp[])
     fclose(fp);
     initializePlayers(json_data, players, 4);
     printPlayers(players, 4);
-    }
-    while(1)
-    {
-        wait_for_input();
-    }
-    init_money();   
-    chooseRoll(players);
-    
-    return 0;
+  }
+
+  while (1) {
+    //roll();
+    //wait_for_input();
+  }
+
+  return 0;
 }
