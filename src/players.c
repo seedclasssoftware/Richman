@@ -92,8 +92,7 @@ void printPlayers(Players players[], int num_players) {
   }
 }
 
-void print_from_file()
-{
+void print_from_file() {
   FILE *fp = fopen(".res/users.json", "r");
   if (fp == NULL) {
     printf("文件打开失败\n");
