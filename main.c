@@ -35,9 +35,6 @@
 #include <windows.h>
 
 
-Players players[4];
-
-pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
