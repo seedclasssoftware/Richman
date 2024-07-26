@@ -7,7 +7,7 @@
     "players": [
          {
             "alive": 0,
-            "money": 0,
+            "money": 40,
             "point": 0,
             "number": 1,
             "tool1": 0,
@@ -24,9 +24,9 @@
         },
          {
             "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
+            "money": 50,
+            "point": 10,
+            "number": 2,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,
@@ -40,9 +40,9 @@
         },
         {
             "alive": 0,
-            "money": 0,
-            "point": 0,
-            "number": 1,
+            "money": 10000,
+            "point": 10,
+            "number": 3,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,
@@ -56,9 +56,9 @@
         },
          {
             "alive": 0,
-            "money": 0,
+            "money": 10000,
             "point": 0,
-            "number": 1,
+            "number": 4,
             "tool1": 0,
             "tool2": 0,
             "tool3": 0,
