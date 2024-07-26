@@ -1,5 +1,5 @@
 /*write@doyourbesthust  gjy*/
-#include "players.h"
+#include "buy_earth.h"
 #include <stdio.h>
 #include <stdlib.h>
 
