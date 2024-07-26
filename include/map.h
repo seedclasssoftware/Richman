@@ -1,8 +1,8 @@
 typedef struct Cell{
-    char show_char;
-    int kind;
-    int rank;
-    int has_tool;
+    char show_char;//字符
+    int kind;//地的种类
+    int rank;//地段
+    int has_tool;//道具
 } Cell;
 
 typedef struct Map{
