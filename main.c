@@ -24,7 +24,6 @@
  *   under the License.
  * 
  */
-#include <cstdio>
 #include <windows.h>
 #include <stdio.h>
 #include "players.h"
@@ -35,8 +34,10 @@ pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[])
 {
-    if (argc == 0)
+    /// 无参数,默认为游戏模式
+    if (argc == 1)
     {
+        printf("游戏模式\n");
     }
     else {/// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
