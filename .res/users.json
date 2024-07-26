@@ -1,130 +1,74 @@
 {
-    "gameState": {
-      "players": [
-        {
-          "id": 1,
-          "name": "Player1",
-          "position": 5,
-          "funds": 15000,
-          "points": 50,
-          "properties": [
-            {
-              "name": "地段1-2",
-              "houses": 2
-            },
-            {
-              "name": "地段2-4",
-              "houses": 1
-            }
-          ],
-          "tools": {
-            "block": 1,
-            "robot": 0,
-            "bomb": 1
-          },
-          "gifts": ["财神"]
+	"MAP": {
+       "tool":[[1,2],[2,5],[32,6],[43,6]]
+    },
+    "user": "QASJ",
+    "now_user": "S",
+    "players": [
+         {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 1,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties":[[10,2],[65,2],[13,3]]
+
+        },
+         {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 1,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties":[[10,2],[65,2],[13,3]]
         },
         {
-          "id": 2,
-          "name": "Player2",
-          "position": 10,
-          "funds": 12000,
-          "points": 80,
-          "properties": [
-            {
-              "name": "地段3-1",
-              "houses": 3
-            }
-          ],
-          "tools": {
-            "block": 0,
-            "robot": 1,
-            "bomb": 0
-          },
-          "gifts": ["奖金"]
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 1,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties":[[10,2],[65,2],[13,3]]
         },
-        {
-          "id": 3,
-          "name": "Player3",
-          "position": 15,
-          "funds": 9000,
-          "points": 30,
-          "properties": [],
-          "tools": {
-            "block": 2,
-            "robot": 1,
-            "bomb": 1
-          },
-          "gifts": []
-        },
-        {
-          "id": 4,
-          "name": "Player4",
-          "position": 20,
-          "funds": 20000,
-          "points": 100,
-          "properties": [
-            {
-              "name": "地段1-5",
-              "houses": 4
-            },
-            {
-              "name": "地段3-3",
-              "houses": 1
-            }
-          ],
-          "tools": {
-            "block": 1,
-            "robot": 2,
-            "bomb": 0
-          },
-          "gifts": ["点数卡"]
+         {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 1,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties":[[10,2],[65,2],[13,3]]
         }
-      ],
-      "map": [
-        {
-          "section": "地段1",
-          "spaces": [
-            {"type": "S", "owner": null},
-            {"type": "O", "owner": null},
-            {"type": "T", "owner": null},
-            {"type": "G", "owner": null},
-            {"type": "M", "owner": null},
-            {"type": "H", "owner": null}
-          ]
-        },
-        {
-          "section": "地段2",
-          "spaces": [
-            {"type": "S", "owner": 1},
-            {"type": "O", "owner": null},
-            {"type": "T", "owner": null},
-            {"type": "G", "owner": 2},
-            {"type": "M", "owner": null},
-            {"type": "H", "owner": null}
-          ]
-        },
-        {
-          "section": "地段3",
-          "spaces": [
-            {"type": "S", "owner": null},
-            {"type": "O", "owner": 4},
-            {"type": "T", "owner": null},
-            {"type": "G", "owner": null},
-            {"type": "M", "owner": null},
-            {"type": "H", "owner": null}
-          ]
-        }
-      ],
-      "availableTools": {
-        "block": 3,
-        "robot": 4,
-        "bomb": 2
-      },
-      "availableGifts": {
-        "bonus": 3,
-        "pointsCard": 2,
-        "godOfWealth": 1
-      }
-    }
-  }
+    ]
+}
