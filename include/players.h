@@ -48,6 +48,8 @@ JIN_Bei ///< 金贝 = 4
 }
 ;
 
+extern Players[4] players;
+
 /**
  * @brief 玩家结构体
  *
