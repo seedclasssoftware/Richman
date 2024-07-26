@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *getPlayerName(uint8_t number) {
+const char *getPlayerName(wanjia[i]->number) {
   switch (number) {
   case QIAN_Madam:
     return "钱夫人";
@@ -130,14 +130,55 @@ void print_from_file() {
 }
 
 void chooseRoll(char players[]){
-    int len=strlen(players);
-    if(len < 2||len > 4){
-        printf("人数不符合标准，请重新输入！");
-        getPlayers(char *players)
+    
+    printf("请选择2~4位不重复玩家，输入编号即可（1、钱夫人；2、阿土伯；3、孙小美；4、金贝贝；），如输入：12");
+    int len=0;
+    while(1){
+        scanf("%s",players);
+        len=strlen(players);
+        int num[5];
+        for(int i=0;i<len;i++){
+            num[(int)(players[i])]++;
+        }
+        if(len>=2&&len<=4&&num[1]<=1&&num[2]<=1&&num[3]<=1&&num[4]<=1){
+            break;
+        }
+        else {
+            printf("您的输入不符合标准，请重新输入！");
+            players[0]='\0';
+        }
     }
+    for(int i=0;i<len;i++){
+        wanjia[i]=(pPlayers)malloc(sizeof(Players));
+        wanjia[i]->name=(char*)malloc(sizeof(char)*50);
+        wanjia[i]->money=initMoney;
+        wanjia[i]->point=0;
+        wanjia[i]->number=i;
+        wanjia[i]->block=0;
+        wanjia[i]->robot=0;
+        wanjia[i]->bomb=0;
+        wanjia[i]->god=0;
+        wanjia[i]->prison=0;
+        wanjia[i]->hospital=0;
+        wanjia[i]->magic=0;
+        wanjia[i]->position=0;
+        wanjia[i]->name=names[(int)(players[i])];
+    }
+    printf("您选择的角色是：");
+    for(int i=0;i<len;i++){
+        
+        printf("%s ",wanjia[i]->name);
+    }
+    return;
+}
+void init_money(){
+    printf("请输入初始金额(1000-50000)，直接按回车默认为10000:");
+    while(1){
+        scanf("%d",&initMoney);
+        if(initMoney>=1000&&initMoney<=50000){
+            break;
+        }
+    }
+    printf("初始金额为：%d",initMoney);
 }
 
-void getPlayers(char players[]){
-    printf("请选择2~4位不重复玩家，输入编号即可（1、钱夫人；2、阿土伯；3、孙小美；4、金贝贝；），如输入：12");
-    scanf("%s",players);
-}
