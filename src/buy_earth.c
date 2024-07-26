@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Players buy_earth(Players players)
+
+struct Players buy_earth(Players players,Map *map)
 {
     int buy_or_not = 0;//1 buy、2 not buy
     char choice = 'n';//y or n
@@ -17,7 +18,8 @@ struct Players buy_earth(Players players)
             {
                 buy_or_not = 1;
                 players.money -= 200;
-                //调用会修改地图0的颜色的函数，
+                //修改地的主人
+                map->cells[players.position].owner = players.number;
             }
         }
     }
@@ -31,7 +33,8 @@ struct Players buy_earth(Players players)
             {
                 buy_or_not = 1;
                 players.money -= 500;
-                //调用会修改地图0的颜色的函数
+                //修改地的主人
+                map->cells[players.position].owner = players.number;
             }
         }
     }
@@ -45,7 +48,8 @@ struct Players buy_earth(Players players)
             {
                 buy_or_not = 1;
                 players.money -= 300;
-                //调用会修改地图0的颜色的函数
+                //修改地的主人
+                map->cells[players.position].owner = players.number;
             }
         }
     }
