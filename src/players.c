@@ -117,9 +117,7 @@ void print_from_file() {
 
 void chooseRoll(char players[]) {
 
-  printf("请选择2~"
-         "4位不重复玩家，输入编号即可（1、钱夫人；2、阿土伯；3、孙小美；4、金贝"
-         "贝；），如输入：12");
+  printf("请选择2~4位不重复玩家，输入编号即可（1、钱夫人；2、阿土伯；3、孙小美；4、金贝贝；），如输入：12");
   int len = 0;
   while (1) {
     scanf("%s", players);

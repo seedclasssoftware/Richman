@@ -44,9 +44,7 @@ enum Players_Name {
 char* names[5]={"","钱夫人","阿土伯","孙小美","金贝贝"};
 
 int initMoney = 0;
-JIN_Bei ///< 金贝 = 4
-}
-;
+
 
 /**
  * @brief 玩家结构体
@@ -115,5 +113,9 @@ void printPlayers(Players players[], int num_players);
  *
  */
 void print_from_file();
+
+void init_money();
+
+void chooseRoll(char players[]);
 
 #endif ///< PLAYERS_H
