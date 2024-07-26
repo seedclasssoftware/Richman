@@ -1,5 +1,5 @@
 /**
- * @file interaction.h
+ * @file interaction.c
  * @author 王一赫 (wyihe5220@gmail.com)
  * @brief
  * @version 0.1
@@ -24,13 +24,6 @@
  *   under the License.
  *
  */
+#include <stdio.h>
 
-#ifndef INTERACTION_H
-#define INTERACTION_H
-/**
- * @brief 接受用户输入,等待用户输入
- *
- */
-void wait_for_input();
-
-#endif // INTERACTION_H
+void wait_for_input() { printf("%s> ", now_user->name); }

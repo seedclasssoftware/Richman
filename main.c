@@ -5,6 +5,7 @@
  * @version 0.1
  * @date 2024-05-31
  *
+ *
  * @copyright copyright (c) 2024
  *   Licensed to the Apache Software Foundation (ASF) under one
  *   or more contributor license agreements.  See the NOTICE file
@@ -14,7 +15,9 @@
  *   "License"); you may not use this file except in compliance
  *   with the License.  You may obtain a copy of the License at
  *
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  *
  *   Unless required by applicable law or agreed to in writing,
  *   software distributed under the License is distributed on an
@@ -23,13 +26,18 @@
  *   specific language governing permissions and limitations
  *   under the License.
  *
+ *
  */
+#include "players.h"
+#include <stdio.h>
 #include "players.h"
 #include <stdio.h>
 #include <windows.h>
 
 
-// pPlayers now_user = wanjia[0];
+Players players[4];
+
+pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
@@ -42,6 +50,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
+      printf("文件打开失败\n");
       printf("文件打开失败\n");
     }
     // 获取文件大小
