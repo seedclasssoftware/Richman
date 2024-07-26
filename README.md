@@ -163,10 +163,10 @@ conan install . --build=missing --profile=conan_profile_x64
 
 ### 2. 配置和构建项目
 
-运行 build_x64.bat 脚本来配置和构建项目：
+运行 build_win.bat 脚本来配置和构建项目：
 
 ```powershell
-build_x64.bat
+.\build_win.bat
 ```
 
 ### 3. 运行可执行文件
@@ -187,7 +187,7 @@ cd out
 - .vscode: Visual Studio Code 配置文件。
 - CMakeLists.txt：CMake 构建脚本。
 - conanfile.txt：Conan 依赖项配置文件。
-- build_x64.bat：构建项目的脚本。
+- build_win.bat：构建项目的脚本。
 - conan_profile_x64：Conan 依赖项配置文件。
 - README.md：项目说明文件。
 - C project.code-workspace：VSCode 工作区配置文件。
