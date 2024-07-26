@@ -27,9 +27,9 @@
 #include <windows.h>
 #include <stdio.h>
 
-int main()
+int main(int argc, char const *argv[], char const *envp[])
 {
-    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
     printf("Hello, World!\n");
     printf("你好，世界！\n");
     return 0;

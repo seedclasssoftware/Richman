@@ -2,6 +2,7 @@ build
 out
 .cache
 .vscode
+CMakeUserPresets.json
 
 
 # Prerequisites
