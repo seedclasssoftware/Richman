@@ -35,10 +35,10 @@
  *
  */
 enum Players_Name {
-  ATUB = 0,   ///< 阿土伯 = 0
-  QIAN_Madam, ///< 钱夫人 = 1
-  SUN_Miss,   ///< 孙小姐 = 2
-  JIN_Bei,    ///< 金贝 = 3
+  QIAN_Madam = 1, ///< 钱夫人 = 1
+  ATUB,           ///< 阿土伯 = 2
+  SUN_Miss,       ///< 孙小姐 = 2
+  JIN_Bei,        ///< 金贝 = 3
 };
 
 /**
@@ -75,11 +75,13 @@ typedef struct Players {
 } Players, *pPlayers;
 
 /**
- * @brief 初始化玩家
+ * @brief 初始化玩家,从json数据中读取
  *
- * @param player 玩家指针
- * @param name 玩家名
- * @param number 玩家编号
+ * @param json_data json数据{const char*}
+ * @param players 玩家数组{Players[]}
+ * @param num_players 玩家数量{int}
  */
+void initializePlayers(const char *json_data, Players players[],
+                       int num_players);
 
 #endif ///< PLAYERS_H
