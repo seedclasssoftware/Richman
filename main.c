@@ -64,10 +64,9 @@ int main(int argc, char const *argv[], char const *envp[])
         printf("机器娃娃：%d\n", players[i].robot);
         printf("炸弹：%d\n", players[i].bomb);
         printf("财神：%d\n", players[i].god);
-        printf("财神持续回合：%d\n", players[i].god_duration);
+        printf("财神持续回合：%d\n", players[i].god);
         printf("监狱：%d\n", players[i].prison);
         printf("医院：%d\n", players[i].hospital);
-        printf("病床持续回合：%d\n", players[i].debuff_duration);
         printf("魔法：%d\n", players[i].magic);
         printf("位置：%d\n", players[i].position);
         printf("\n");
