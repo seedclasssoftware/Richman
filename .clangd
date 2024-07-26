@@ -1,2 +1,4 @@
 CompileFlags:
-  Add: [-I./include]
+  Add:
+    - -I./include
+    - -IC:/msys64/mingw64/include
