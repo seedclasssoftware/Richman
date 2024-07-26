@@ -19,6 +19,7 @@ cmake --build . --config Debug
 cd ../out
 
 echo ============Running MyProject.exe=============
+
 .\MyProject
 
 pause
