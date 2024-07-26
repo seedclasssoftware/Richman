@@ -35,17 +35,18 @@
  *
  */
 enum Players_Name {
-  QIAN_Madam =1, ///< 钱夫人 = 1
+  QIAN_Madam = 1, ///< 钱夫人 = 1
   ATUB,           ///< 阿土伯 = 2
   SUN_Miss,       ///< 孙小姐 = 3
-  JIN_Bei      ///< 金贝 = 4
-}Players_Name;
-
-char* names[4]={"钱夫人","阿土伯","孙小美","金贝贝"};
-
-int initMoney=0;
   JIN_Bei         ///< 金贝 = 4
-};
+} Players_Name;
+
+char *names[4] = {"钱夫人", "阿土伯", "孙小美", "金贝贝"};
+
+int initMoney = 0;
+JIN_Bei ///< 金贝 = 4
+}
+;
 
 /**
  * @brief 玩家结构体
