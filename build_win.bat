@@ -22,3 +22,5 @@ echo ============Running MyProject.exe=============
 .\MyProject
 
 pause
+
+cd ..
