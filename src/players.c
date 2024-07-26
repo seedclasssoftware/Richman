@@ -14,7 +14,7 @@ const char *getPlayerName(uint8_t number) {
   case SUN_Miss:
     return "孙小姐";
   case JIN_Bei:
-    return "金贝";
+    return "金贝贝";
   default:
     return "未知";
   }
