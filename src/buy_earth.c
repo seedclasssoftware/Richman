@@ -1,3 +1,4 @@
+/*write@doyourbesthust  gjy*/
 #include "players.h"
 #include <stdio.h>
 #include <stdlib.h>
