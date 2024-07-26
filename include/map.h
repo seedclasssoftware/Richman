@@ -15,4 +15,7 @@ typedef struct Map{
     Cell cells[70];
 } Map;
 
+void map_init(Map *map);
+void map_print(Map *map);
+
 #endif
