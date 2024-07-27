@@ -32,6 +32,8 @@
 #include "map.h"
 #include "gifthouse.h"
 #include "buy_earth.h"
+#include "earthup.h"
+#include "mine_earth.h"
 
 extern Map map;
 
@@ -92,45 +94,19 @@ void eventJudge(pPlayers now_user){
                 break;
             }
             case '$':{
-                if(now_user->position==64)
-                    now_user->point+=60;
-                else if(now_user->position==65)
-                    now_user->point+=80;
-                else if(now_user->position==66)
-                    now_user->point+=40;
-                else if(now_user->position==67)
-                    now_user->point+=100;
-                else if(now_user->position==68)
-                    now_user->point+=80;
-                else if(now_user->position==69)
-                    now_user->point+=20;
-                break;
+                mining_for_point(now_user, map.cells, now_user->position);
             }
         }
     }
-    else if(kind==0){
-        switch(rank){
-            case 1:{
-                if(now_user->money>=200){
-                    printf("您是否要购买这块空地？y/n");
-                    buy_earth(now_user,&map);
-                }
-                break;
-            }
-            case 2:{
-                 if(now_user->money>=500){
-                    printf("您是否要购买这块空地？y/n");
-                    buy_earth(now_user,&map);
-                }
-                break;
-            }
-            case 3:{
-                if(now_user->money>=300){
-                    printf("您是否要购买这块空地？y/n");
-                    buy_earth(now_user,&map);
-                }
-                break;
-            }
+    else {
+        if(owner==0){
+           buy_earth(now_user, &map);
+        }
+        else if(owner==now_user->number){
+           earth_up(now_user, map.cells);
+        }
+        else{
+            ///收租金函数调用
         }
     }
 }

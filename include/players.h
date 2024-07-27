@@ -77,6 +77,7 @@ typedef struct Players {
   /// 是否破产
   _Bool isBankrupt;
   char cap;
+  char *color;
   /// properties
   uint8_t properties[70];
 } Players, *pPlayers;
