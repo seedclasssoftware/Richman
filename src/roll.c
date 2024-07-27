@@ -40,4 +40,5 @@ int roll_num() {
 
 void change_position(pPlayers now_user,int steps){
     printf("当前骰子点数为：%d\n",steps);
+     
 }

@@ -128,7 +128,8 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
                 printf("%s%s\033[0m ", player_colors[(int)(input[i]-'1')], player_names[(int)(input[i]-'1')]);
             }
             break;
-        } 
+        }
+        else printf("您的输入格式不正确，请重新输入！"); 
     }
     return ;
 }

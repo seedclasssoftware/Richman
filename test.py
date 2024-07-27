@@ -3,7 +3,6 @@ import json
 import os
 import sys
 
-
 def run_test(test_dir):
     input_path = os.path.join(test_dir, "input.txt")
     output_path = os.path.join(test_dir, "output.txt")
@@ -28,12 +27,18 @@ def run_test(test_dir):
     actual_error_path = os.path.join(test_output_dir, "error.txt")
 
     # 使用 subprocess 重定向 stdout 和 stderr
+    executable_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out', 'MyProject.exe')
+    print(f"Executable path: {executable_path}")
+
+    if not os.path.isfile(executable_path):
+        print(f"Executable not found: {executable_path}")
+        return False
+
     with open(actual_output_path, "w") as output_file, open(
         actual_error_path, "w"
     ) as error_file:
         process = subprocess.Popen(
-            [os.path.join('out', 'MyProject.exe')],
-            # [os.path.join("out", "MyProject.exe"), user_json_path],
+            [executable_path],
             stdin=subprocess.PIPE,
             stdout=output_file,
             stderr=error_file,
@@ -65,7 +70,6 @@ def run_test(test_dir):
 
     print(f"Test in {test_dir} Passed.")
     return True
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
