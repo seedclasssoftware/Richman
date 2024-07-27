@@ -91,6 +91,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
         players[i].hospital = 0;
         players[i].magic = 0;
         players[i].position = 0;
+        players[i].isPlaying = 0;
     }
 
     printf("请选择2-4位不重复玩家，输入编号即可");
@@ -122,6 +123,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
             for (int i = 0; i < count; i++) {
                 players[i].name=player_names[input[i]-1];
                 players[i].cap=player_caps[input[i]-1];
+                players[i].isPlaying = 1;
                 // 打印选择的玩家名字和颜色
                 printf("%s%s\033[0m ", player_colors[(int)(input[i]-'1')], player_names[(int)(input[i]-'1')]);
             }
