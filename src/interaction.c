@@ -37,7 +37,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-
 extern pPlayers now_user;
 extern Map map;
 // 退出游戏的实现
@@ -160,36 +159,32 @@ void handle_command(const char *command) {
              strncmp(command, "Load ", 5) == 0) {
     const char *path = command + 5;
     print_working_directory();
-    // 替换反斜杠为正斜杠
-    char corrected_path[256];
-    for (int i = 0; i < strlen(path); ++i) {
-      if (path[i] == '\\') {
-        corrected_path[i] = '/';
-      } else {
-        corrected_path[i] = path[i];
-      }
-    }
-    corrected_path[strlen(path)] = '\0';
 
-    if (file_exists(corrected_path)) {
-      FILE *file = fopen(corrected_path, "r");
-      if (file) {
-        fseek(file, 0, SEEK_END);
-        long length = ftell(file);
-        fseek(file, 0, SEEK_SET);
-        char *data = malloc(length + 1);
-        if (data) {
-          fread(data, 1, length, file);
-          data[length] = '\0';
-          initializePlayers(data, players, 4, &map);
-          free(data);
-        }
-        fclose(file);
-      } else {
-        printf("无法打开文件: %s\n", corrected_path);
+    // 检查文件是否存在, 接受绝对路径和相对路径
+    if (file_exists(path)) {
+      // 读取文件内容
+      FILE *fp = fopen(path, "r");
+      if (fp == NULL) {
+        printf("文件打开失败\n");
+        return;
       }
-    } else {
-      printf("文件不存在: %s\n", corrected_path);
+      // 获取文件大小
+      fseek(fp, 0, SEEK_END);
+      long size = ftell(fp);
+      fseek(fp, 0, SEEK_SET);
+      // 读取文件内容
+      char *json_data = (char *)malloc(size + 1);
+      fread(json_data, 1, size, fp);
+      json_data[size] = '\0';
+            printf("初始化成功\n");
+      // 关闭文件
+      fclose(fp);
+      // Call the initializePlayers function
+      initializePlayers(json_data, players, 4, &map);
+      printf("初始化成功\n");
+      printPlayers(players, 4);
+      now_user = &players[0];
+      free(json_data);
     }
   } else {
     printf("未知命令\n");
