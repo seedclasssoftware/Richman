@@ -26,7 +26,7 @@ set(HEADERS
     include/players.h
     include/init_play.h
     include/map.h
-    src/interaction.h
+    include/interaction.h
 )
 
 # 添加头文件路径
