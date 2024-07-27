@@ -89,6 +89,5 @@ int main(int argc, char const *argv[], char const *envp[]) {
     map_print(&map);
     wait_for_input();
   }
-
   return 0;
 }
