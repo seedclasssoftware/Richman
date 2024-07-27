@@ -32,8 +32,8 @@ def run_test(test_dir):
         actual_error_path, "w"
     ) as error_file:
         process = subprocess.Popen(
-            # [os.path.join('out', 'MyProject.exe')],
-            [os.path.join("out", "MyProject.exe"), user_json_path],
+            [os.path.join('out', 'MyProject.exe')],
+            # [os.path.join("out", "MyProject.exe"), user_json_path],
             stdin=subprocess.PIPE,
             stdout=output_file,
             stderr=error_file,
