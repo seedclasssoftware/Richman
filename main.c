@@ -72,7 +72,13 @@ int main(int argc, char const *argv[], char const *envp[]) {
     printPlayers(players, 4);
     char *json = convertToJson(players, 4, &map, now_user);
     // printf("%s\n", json);
-
+    // 创建expected_output.json
+    FILE *fp2 = fopen("expected_output.json", "w");
+    if (fp2 == NULL) {
+      printf("文件打开失败\n");
+    }
+    fwrite(json, 1, strlen(json), fp2);
+    fclose(fp2);
   }
   while (1) {
     wait_for_input();
