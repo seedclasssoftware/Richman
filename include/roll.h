@@ -31,4 +31,6 @@
 int roll_num();
 
 void change_position(pPlayers now_user,int steps);
+
+void eventJudge(pPlayers now_user);
 #endif

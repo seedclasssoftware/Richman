@@ -92,6 +92,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
         players[i].magic = 0;
         players[i].position = 0;
         players[i].isPlaying = 0;
+        players[i].isBankrupt= 0;
     }
 
     printf("请选择2-4位不重复玩家，输入编号即可");
