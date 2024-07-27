@@ -1,62 +1,30 @@
 {
-	"MAP": {
-       "tool":[[1,2],[2,5],[32,6],[43,6]]
+    "MAP": {
+        "tool": [
+            [
+                1,
+                2
+            ],
+            [
+                2,
+                5
+            ],
+            [
+                32,
+                6
+            ],
+            [
+                43,
+                6
+            ]
+        ]
     },
     "user": "QASJ",
     "now_user": "S",
     "players": [
-         {
-            "alive": 0,
-            "money": 40,
-            "point": 0,
-            "number": 1,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff0": 0,
-            "debuff1": 0,
-            "decontinue": 0,
-            "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
-
-        },
-         {
-            "alive": 0,
-            "money": 50,
-            "point": 10,
-            "number": 2,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff0": 0,
-            "debuff1": 0,
-            "decontinue": 0,
-            "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
-        },
         {
             "alive": 0,
-            "money": 10000,
-            "point": 10,
-            "number": 3,
-            "tool1": 0,
-            "tool2": 0,
-            "tool3": 0,
-            "buff": 0,
-            "continue": 0,
-            "debuff0": 0,
-            "debuff1": 0,
-            "decontinue": 0,
-            "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
-        },
-         {
-            "alive": 0,
-            "money": 10000,
+            "money": 0,
             "point": 0,
             "number": 4,
             "tool1": 0,
@@ -68,7 +36,107 @@
             "debuff1": 0,
             "decontinue": 0,
             "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
+            "properties": [
+                [
+                    10,
+                    2
+                ],
+                [
+                    65,
+                    2
+                ],
+                [
+                    13,
+                    3
+                ]
+            ]
+        },
+        {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 1,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties": [
+                [
+                    10,
+                    2
+                ],
+                [
+                    65,
+                    2
+                ],
+                [
+                    13,
+                    3
+                ]
+            ]
+        },
+        {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 2,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties": [
+                [
+                    10,
+                    2
+                ],
+                [
+                    65,
+                    2
+                ],
+                [
+                    13,
+                    3
+                ]
+            ]
+        },
+        {
+            "alive": 0,
+            "money": 0,
+            "point": 0,
+            "number": 3,
+            "tool1": 0,
+            "tool2": 0,
+            "tool3": 0,
+            "buff": 0,
+            "continue": 0,
+            "debuff0": 0,
+            "debuff1": 0,
+            "decontinue": 0,
+            "position": 0,
+            "properties": [
+                [
+                    10,
+                    2
+                ],
+                [
+                    65,
+                    2
+                ],
+                [
+                    13,
+                    3
+                ]
+            ]
         }
     ]
 }

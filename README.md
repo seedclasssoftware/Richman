@@ -191,3 +191,16 @@ cd out
 - conan_profile_x64：Conan 依赖项配置文件。
 - README.md：项目说明文件。
 - C project.code-workspace：VSCode 工作区配置文件。
+
+## 参考测试用例
+
+```tree
+├── test1/
+│   │   ├── input.txt
+│   │   ├── expected_output.json
+│   │   ├── output.txt
+│   │   ├── error.txt
+│   │   └── .res/
+│   │       └── user.json
+├── test2/
+```
