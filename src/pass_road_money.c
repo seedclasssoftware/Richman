@@ -3,11 +3,12 @@
  */
 #include "pass_road_money.h"
 
-void pay_money(pPlayers player, Cell *cells, int now_user)
+void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money)
 {
-    if((*cells).owner!=0 && (*cells).owner!=player[now_user-1].number && (*cells).kind!=4)
+    //判断不为特殊建筑且这个地的所有者不为当前角色
+    if((*cells).owner!=0 && (*cells).owner!=(*now_user_for_pay_money).number && (*cells).kind!=4)
     {
-        if(player[now_user-1].god>0)
+        if((*now_user_for_pay_money).god>0)
         {
             printf("财神显灵，租金全免!\n");
             return;
@@ -40,10 +41,13 @@ void pay_money(pPlayers player, Cell *cells, int now_user)
                     printf("rank num error!\n");
                     break;
             }
-            if((*player).money>=pay_money)
+            //现有钱数大于需支付钱数
+            if((*now_user_for_pay_money).money>=pay_money)
             {
-                (*player).money-=pay_money;
+                (*now_user_for_pay_money).money-=pay_money;
+                player[(*cells).owner-1].money+=pay_money;
             }
+            //现有钱数少于支付钱数
             else
             {
                 //等待破产模块

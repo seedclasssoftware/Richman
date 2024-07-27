@@ -18,5 +18,5 @@ int is_your_earth(Players player, Cell *cells);
 //返回值：1 为当前角色土地; 0 不为当前角色土地
 
 void test_earth_up(void);
-
+//功能：用于简单测试
 #endif

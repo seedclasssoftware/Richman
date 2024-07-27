@@ -85,7 +85,7 @@ void earth_up(pPlayers player,Cell* cells)
 
 void test_earth_up(void)
 {
-    printf("hell0 world!\n");
+    //rintf("hell0 world!\n");
     Map map_for_earth_up_test;
     map_init(&map_for_earth_up_test);
     
