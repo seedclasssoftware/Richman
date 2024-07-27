@@ -159,7 +159,7 @@ void handle_command(const char *command) {
              strncmp(command, "Load ", 5) == 0) {
     const char *path = command + 5;
     print_working_directory();
-
+    printf("初始化成功\n");
     // 检查文件是否存在, 接受绝对路径和相对路径
     if (file_exists(path)) {
       // 读取文件内容
@@ -169,22 +169,23 @@ void handle_command(const char *command) {
         return;
       }
       // 获取文件大小
+      printf("初始化成功\n");
       fseek(fp, 0, SEEK_END);
       long size = ftell(fp);
       fseek(fp, 0, SEEK_SET);
       // 读取文件内容
-      char *json_data = (char *)malloc(size + 1);
-      fread(json_data, 1, size, fp);
-      json_data[size] = '\0';
-            printf("初始化成功\n");
+      char *json_d = (char *)malloc(size + 1);
+      fread(json_d, 1, size, fp);
+      json_d[size] = '\0';
+      printf("初始化成功\n");
       // 关闭文件
       fclose(fp);
       // Call the initializePlayers function
-      initializePlayers(json_data, players, 4, &map);
+      initializePlayers(json_d, players, 4, &map);
       printf("初始化成功\n");
       printPlayers(players, 4);
       now_user = &players[0];
-      free(json_data);
+      free(json_d);
     }
   } else {
     printf("未知命令\n");
