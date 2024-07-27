@@ -30,9 +30,13 @@
 #include "query.h"
 #include "roll.h"
 #include "useprops.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 extern pPlayers now_user;
 extern Map map;
@@ -46,6 +50,16 @@ void exit_game() {
   // 退出程序
   exit(0);
 }
+
+void print_working_directory() {
+  char cwd[PATH_MAX];
+  if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    printf("Current working directory: %s\n", cwd);
+  } else {
+    perror("getcwd() error");
+  }
+}
+
 // 切换玩家
 void change_player() {
 // 切换到下一个玩家
@@ -62,7 +76,7 @@ flag:
     goto flag;
   }
 }
-
+// 处理 Step 命令
 void handle_step_command(const char *command) {
   // 检查 command 是否为 NULL 或长度不足
   if (command == NULL || strlen(command) < 6) {
@@ -91,6 +105,12 @@ void handle_step_command(const char *command) {
 }
 
 extern Map map;
+
+// 检查文件是否存在
+int file_exists(const char *path) {
+  struct stat buffer;
+  return (stat(path, &buffer) == 0);
+}
 
 /**
  * @brief 处理用户输入的命令
@@ -136,6 +156,41 @@ void handle_command(const char *command) {
     // 关闭文件
     fclose(fp);
     printf("已将游戏数据保存到output.json\n");
+  } else if (strncmp(command, "load ", 5) == 0 ||
+             strncmp(command, "Load ", 5) == 0) {
+    const char *path = command + 5;
+    print_working_directory();
+    // 替换反斜杠为正斜杠
+    char corrected_path[256];
+    for (int i = 0; i < strlen(path); ++i) {
+      if (path[i] == '\\') {
+        corrected_path[i] = '/';
+      } else {
+        corrected_path[i] = path[i];
+      }
+    }
+    corrected_path[strlen(path)] = '\0';
+
+    if (file_exists(corrected_path)) {
+      FILE *file = fopen(corrected_path, "r");
+      if (file) {
+        fseek(file, 0, SEEK_END);
+        long length = ftell(file);
+        fseek(file, 0, SEEK_SET);
+        char *data = malloc(length + 1);
+        if (data) {
+          fread(data, 1, length, file);
+          data[length] = '\0';
+          initializePlayers(data, players, 4, &map);
+          free(data);
+        }
+        fclose(file);
+      } else {
+        printf("无法打开文件: %s\n", corrected_path);
+      }
+    } else {
+      printf("文件不存在: %s\n", corrected_path);
+    }
   } else {
     printf("未知命令\n");
   }
