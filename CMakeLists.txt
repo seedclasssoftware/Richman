@@ -16,7 +16,6 @@ set(SOURCES
     src/earthup.c
     src/map.c
     src/pass_road_money.c
-    src/interaction.c
 )
 
 # 查找cjson库
@@ -30,7 +29,6 @@ set(HEADERS
     include/earthup.h
     include/map.h
     include/pass_road_money.h
-    include/interaction.h
 )
 
 # 添加头文件路径
