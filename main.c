@@ -34,12 +34,16 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include "useprops.h"
+#include "map.h"
 
 Players players[4];
 
 pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
+
+  /*
   SetConsoleOutputCP(
       CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
@@ -65,14 +69,31 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
+    
     initializePlayers(json_data, players, 4);
     printPlayers(players, 4);
+    
     }
     while(1)
     {
         wait_for_input();
     }
-  
+    */
+    Map map;
+    Players player;
+
+    map_init(&map);
+    memset(&player, 0, sizeof(player));
+    player.position = 1;
+    player.block = 1;
+    printf("position: %d\n", player.position);
+    printf("block: %d\n", player.block);
+    printf("has_tool: %d\n", map.cells[65].has_tool);
+
+    useprops(&player, &map);
+    printf("position: %d\n", player.position);
+    printf("block: %d\n", player.block);
+    printf("has_tool: %d\n", map.cells[65].has_tool);
 
     return 0;
 }

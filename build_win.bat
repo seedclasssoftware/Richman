@@ -24,7 +24,7 @@ echo ============Running MyProject.exe=============
 
 echo ============Running MyProject.exe with argument=============
 
-.\MyProject ".res/users.json"
+@REM .\MyProject ".res/users.json"
 
 echo ============test MyProject.exe with parallel 10=============
 
