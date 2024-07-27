@@ -34,6 +34,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "init_play.h"
+#include <stdint.h>
 
 
 
@@ -49,6 +50,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     printf("游戏模式\n");
     uint32_t init_money;
     int selected_players[4];
+    
     init_money(&init_money);//初始化金钱部分
     
     select_players(players, selected_players, 4,init_money);//初始化选角色部分
