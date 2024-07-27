@@ -52,9 +52,9 @@ int main(int argc, char const *argv[], char const *envp[]) {
   if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
+    map_init(&map);
     init_money(&initMoney);                // 初始化金钱部分
     select_players(players, 4, initMoney); // 初始化选角色部分
-
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
@@ -86,7 +86,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
   while (1) {
     wait_for_input();
-    
+    map_print(&map);
     void handle_command(const char *command);
   }
 
