@@ -29,6 +29,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "map.h"
+
+extern Map map;
 
 int roll_num() {
     // 使用当前时间作为种子
@@ -40,5 +43,8 @@ int roll_num() {
 
 void change_position(pPlayers now_user,int steps){
     printf("当前骰子点数为：%d\n",steps);
-     
+    for(int i=1;i<=steps;i++){
+        int tool=map.cells[now_user->position+i].has_tool;
+        if(tool==0) continue;
+    }
 }
