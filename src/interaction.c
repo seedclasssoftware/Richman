@@ -1,10 +1,9 @@
 /**
- * @file main.c
+ * @file interaction.c
  * @author 王一赫 (wyihe5220@gmail.com)
- * @brief KMP算法的实现实验
+ * @brief
  * @version 0.1
- * @date 2024-05-31
- *
+ * @date 2024-07-26
  *
  * @copyright copyright (c) 2024
  *   Licensed to the Apache Software Foundation (ASF) under one
@@ -15,9 +14,7 @@
  *   "License"); you may not use this file except in compliance
  *   with the License.  You may obtain a copy of the License at
  *
- *
  *     http://www.apache.org/licenses/LICENSE-2.0
- *
  *
  *   Unless required by applicable law or agreed to in writing,
  *   software distributed under the License is distributed on an
@@ -26,23 +23,30 @@
  *   specific language governing permissions and limitations
  *   under the License.
  *
- *
  */
-#include "players.h"
+#include "interaction.h"
 #include <stdio.h>
-#include <windows.h>
-#include "buy_earth.h"
-#include "earthup.h"
-#include "map.h"
-#include "tool_house.h"
 
 
+extern pPlayers now_user;
 
-int main(int argc, char const *argv[], char const *envp[]) {
-  SetConsoleOutputCP(
-      CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
-  /// 无参数,默认为游戏模式
-  test1_buy_earth1_when_money_is_199();
-  printf("hello\n");
-  return 0;
+void wait_for_input() {
+  switch (now_user->number) {
+  case 1:
+    printf("\033[31m钱夫人>\033[31m");
+    break;
+  case 2:
+    printf("\033[32m阿土伯>\033[32m");
+    break;
+  case 3:
+    printf("\033[33m孙小美>\033[33m");
+    break;
+  case 4:
+    printf("\033[34m金贝贝>\033[34m");
+    break;
+  default:
+    printf("error\n");
+    break;
+  }
+  //创建接受缓冲区
 }

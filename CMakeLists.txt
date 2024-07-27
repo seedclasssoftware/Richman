@@ -11,6 +11,10 @@ project(MyProject)
 set(SOURCES 
     main.c
     src/players.c
+    src/buy_earth.c
+    src/earthup.c
+    src/map.c
+    src/tool_house.c
 )
 
 find_package(cjson REQUIRED)
@@ -18,6 +22,11 @@ find_library(CJSON_LIB cjson)
 # Add your header files here
 set(HEADERS 
     include/players.h
+    include/buy_earth.h
+    include/map.h
+    include/players.h
+    include/earthup.h
+    include/tool_house.h
 )
 # 定义 DEBUG 宏
 # target_compile_definitions(MyTargetName PRIVATE DEBUG)
