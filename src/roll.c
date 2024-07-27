@@ -38,7 +38,10 @@
 //#include "winnt.h"
 extern Map map;
 extern Players players[4];
-
+/**
+ * @brief 玩家掷骰子 
+ * @return 骰子点数
+ */
 int roll_num() {
     // 使用当前时间作为种子
     srand(time(NULL));
@@ -46,7 +49,11 @@ int roll_num() {
     int steps = rand() % 6 + 1;
     return steps;
 }
-
+/**
+ * @brief 根据点数以及玩家当前位置将玩家移到指定地方
+ * @param now_user 当前玩家指针
+ * @param steps 玩家掷的骰子数
+ */
 void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
@@ -68,7 +75,11 @@ void change_position(pPlayers now_user,int steps){
     }
     if(flag==0) now_user->position+=steps;
 }
-
+/**
+ * @brief 根据玩家所在格属性判断触发的事件
+ * 
+ * @param now_user 当前玩家指针
+ */
 void eventJudge(pPlayers now_user){
     int kind=map.cells[now_user->position].kind;
     int rank=map.cells[now_user->position].rank;

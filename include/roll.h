@@ -28,9 +28,22 @@
 #define ROLL_H
 #include "players.h"
 
+/**
+ * @brief 玩家掷骰子 
+ * @return 骰子点数
+ */
+
 int roll_num();
-
+/**
+ * @brief 根据点数以及玩家当前位置将玩家移到指定地方
+ * @param now_user 当前玩家指针
+ * @param steps 玩家掷的骰子数
+ */
 void change_position(pPlayers now_user,int steps);
-
+/**
+ * @brief 根据玩家所在格属性判断触发的事件
+ * 
+ * @param now_user 当前玩家指针
+ */
 void eventJudge(pPlayers now_user);
 #endif
