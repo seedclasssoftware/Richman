@@ -17,6 +17,7 @@ set(SOURCES
     src/useprops.c
     src/help.c
     src/interaction.c
+    src/roll.c
 )
 
 # 查找cjson库
@@ -31,6 +32,7 @@ set(HEADERS
     include/useprops.h
     include/help.h
     include/interaction.h
+    include/roll.h
 )
 
 # 添加头文件路径

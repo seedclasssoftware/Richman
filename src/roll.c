@@ -61,14 +61,14 @@ void change_position(pPlayers now_user,int steps){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
         else if(tool==1){
-            now_user->position+=i;
+            now_user->position+=(uint8_t)i;
             map.cells[now_user->position].show_char=now_user->cap;
             flag=1;
             break;
         }
         else if(tool==3){
-            now_user->position=14;
-            now_user->hospital=3;
+            now_user->position=(uint8_t)14;
+            now_user->hospital=(uint8_t)3;
             flag=1;
             break;
         }
