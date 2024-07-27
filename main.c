@@ -28,7 +28,7 @@
  *
  *
  */
-#include "include/interaction.h"
+#include "interaction.h"
 #include "init_play.h"
 #include "players.h"
 #include <stdint.h>
