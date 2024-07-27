@@ -31,7 +31,6 @@
 #include "map.h"
 #include <stdint.h>
 
-
 /**
  * @brief 枚举玩家名字宏定义
  *
@@ -128,4 +127,6 @@ void print_from_file();
  */
 char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
+
+extern pPlayers now_user;
 #endif ///< PLAYERS_H
