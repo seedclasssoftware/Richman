@@ -13,6 +13,8 @@ set(SOURCES
     main.c
     src/players.c
     src/tool_house.c
+    src/earthup.c
+    src/map.c
 )
 
 # 查找cjson库
@@ -23,6 +25,8 @@ find_library(CJSON_LIB cjson)
 set(HEADERS 
     include/players.h
     include/tool_house.h
+    include/earthup.h
+    include/map.h
 )
 
 # 添加头文件路径

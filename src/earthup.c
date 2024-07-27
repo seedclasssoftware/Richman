@@ -89,12 +89,12 @@ void test_earth_up(void)
     map_print(&map_for_earth_up_test);
     
     Players player_use_for_test_earth_up;
-    player_use_for_test_earth_up.money=99;
+    player_use_for_test_earth_up.money=699;
     player_use_for_test_earth_up.number=1;
     player_use_for_test_earth_up.position=6;
 
     map_for_earth_up_test.cells[5].owner=1;
-    map_for_earth_up_test.cells[5].rank=1;
+    map_for_earth_up_test.cells[5].rank=2;
     map_for_earth_up_test.cells[5].kind=2;
     earth_up(&player_use_for_test_earth_up,&(map_for_earth_up_test.cells[5]));
     printf("%d,%d,%d,%d\n",map_for_earth_up_test.cells[5].owner,map_for_earth_up_test.cells[5].rank,map_for_earth_up_test.cells[5].kind,player_use_for_test_earth_up.money);

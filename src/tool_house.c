@@ -27,48 +27,59 @@
 #include "tool_house.h"
 #include "players.h"
 #include <stdio.h>
+#include <string.h>
 
 void buy_tool(pPlayers player) {
   if (player->point >= 30) {
-    char choice_tool = 'F';
+    char *choice_tool = NULL;
     printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 "
            "F.退出\n");
-    scanf("%c", &choice_tool);
-    while (choice_tool != 'F') {
+    scanf("%s", choice_tool);
+    while (choice_tool != NULL) {
+      if((strcmp("F\0",choice_tool) == 0)||(strcmp("f\0",choice_tool) == 0))
+      {//判断是否退出
+        break;
+      }
       int tool_number = player->block + player->bomb + player->robot;
-      if (tool_number == 10) {
+      if (tool_number == 10) {//道具数为10
         printf("您的道具数已达最大值，不能购买.\n");
         break;
-      } else {
-        if (choice_tool == '2') {
+      } 
+      else {
+        if (strcmp("2\0",choice_tool) == 0) {//选择机器娃娃
           player->robot++;
           player->point -= 30;
-        } else if (choice_tool == '1') {
+        } 
+        else if (strcmp("1\0",choice_tool) == 0) {//选择路障
           if (player->point >= 50) {
             player->point -= 50;
             player->block++;
-          } else {
-            printf("您当前剩余的点数为%u，不足以购买路障道具。\n",
-                   player->point);
+          } 
+          else {
+            printf("您当前剩余的点数为%u，不足以购买路障道具。\n",player->point);
           }
-        } else if (choice_tool == '3') {
+        } 
+        else if (strcmp("3\0",choice_tool) == 0) {//选择炸弹
           if (player->point >= 50) {
             player->point -= 50;
             player->bomb++;
-          } else {
-            printf("您当前剩余的点数为%u，不足以购买炸弹道具。\n",
-                   player->point);
+          } 
+          else {
+            printf("您当前剩余的点数为%u，不足以购买炸弹道具。\n",player->point);
           }
-        } else {
+        } 
+        else {
           printf("输入错误\n");
         }
       }
 
       printf("请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
-      while(getchar() != '\n');
-      scanf("%c", &choice_tool);
+      //while(getchar() != '\n');
+      choice_tool = NULL;
+      scanf("%s", choice_tool);
     }
-  } else {
+  } 
+  else {
     printf("点数不足.\n");
   }
   return;
