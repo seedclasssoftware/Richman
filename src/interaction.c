@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "roll.h"
+#include "roll.h"
 
 extern pPlayers now_user;
 
@@ -50,9 +51,8 @@ void exit_game() {
  */
 void handle_command(const char *command) {
   if (strcmp(command, "Roll") == 0 || strcmp(command, "roll") == 0) {
-    int roll = roll_num();
-    printf("骰子点数为：%d\n", roll);
-    change_position(now_user, roll);
+    int steps=roll_num();
+    change_position(now_user,steps);
   } else if (strncmp(command, "Sell", 4) == 0 ||
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
@@ -86,7 +86,6 @@ void wait_for_input() {
   switch (now_user->number) {
   case 1:
     printf("\033[31m钱夫人>\033[31m\033[0m");
-
     break;
   case 2:
     printf("\033[32m阿土伯>\033[32m\033[0m");
