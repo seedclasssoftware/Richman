@@ -2,8 +2,10 @@
  * @file tool_house.c
  * @author 古静怡 (2856514560@qq.com)
  * @brief
+ * @brief
  * @version 0.1
  * @date 2024-07-27
+ *
  *
  * @copyright copyright (c) 2024
  *   Licensed to the Apache Software Foundation (ASF) under one
@@ -14,7 +16,9 @@
  *   "License"); you may not use this file except in compliance
  *   with the License.  You may obtain a copy of the License at
  *
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  *
  *   Unless required by applicable law or agreed to in writing,
  *   software distributed under the License is distributed on an
@@ -23,57 +27,72 @@
  *   specific language governing permissions and limitations
  *   under the License.
  *
+ *
  */
 #include "tool_house.h"
 #include "players.h"
 #include <stdio.h>
 #include <string.h>
 
-void buy_tool(pPlayers player) {
-  if (player->point >= 30) {
+//传参Players类型变量的地址，以&Players形式传参。例子：已初始化变量Players player,调用函数buy_tool(&player)；
+void buy_tool(pPlayers player) 
+{
+  if (player->point >= 30) 
+  {
     char choice_tool = 'F';
-    printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 "
-           "F.退出\n");
+    printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
     choice_tool = getchar();
-    while (choice_tool == 'F' || choice_tool == 'f') {
+    while (choice_tool != 'F') 
+    {
       int tool_number = player->block + player->bomb + player->robot;
-      if (tool_number == 10) {//道具数为10
+      if (tool_number == 10) 
+      {//道具数为10
         printf("您的道具数已达最大值，不能购买.\n");
         break;
       } 
-      else {
-        if (choice_tool == '2' && getchar() == '\n') {//选择机器娃娃
-          player->robot++;
+      else 
+      {
+        if (choice_tool == '2' && getchar() == '\n') 
+        {//选择机器娃娃
           player->point -= 30;
+          player->robot++;
         } 
-        else if (choice_tool == '1' && getchar() == '\n') {//选择路障
-          if (player->point >= 50) {
+        else if (choice_tool == '1' && getchar() == '\n') 
+        {//选择路障
+          if (player->point >= 50) 
+          {
             player->point -= 50;
             player->block++;
           } 
-          else {
+          else 
+          {
             printf("您当前剩余的点数为%u，不足以购买路障道具。\n",player->point);
           }
         } 
-        else if (choice_tool == '3' && getchar() == '\n') {//选择炸弹
-          if (player->point >= 50) {
+        else if (choice_tool == '3' && getchar() == '\n') 
+        {//选择炸弹
+          if (player->point >= 50) 
+          {
             player->point -= 50;
             player->bomb++;
           } 
-          else {
+          else 
+          {
             printf("您当前剩余的点数为%u，不足以购买炸弹道具。\n",player->point);
           }
         } 
-        else {//输入错误
+        else 
+        {//输入错误
           printf("输入错误\n");
+          while((choice_tool = getchar()) != '\n' && choice_tool != EOF);
         }
       }
-
       printf("请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
       choice_tool = getchar();
     }
   } 
-  else {
+  else 
+  {//点数不足
     printf("点数不足.\n");
   }
   return;

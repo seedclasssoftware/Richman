@@ -59,13 +59,15 @@ void handle_command(const char *command) {
     eventJudge(now_user);
   // 切换当前玩家
   flag:
-    if (players[(now_user->number) % 4].hospital == 0 ||
-        players[(now_user->number) % 4].prison == 0 ||
-        players[(now_user->number) % 4].isPlaying == 1 ||
-        players[(now_user->number) % 4].isBankrupt == 1) {
-      now_user = &players[(now_user->number) % 4];
+    if ((players[(now_user->number) % 4].hospital == 0 &&
+         players[(now_user->number) % 4].prison == 0 &&
+         players[(now_user->number) % 4].isPlaying == 1 &&
+         players[(now_user->number) % 4].isBankrupt == 0) == 1) {
+      now_user = &(players[(now_user->number+1) % 4]);
+      printf("切换到玩家%d\n", now_user->number);
     } else {
-      now_user = &players[(now_user->number) % 4];
+      printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
+      now_user = &(players[(now_user->number) % 4]);
       goto flag;
     }
   } else if (strncmp(command, "Sell", 4) == 0 ||

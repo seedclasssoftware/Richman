@@ -12,7 +12,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(SOURCES 
     main.c
     src/players.c
-    src/init_play.c
+    src/tool_house.c
+   src/earthup.c
     src/map.c
     src/useprops.c
     src/help.c
@@ -26,6 +27,7 @@ set(SOURCES
     src/roll.c
     src/help.c
     src/query.c
+    src/init_play.c
 )
 
 # 查找cjson库
@@ -35,7 +37,9 @@ find_library(CJSON_LIB cjson)
 # 添加头文件
 set(HEADERS 
     include/players.h
-    include/init_play.h
+    include/tool_house.h
+    include/buy_earth.h
+   include/earthup.h
     include/map.h
     include/useprops.h
     include/help.h
@@ -50,6 +54,7 @@ set(HEADERS
     include/roll.h
     include/help.h
     include/query.h
+    include/init_play.h
 )
 
 # 添加头文件路径

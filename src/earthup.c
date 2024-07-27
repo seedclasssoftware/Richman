@@ -42,7 +42,7 @@ void earth_up(pPlayers player,Cell* cells)
                     char if_earth_up;
                     if_earth_up = getchar();
                     //选择升级地产
-                    if(if_earth_up=='y')
+                    if(if_earth_up=='y' && getchar()=='\n')
                     {
                         if((*cells).rank == 1)
                         {
@@ -64,7 +64,7 @@ void earth_up(pPlayers player,Cell* cells)
                         }
                     }
                     //选择不升级地产
-                    else if(if_earth_up=='n')
+                    else if(if_earth_up=='n' && getchar()=='\n')
                     {
                         return;
                     }
@@ -85,19 +85,19 @@ void earth_up(pPlayers player,Cell* cells)
 
 void test_earth_up(void)
 {
-    printf("hell0 world!\n");
+    //rintf("hell0 world!\n");
     Map map_for_earth_up_test;
     map_init(&map_for_earth_up_test);
     
     map_print(&map_for_earth_up_test);
     
     Players player_use_for_test_earth_up;
-    player_use_for_test_earth_up.money=99;
+    player_use_for_test_earth_up.money=699;
     player_use_for_test_earth_up.number=1;
     player_use_for_test_earth_up.position=6;
 
     map_for_earth_up_test.cells[5].owner=1;
-    map_for_earth_up_test.cells[5].rank=1;
+    map_for_earth_up_test.cells[5].rank=2;
     map_for_earth_up_test.cells[5].kind=2;
     earth_up(&player_use_for_test_earth_up,&(map_for_earth_up_test.cells[5]));
     printf("%d,%d,%d,%d\n",map_for_earth_up_test.cells[5].owner,map_for_earth_up_test.cells[5].rank,map_for_earth_up_test.cells[5].kind,player_use_for_test_earth_up.money);
