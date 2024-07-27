@@ -86,7 +86,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
   while (1) {
     wait_for_input();
-    void handle_command(const char *command);
+
   }
 
   return 0;
