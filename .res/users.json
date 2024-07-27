@@ -1,11 +1,15 @@
 {
-	"MAP": {
-       "tool":[[1,2],[2,5],[32,6],[43,6]]
+    "MAP": {
+        "tool": [
+            [1, 2],
+            [2, 1],
+            [32, 3],
+            [43, 1]
+        ]
     },
-    "user": "QASJ",
     "now_user": "S",
-    "players": [
-         {
+    "players": {
+        "QIAN_Madam": {
             "alive": 0,
             "money": 40,
             "point": 0,
@@ -19,10 +23,13 @@
             "debuff1": 0,
             "decontinue": 0,
             "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
-
+            "properties": [
+                [10, 2],
+                [65, 2],
+                [13, 3]
+            ]
         },
-         {
+        "ATUB": {
             "alive": 0,
             "money": 50,
             "point": 10,
@@ -36,9 +43,13 @@
             "debuff1": 0,
             "decontinue": 0,
             "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
+            "properties": [
+                [10, 2],
+                [65, 2],
+                [13, 3]
+            ]
         },
-        {
+        "SUN_Miss": {
             "alive": 0,
             "money": 10000,
             "point": 10,
@@ -52,9 +63,13 @@
             "debuff1": 0,
             "decontinue": 0,
             "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
+            "properties": [
+                [10, 2],
+                [65, 2],
+                [13, 3]
+            ]
         },
-         {
+        "JIN_Bei": {
             "alive": 0,
             "money": 10000,
             "point": 0,
@@ -68,7 +83,11 @@
             "debuff1": 0,
             "decontinue": 0,
             "position": 0,
-            "properties":[[10,2],[65,2],[13,3]]
+            "properties": [
+                [10, 2],
+                [65, 2],
+                [13, 3]
+            ]
         }
-    ]
+    }
 }

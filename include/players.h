@@ -28,7 +28,9 @@
 #ifndef PLAYERS_H
 #define PLAYERS_H
 
+#include "map.h"
 #include <stdint.h>
+
 
 /**
  * @brief 枚举玩家名字宏定义
@@ -40,7 +42,6 @@ enum Players_Name {
   SUN_Miss,       ///< 孙小姐 = 3
   JIN_Bei         ///< 金贝 = 4
 };
-
 
 /**
  * @brief 玩家结构体
@@ -78,16 +79,16 @@ typedef struct Players {
 
 extern Players players[4];
 
-
 /**
  * @brief 初始化玩家
  *
  * @param json_data json数据
  * @param players 玩家数组
  * @param num_players 玩家数量
+ * @param map 地图
  */
 void initializePlayers(const char *json_data, Players players[],
-                       int num_players);
+                       int num_players, Map *map);
 
 /**
  * @brief Get the Player Name object
@@ -111,5 +112,15 @@ void printPlayers(Players players[], int num_players);
  */
 void print_from_file();
 
-
+/**
+ * @brief
+ *
+ * @param players
+ * @param num_players
+ * @param map
+ * @param now_user
+ * @return char*
+ */
+char *convertToJson(Players players[], int num_players, Map *map,
+                    pPlayers now_user);
 #endif ///< PLAYERS_H
