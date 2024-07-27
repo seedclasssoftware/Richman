@@ -2,8 +2,10 @@
  * @file tool_house.c
  * @author 古静怡 (2856514560@qq.com)
  * @brief
+ * @brief
  * @version 0.1
  * @date 2024-07-27
+ *
  *
  * @copyright copyright (c) 2024
  *   Licensed to the Apache Software Foundation (ASF) under one
@@ -14,7 +16,9 @@
  *   "License"); you may not use this file except in compliance
  *   with the License.  You may obtain a copy of the License at
  *
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  *
  *   Unless required by applicable law or agreed to in writing,
  *   software distributed under the License is distributed on an
@@ -23,12 +27,14 @@
  *   specific language governing permissions and limitations
  *   under the License.
  *
+ *
  */
 #include "tool_house.h"
 #include "players.h"
 #include <stdio.h>
 #include <string.h>
 
+//传参Players类型变量的地址，以&Players形式传参。例子：已初始化变量Players player,调用函数buy_tool(&player)；
 void buy_tool(pPlayers player) 
 {
   if (player->point >= 30) 

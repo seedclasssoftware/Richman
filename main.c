@@ -28,32 +28,31 @@
  *
  *
  */
-//#include "init_play.h"
-//#include "interaction.h"
-
+#include "help.h"
+#include "init_play.h"
+#include "interaction.h"
+#include "map.h"
 #include "players.h"
-//#include <stdint.h>
+#include "useprops.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
-//#include "useprops.h"
-#include "map.h"
-//#include "help.h"
-//#include "tool_house.h"
-//#include "pass_road_money.h"
+#include "tool_house.h"
+#include "pass_road_money.h"
 #include "buy_earth.h"
 
-//Map map;
+Map map;
 
-//Players players[4];
+Players players[4];
 
-//pPlayers now_user = &players[0];
+pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
 
 
   SetConsoleOutputCP(CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
-  /*if (argc == 1) {
+  if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
     map_init(&map);
@@ -74,7 +73,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
-    
+
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     printPlayers(players, 4);
@@ -89,13 +88,14 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fclose(fp2);
   }
   while (1) {
+    map_init(&map);
+    map_print(&map);
     wait_for_input();
     map_print(&map);
     void handle_command(const char *command);
-  }*/
+  }
 
 
 
-  printf("hello,main\n");
   return 0;
 }

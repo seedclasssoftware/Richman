@@ -20,11 +20,11 @@ cmake --build . --config Debug
 
 cd ../out
 
-echo ============Running MyProject.exe=============
+@REM echo ============Running MyProject.exe=============
 
 .\MyProject
 
-echo ============Running MyProject.exe with argument=============
+@REM echo ============Running MyProject.exe with argument=============
 
 @REM .\MyProject ".res/users.json"
 
@@ -35,3 +35,5 @@ pause
 cd ../build
 
 ctest --parallel 10
+
+cd ..

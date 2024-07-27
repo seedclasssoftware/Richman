@@ -30,6 +30,10 @@
 
 #include "players.h"
 #include "map.h"
+
 void useprops(Players *player, Map *map);//使用道具函数
 
+void useblock(Players *player, Map *map);//使用路障函数
+void userobot(Players *player, Map *map);//使用机器人函数
+void usebomb(Players *player, Map *map);//使用炸弹函数
 #endif 
