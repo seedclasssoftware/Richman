@@ -42,9 +42,30 @@ int roll_num() {
 }
 
 void change_position(pPlayers now_user,int steps){
+    int flag=0;
     printf("当前骰子点数为：%d\n",steps);
     for(int i=1;i<=steps;i++){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
+        else if(tool==1){
+            now_user->position+=i;
+            map.cells[now_user->position].show_char=now_user->cap;
+            flag=1;
+            break;
+        }
+        else if(tool==3){
+            now_user->position=14;
+            now_user->hospital=3;
+            flag=1;
+            break;
+        }
     }
+    if(flag==0) now_user->position+=steps;
+}
+
+void eventJudge(pPlayers now_user){
+    int kind=map.cells[now_user->position].kind;
+    int rank=map.cells[now_user->position].rank;
+    int owner=map.cells[now_user->position].owner;
+    
 }
