@@ -1,3 +1,6 @@
+/**
+ * author： 史少博
+ */
 #include "pass_road_money.h"
 
 void pay_money(pPlayers player, Cell *cells, int now_user)
