@@ -1,5 +1,7 @@
 @echo off
 
+chcp 65001
+
 conan install . --build=missing --profile=conan_profile_x64
 
 if not exist build (
