@@ -22,7 +22,7 @@ cd ../out
 
 @REM echo ============Running MyProject.exe=============
 
-.\MyProject
+@REM .\MyProject
 
 @REM echo ============Running MyProject.exe with argument=============
 

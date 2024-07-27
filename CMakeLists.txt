@@ -13,7 +13,7 @@ set(SOURCES
     main.c
     src/players.c
     src/tool_house.c
-#    src/earthup.c
+   src/earthup.c
     src/map.c
     src/useprops.c
     src/help.c
@@ -25,7 +25,7 @@ set(SOURCES
     src/tool_house.c
     src/buy_earth.c
     src/pass_road_money.c
-
+    src/init_play.c
 )
 
 # 查找cjson库
@@ -37,7 +37,7 @@ set(HEADERS
     include/players.h
     include/tool_house.h
     include/buy_earth.h
-#    include/earthup.h
+   include/earthup.h
     include/map.h
     include/useprops.h
     include/help.h
@@ -49,6 +49,7 @@ set(HEADERS
     include/tool_house.h
     include/buy_earth.h
     include/pass_road_money.h
+    include/init_play.h
 )
 
 # 添加头文件路径

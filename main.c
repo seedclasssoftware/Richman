@@ -28,18 +28,19 @@
  *
  *
  */
+#include "buy_earth.h"
 #include "help.h"
 #include "init_play.h"
 #include "interaction.h"
 #include "map.h"
+#include "pass_road_money.h"
 #include "players.h"
+#include "tool_house.h"
 #include "useprops.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
-#include "tool_house.h"
-#include "pass_road_money.h"
-#include "buy_earth.h"
+
 
 Map map;
 
@@ -49,8 +50,8 @@ pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
 
-
-  SetConsoleOutputCP(CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
+  SetConsoleOutputCP(
+      CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
   if (argc == 1) {
     printf("游戏模式\n");
@@ -91,11 +92,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
   while (1) {
     map_print(&map);
     wait_for_input();
-    map_print(&map);
-    void handle_command(const char *command);
   }
-
-
-
   return 0;
 }
