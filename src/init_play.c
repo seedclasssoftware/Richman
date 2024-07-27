@@ -42,7 +42,11 @@ char *player_colors[] = {
 };
 
 char player_caps[] = {'Q', 'A', 'S', 'J'};
-
+/**
+ * @brief Initializes the money for the game
+ * 
+ * @param initMoney Pointer to the variable that will store the initial money
+ */
 void init_money(uint32_t *initMoney) {
   char input[100]; // 用来存储用户输入
   printf("请输入初始金额(1000-50000)，直接按回车默认为10000: ");
@@ -70,7 +74,14 @@ void init_money(uint32_t *initMoney) {
   }
   printf("初始金额为：%d\n", *initMoney);
 }
-
+/**
+ * @brief Selects the players for the game
+ * 
+ * @param players Pointer to the players struct
+ * @param selected_players Pointer to the array that will store the selected players
+ * @param num_players Number of players
+ * @param init_money Initial money for the game
+ */
 void select_players(Players *players, int num_players, uint32_t init_money) {
   char input[10];
   int count = 0;

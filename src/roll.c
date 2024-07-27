@@ -34,9 +34,14 @@
 #include "buy_earth.h"
 #include "earthup.h"
 #include "mine_earth.h"
-
+#include "pass_road_money.h"
+//#include "winnt.h"
 extern Map map;
-
+extern Players players[4];
+/**
+ * @brief 玩家掷骰子 
+ * @return 骰子点数
+ */
 int roll_num() {
     // 使用当前时间作为种子
     srand(time(NULL));
@@ -44,7 +49,11 @@ int roll_num() {
     int steps = rand() % 6 + 1;
     return steps;
 }
-
+/**
+ * @brief 根据点数以及玩家当前位置将玩家移到指定地方
+ * @param now_user 当前玩家指针
+ * @param steps 玩家掷的骰子数
+ */
 void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
@@ -52,21 +61,25 @@ void change_position(pPlayers now_user,int steps){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
         else if(tool==1){
-            now_user->position+=i;
+            now_user->position+=(uint8_t)i;
             map.cells[now_user->position].show_char=now_user->cap;
             flag=1;
             break;
         }
         else if(tool==3){
-            now_user->position=14;
-            now_user->hospital=3;
+            now_user->position=(uint8_t)14;
+            now_user->hospital=(uint8_t)3;
             flag=1;
             break;
         }
     }
     if(flag==0) now_user->position+=steps;
 }
-
+/**
+ * @brief 根据玩家所在格属性判断触发的事件
+ * 
+ * @param now_user 当前玩家指针
+ */
 void eventJudge(pPlayers now_user){
     int kind=map.cells[now_user->position].kind;
     int rank=map.cells[now_user->position].rank;
@@ -106,7 +119,7 @@ void eventJudge(pPlayers now_user){
            earth_up(now_user, map.cells);
         }
         else{
-            ///收租金函数调用
+            pay_money(players, map.cells, now_user);
         }
     }
 }
