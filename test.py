@@ -12,6 +12,8 @@ def run_test(test_dir):
     expected_output_path = os.path.join(test_dir, "expected_output.json")
     expected_output_txt_path = os.path.join(test_dir, "expected_output.txt")
 
+    print(f"Executable path: {os.path.join('out', 'MyProject.exe')}")
+    print(f"Input path: {input_path}")
     # 读取输入文件
     with open(input_path, "r") as input_file:
         input_data = input_file.read()
