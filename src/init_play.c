@@ -3,6 +3,7 @@
 #include "init_play.h"
 #include "players.h"
 #include <string.h>
+#include<stdint.h>
 
 char *player_names[] = {
     "钱夫人",
