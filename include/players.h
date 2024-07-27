@@ -39,7 +39,7 @@ enum Players_Name {
   ATUB,           ///< 阿土伯 = 2
   SUN_Miss,       ///< 孙小姐 = 3
   JIN_Bei         ///< 金贝 = 4
-} Players_Name;
+};
 
 
 /**
