@@ -29,4 +29,7 @@
 
 #include "players.h"
 
+void buy_tool(pPlayers player);
+void test_tool_house();
+
 #endif
