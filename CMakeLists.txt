@@ -15,6 +15,8 @@ set(SOURCES
     src/tool_house.c
     src/earthup.c
     src/map.c
+    src/useprops.c
+    src/help.c
     src/pass_road_money.c
 )
 
@@ -28,6 +30,8 @@ set(HEADERS
     include/tool_house.h
     include/earthup.h
     include/map.h
+    include/useprops.h
+    include/help.h
     include/pass_road_money.h
 )
 

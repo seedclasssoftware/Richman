@@ -22,6 +22,7 @@
  *   KIND, either express or implied.  See the License for the
  *   specific language governing permissions and limitations
  *   under the License.
+ *   放置炸弹和路障以及使用机器人清扫前方10步内的所有路障和炸弹
  * 
  */
 #include "useprops.h"
@@ -48,7 +49,13 @@ void useprops(Players *player, Map *map)
                 printf("please select a position to place your block:-10~10\n");
                 int place_position;
                 scanf("%d", &place_position);
-                map->cells[player->position+place_position].has_tool = 1;
+                while(place_position > 10 || place_position < -10)
+                {
+                    printf("invalid position\n");
+                    scanf("%d", &place_position);
+                }
+                place_position = (player->position+place_position) > 0 ? (player->position+place_position)%69 : (69+(player->position+place_position))%69;
+                map->cells[place_position].has_tool = 1;
                 printf("you have used block\n");
                 player->block--;
 
@@ -63,15 +70,13 @@ void useprops(Players *player, Map *map)
         case 2:
             if (player->robot > 0)
             {
+                for(int i = 1; i < 11; i++)
+                {
+                    map->cells[i+player->position].has_tool = 0;
+                }
                 printf("you have used robot\n");
                 player->robot--;
-                for (int i = 0; i < 10; i++)
-                {
-                    if(map->cells[i].has_tool == 3)
-                    {
-                        map->cells[i].has_tool = 0;
-                    }
-                }
+                
             }
             else
             {
@@ -82,9 +87,19 @@ void useprops(Players *player, Map *map)
         case 3:
             if (player->bomb > 0)
             {
+                printf("please select a position to place your bomb:-10~10\n");
+                int place_position;
+                scanf("%d", &place_position);
+                while(place_position > 10 || place_position < -10)
+                {
+                    printf("invalid position\n");
+                    scanf("%d", &place_position);
+                }
+                place_position = (player->position+place_position) > 0 ? (player->position+place_position)%69 : (69+(player->position+place_position))%69;
+                map->cells[place_position].has_tool = 3;
                 printf("you have used bomb\n");
                 player->bomb--;
-                map->cells[player->position].has_tool = 3;
+
             }
             else
             {

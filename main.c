@@ -35,6 +35,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include "useprops.h"
+#include "map.h"
+#include "help.h"
 #include "tool_house.h"
 
 Map map;
@@ -44,6 +47,8 @@ Map map;
 //pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
+
+  /*
   SetConsoleOutputCP(
       CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
@@ -68,6 +73,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
+    
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     printPlayers(players, 4);
