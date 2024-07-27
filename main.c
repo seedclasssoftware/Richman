@@ -32,14 +32,14 @@
 //#include "interaction.h"
 
 #include "players.h"
-#include <stdint.h>
+//#include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
 //#include "useprops.h"
 #include "map.h"
 //#include "help.h"
 #include "tool_house.h"
-#include "pass_road_money.h"
+//#include "pass_road_money.h"
 
 //Map map;
 
@@ -49,9 +49,8 @@
 
 int main(int argc, char const *argv[], char const *envp[]) {
 
-  
-  SetConsoleOutputCP(
-      CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
+
+  SetConsoleOutputCP(CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
   /*if (argc == 1) {
     printf("游戏模式\n");
@@ -96,7 +95,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
 
 
 
-  //test_tool_house();
+
   printf("hello,main\n");
   return 0;
 }
