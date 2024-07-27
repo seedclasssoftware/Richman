@@ -96,4 +96,9 @@ void wait_for_input() {
   // 创建接受缓冲区
   char buf[100];
   // 接受用户输入
+    // 接受用户输入
+  fgets(buf, sizeof(buf), stdin);
+  // 移除换行符
+  buf[strcspn(buf, "\n")] = '\0';
+  handle_command(buf);
 }
