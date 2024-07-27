@@ -79,8 +79,8 @@ typedef struct Players {
   /// properties
 } Players, *pPlayers;
 
-pPlayers wanjia[5];
-char players[10];
+
+
 
 /**
  * @brief 初始化玩家
@@ -114,8 +114,5 @@ void printPlayers(Players players[], int num_players);
  */
 void print_from_file();
 
-void init_money();
-
-void chooseRoll(char players[]);
 
 #endif ///< PLAYERS_H
