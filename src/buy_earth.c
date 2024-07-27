@@ -27,71 +27,43 @@
 #include "buy_earth.h"
 #include <stdio.h>
 
-// 传参Player结构体变量地址，需要以&Players的格式，不能直接穿指针；传参需要用&Map的格式，不能直接传入指针。
-// 传参例子，已声明Players player1和Map
-// map，调用函数应为buy_earth(&player1,&map)；
-void buy_earth(pPlayers players, Map *map) {
-  int err = 0;
-  char choice = 'n'; // y or n
-  while (1) {
-  back:
-    err = 0;
-    if ((players->position >= 1 && players->position <= 13) ||
-        (players->position >= 15 && players->position <= 27)) { // 地段1对应位置
-      if (players->money >= 200) {
-        printf("是否购买该地[y/n]?\n");
-        choice = getchar();
-        if (choice == 'y' && getchar() == '\n') {
-          players->money -= 200;
-          // 修改地的主人
-          map->cells[players->position].owner = players->number;
-          break;
-        } else if (choice == 'n' && getchar() == '\n') {
-          break;
-        } else {
-          err = 1;
-        }
-      }
-    } else if (players->position >= 29 &&
-               players->position <= 34) { // 地段2对应位置
-      if (players->money >= 500) {
-        printf("是否购买该地[y/n]?\n");
-        scanf("%c", choice);
-        if (choice == 'y' && getchar() == '\n') {
-          players->money -= 500;
-          // 修改地的主人
-          map->cells[players->position].owner = players->number;
-          break;
-        } else if (choice == 'n' && getchar() == '\n') {
-          break;
-        } else {
-          err = 1;
-        }
-      }
-    } else if ((players->position >= 36 && players->position <= 48) ||
-               (players->position >= 50 &&
-                players->position <= 62)) { // 地段3对应位置
-      if (players->money >= 300) {
-        printf("是否购买该地[y/n]?\n");
-        scanf("%c", choice);
-        if (choice == 'y' && getchar() == '\n') {
-          players->money -= 300;
-          // 修改地的主人
-          map->cells[players->position].owner = players->number;
-          break;
-        } else if (choice == 'n' && getchar() == '\n') {
-          break;
-        } else {
-          err = 1;
-        }
-      }
-    }
-    if (err == 1) {
-      printf("错误输入\n");
-      while ((choice = getchar()) != EOF && choice != '\n'); // 清理错误输入的缓冲区
-      goto back;
+int ask_to_buy(int price) {
+  char input[10]; // 假设输入不会超过10个字符
+  printf("是否购买该地 (价格: %d) [y/n]?\n", price);
+  if (fgets(input, sizeof(input), stdin) != NULL) {
+    if (input[0] == 'y' || input[0] == 'Y') {
+      return 1; // 返回1表示选择了'yes'
     }
   }
-  return;
+  return 0; // 返回0表示选择了'no'或其他
 }
 
+/**
+ * @brief 购买地皮
+ *
+ * @param player  玩家
+ * @param map 地图
+ */
+void buy_earth(pPlayers player, Map *map) {
+  int price = 0;
+  int position = player->position;
+
+  if ((position >= 1 && position <= 13) || (position >= 15 && position <= 27)) {
+    price = 200;
+  } else if (position >= 29 && position <= 34) {
+    price = 500;
+  } else if ((position >= 36 && position <= 48) ||
+             (position >= 50 && position <= 62)) {
+    price = 300;
+  }
+
+  if (price > 0 && player->money >= price) {
+    if (ask_to_buy(price)) {
+      player->money -= price;
+      map->cells[position].owner = player->number;
+      printf("购买成功！\n");
+    } else {
+      printf("取消购买。\n");
+    }
+  }
+}
