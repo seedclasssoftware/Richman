@@ -15,6 +15,7 @@ set(SOURCES
     src/init_play.c
     src/map.c
     src/useprops.c
+    src/help.c
 )
 
 # 查找cjson库
@@ -27,6 +28,7 @@ set(HEADERS
     include/init_play.h
     include/map.h
     include/useprops.h
+    include/help.h
 )
 
 # 添加头文件路径

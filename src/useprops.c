@@ -22,6 +22,7 @@
  *   KIND, either express or implied.  See the License for the
  *   specific language governing permissions and limitations
  *   under the License.
+ *   放置炸弹和路障以及使用机器人清扫前方10步内的所有路障和炸弹
  * 
  */
 #include "useprops.h"

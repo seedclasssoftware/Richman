@@ -36,6 +36,7 @@
 #include <windows.h>
 #include "useprops.h"
 #include "map.h"
+#include "help.h"
 
 Players players[4];
 
@@ -79,6 +80,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
         wait_for_input();
     }
     */
+
+    /*
     Map map;
     Players player;
 
@@ -94,7 +97,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
     printf("position: %d\n", player.position);
     printf("block: %d\n", player.block);
     printf("has_tool: %d\n", map.cells[65].has_tool);
-
+    */
+    SetConsoleOutputCP(
+      CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
+    help();
     return 0;
 }
 
