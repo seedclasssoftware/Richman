@@ -63,7 +63,7 @@ void handle_command(const char *command) {
          players[(now_user->number) % 4].prison == 0 &&
          players[(now_user->number) % 4].isPlaying == 1 &&
          players[(now_user->number) % 4].isBankrupt == 0) == 1) {
-      now_user = &(players[(now_user->number+1) % 4]);
+      now_user = &(players[(now_user->number) % 4]);
       printf("切换到玩家%d\n", now_user->number);
     } else {
       printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
