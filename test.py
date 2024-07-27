@@ -81,6 +81,8 @@ if __name__ == "__main__":
 
     test_dir = sys.argv[1]
     if run_test(test_dir):
+        print("Test Passed")
         sys.exit(0)
     else:
+        print("Test Failed")
         sys.exit(1)
