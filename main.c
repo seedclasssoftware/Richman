@@ -38,8 +38,9 @@
 //#include "useprops.h"
 #include "map.h"
 //#include "help.h"
-#include "tool_house.h"
+//#include "tool_house.h"
 //#include "pass_road_money.h"
+#include "buy_earth.h"
 
 //Map map;
 
@@ -92,7 +93,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
     map_print(&map);
     void handle_command(const char *command);
   }*/
-
 
 
 

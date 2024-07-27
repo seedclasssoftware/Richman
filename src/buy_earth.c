@@ -32,20 +32,30 @@
 //传参例子，已声明Players player1和Map map，调用函数应为buy_earth(&player1,&map)；
 void buy_earth(pPlayers players,Map *map)
 {
-    int buy_or_not = 0;//1 buy、2 not buy
+    int err = 0;
     char choice = 'n';//y or n
+    while(1){
+        err = 0;
     if((players->position >= 1 && players->position <=13)||(players->position >= 15 && players->position <= 27))
     {//地段1对应位置
         if(players->money >= 200)
         {
             printf("是否购买该地[y/n]?\n");
-            scanf("%c",&choice);
-            if(choice == 'y' || choice == 'Y')
+            choice = getchar();
+            if(choice == 'y' && getchar() == '\n')
             {
-                buy_or_not = 1;
                 players->money -= 200;
                 //修改地的主人
                 map->cells[players->position].owner = players->number;
+                break;
+            }
+            else if(choice == 'n' && getchar() == '\n')
+            {
+                break;
+            }
+            else
+            {
+                err = 1; 
             }
         }
     }
@@ -55,12 +65,20 @@ void buy_earth(pPlayers players,Map *map)
         {
             printf("是否购买该地[y/n]?\n");
             scanf("%c",choice);
-            if(choice == 'y' || choice == 'Y')
+            if(choice == 'y' && getchar() == '\n')
             {
-                buy_or_not = 1;
                 players->money -= 500;
                 //修改地的主人
                 map->cells[players->position].owner = players->number;
+                break;
+            }
+            else if(choice == 'n' && getchar() == '\n')
+            {
+                break;
+            }
+            else
+            {
+                err = 1;  
             }
         }
     }
@@ -70,21 +88,34 @@ void buy_earth(pPlayers players,Map *map)
         {
             printf("是否购买该地[y/n]?\n");
             scanf("%c",choice);
-            if(choice == 'y' || choice == 'Y')
+            if(choice == 'y' && getchar() == '\n')
             {
-                buy_or_not = 1;
                 players->money -= 300;
                 //修改地的主人
                 map->cells[players->position].owner = players->number;
+                break;
+            }
+            else if(choice == 'n' && getchar() == '\n')
+            {
+                break;
+            }
+            else
+            {
+                err = 1;  
             }
         }
     }
+        if(err == 1)
+        {
+            printf("错误输入\n");
+            while((choice = getchar()) != EOF && choice != '\n');//清理错误输入的缓冲区
+        }
+    }
     return;
-
 }
 
 //自测试
-void test1_buy_earth1_when_money_is_200()
+void test_buy_earth()
 {
   Players player;
   player.money = 200;

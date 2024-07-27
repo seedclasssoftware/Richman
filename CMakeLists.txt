@@ -18,6 +18,7 @@ set(SOURCES
 #    src/useprops.c
 #    src/help.c
 #    src/pass_road_money.c
+    src/buy_earth.c
 )
 
 # 查找cjson库
@@ -28,6 +29,7 @@ find_library(CJSON_LIB cjson)
 set(HEADERS 
     include/players.h
     include/tool_house.h
+    include/buy_earth.h
 #    include/earthup.h
     include/map.h
 #    include/useprops.h
