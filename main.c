@@ -28,16 +28,16 @@
  *
  *
  */
+#include "help.h"
 #include "init_play.h"
 #include "interaction.h"
 #include "map.h"
 #include "players.h"
+#include "useprops.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
-#include "useprops.h"
-#include "map.h"
-#include "help.h"
+
 
 Map map;
 
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
-    
+
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     printPlayers(players, 4);
@@ -85,10 +85,9 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fclose(fp2);
   }
   while (1) {
-    wait_for_input();
     map_init(&map);
     map_print(&map);
-
+    wait_for_input();
   }
 
   return 0;
