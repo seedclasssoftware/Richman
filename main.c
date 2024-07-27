@@ -28,8 +28,8 @@
 #include <stdio.h>
 #include "gifthouse.h"
 #include "players.h"
-
-
+#include "useprops.h"
+#include "map.h"
 
 int main(int argc, char const *argv[], char const *envp[])
 {
@@ -38,8 +38,9 @@ int main(int argc, char const *argv[], char const *envp[])
     
     //write you test file here
     //-----------------------------------------------------
+    /*
     Players players;
-    
+
     printf("money: %d\n", players.money);
     printf("point: %d\n", players.point);
     printf("god: %d\n", players.god);
@@ -49,7 +50,18 @@ int main(int argc, char const *argv[], char const *envp[])
 
     printf("money: %d\n", players.money);
     printf("point: %d\n", players.point);
-    printf("god: %d\n", players.god);
+    */
+
+    
+    Players player;
+    Map map;
+    map_init(&map);
+    player.position = 15;
+    map_print(&map);
+    useprops(&player, &map);
+    
+
+
     //-----------------------------------------------------
     
     return 0;

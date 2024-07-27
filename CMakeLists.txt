@@ -10,14 +10,18 @@ project(MyProject)
 # Add your source files here
 set(SOURCES 
     main.c
-    src/gifthouse.c
+    src/map.c
+    src/useprops.c
+    
 )
 
 find_package(cjson REQUIRED)
 find_library(CJSON_LIB cjson)
 # Add your header files here
 set(HEADERS 
-    include/gifthouse.h
+    include/map.h
+    include/useprops.h
+    
 )
 # 定义 DEBUG 宏
 # target_compile_definitions(MyTargetName PRIVATE DEBUG)

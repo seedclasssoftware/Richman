@@ -7,7 +7,7 @@ typedef struct Cell{
     
     int kind;//地的种类  0 空地 1 茅屋 2 洋房 3 摩天楼 特殊建筑为4
     int rank;//地段      1 地段一 2 地段二 3 地段三
-    int has_tool;//道具  1 路障、3 炸弹、0 没有道具
+    int has_tool;//道具  1 路障 3炸弹 0 没有道具
     int owner;//地主     1,2,3,4 0表示无主
 } Cell;
 
