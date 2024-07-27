@@ -87,24 +87,11 @@ void buy_earth(pPlayers players, Map *map) {
       }
     }
     if (err == 1) {
-      // while((choice = getchar()) != EOF && choice !=
-      // '\n');//清理错误输入的缓冲区
       printf("错误输入\n");
+      while ((choice = getchar()) != EOF && choice != '\n'); // 清理错误输入的缓冲区
       goto back;
     }
   }
   return;
 }
 
-// 自测试
-void test_buy_earth() {
-  Players player;
-  player.money = 200;
-  player.position = 1;
-  player.number = 1;
-  Map map;
-  map_init(&map);
-  buy_earth(&player, &map);
-  printf("test1 result: money:%u,position:%u,map_owener:%d\n", player.money,
-         player.position, map.cells[player.position].owner);
-}
