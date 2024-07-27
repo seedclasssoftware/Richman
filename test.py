@@ -3,6 +3,9 @@ import json
 import os
 import sys
 
+# 设置 PYTHONIOENCODING 环境变量为 utf-8
+os.environ['PYTHONIOENCODING'] = 'utf-8'
+
 def run_test(test_dir):
     input_path = os.path.join(test_dir, "input.txt")
     output_path = os.path.join(test_dir, "output.txt")

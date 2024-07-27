@@ -81,8 +81,6 @@ typedef struct Players {
   uint8_t properties[70];
 } Players, *pPlayers;
 
-extern Players players[4];
-
 /**
  * @brief 初始化玩家
  *
@@ -129,4 +127,5 @@ char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
 
 extern pPlayers now_user;
+extern Players players[4]
 #endif ///< PLAYERS_H
