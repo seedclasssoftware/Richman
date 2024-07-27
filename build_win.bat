@@ -28,6 +28,6 @@ echo ============Running MyProject.exe with argument=============
 
 pause
 
-echo ============test MyProject.exe=============
+echo ============test MyProject.exe with parallel 10=============
 
-ctest --parallel <NUM_THREADS>
+ctest --parallel 10
