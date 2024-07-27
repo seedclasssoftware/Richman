@@ -30,8 +30,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "roll.h"
-#include "roll.h"
 
 extern pPlayers now_user;
 
