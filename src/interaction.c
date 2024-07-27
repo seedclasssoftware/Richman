@@ -30,9 +30,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "roll.h"
+#include "help.h"
+#include "useprops.h"
+#include "query.h"
 extern pPlayers now_user;
-
+extern Map map;
 // 退出游戏的实现
 void exit_game() {
   printf("正在退出游戏...\n");
@@ -72,17 +75,17 @@ void handle_command(const char *command) {
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
-    // place_block(n);
+     useblock(now_user ,&map,n);
   } else if (strncmp(command, "Bomb", 4) == 0 ||
              strncmp(command, "bomb", 4) == 0) {
     int n = atoi(command + 5);
-    // place_bomb(n);
+    usebomb(now_user,&map,n);
   } else if (strcmp(command, "Robot") == 0 || strcmp(command, "robot") == 0) {
-    // clean_up();
+    userobot(now_user, &map);
   } else if (strcmp(command, "Query") == 0 || strcmp(command, "query") == 0) {
-    // show_assets();
+    query(now_user);
   } else if (strcmp(command, "Help") == 0 || strcmp(command, "help") == 0) {
-    // show_help();
+    help();
   } else if (strncmp(command, "Step", 4) == 0 ||
              strncmp(command, "step", 4) == 0) {
     int n = atoi(command + 5);

@@ -115,13 +115,11 @@ void useprops(Players *player, Map *map)
 }
 
 
-void useblock(Players *player, Map *map)
+void useblock(Players *player, Map *map,int place_position)
 {
     if (player->block > 0)
     {
         printf("please select a position to place your block:-10~10\n");
-        int place_position;
-        scanf("%d", &place_position);
         while(place_position > 10 || place_position < -10)
         {
             printf("invalid position\n");
@@ -159,13 +157,11 @@ void userobot(Players *player, Map *map)
     }
 }
 
-void usebomb(Players *player, Map *map)
+void usebomb(Players *player, Map *map,int place_position)
 {
     if (player->bomb > 0)
     {
         printf("please select a position to place your bomb:-10~10\n");
-        int place_position;
-        scanf("%d", &place_position);
         while(place_position > 10 || place_position < -10)
         {
             printf("invalid position\n");

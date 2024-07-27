@@ -131,8 +131,8 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
     if (valid == 1 && count >= 2 && count <= 4) {
       printf("您选择的角色是: ");
       for (int i = 0; i < count; i++) {
-        players[i].name = player_names[input[i] - 1];
-        players[i].cap = player_caps[input[i] - 1];
+        players[i].name = player_names[input[i] - '1'];
+        players[i].cap = player_caps[input[i] - '1'];
         players[i].isPlaying = 1;
         if (players[i].cap == 'Q') {
           players[i].number = 1;

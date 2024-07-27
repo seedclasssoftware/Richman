@@ -25,16 +25,18 @@
  * 
  */
 #include "players.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "map.h"
 #include "gifthouse.h"
 #include "buy_earth.h"
 #include "earthup.h"
 #include "mine_earth.h"
 #include "pass_road_money.h"
+#include "tool_house.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
 //#include "winnt.h"
 extern Map map;
 extern Players players[4];
@@ -57,23 +59,30 @@ int roll_num() {
 void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
+    map.cells[now_user->position].show_char='0';
     for(int i=1;i<=steps;i++){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
         else if(tool==1){
+            map.cells[now_user->position+i].has_tool=0;
             now_user->position+=(uint8_t)i;
             map.cells[now_user->position].show_char=now_user->cap;
             flag=1;
             break;
         }
         else if(tool==3){
+            map.cells[now_user->position+i].has_tool=0;
             now_user->position=(uint8_t)14;
             now_user->hospital=(uint8_t)3;
             flag=1;
             break;
         }
     }
-    if(flag==0) now_user->position+=steps;
+    if(flag==0) 
+    {
+        now_user->position+=steps;
+        map.cells[now_user->position].show_char=now_user->cap;
+    }
 }
 /**
  * @brief 根据玩家所在格属性判断触发的事件
@@ -88,7 +97,7 @@ void eventJudge(pPlayers now_user){
     if(kind==4){
         switch(show_char){
             case 'T':{
-
+                buy_tool(now_user);
                 break;
             }
             case 'G':{

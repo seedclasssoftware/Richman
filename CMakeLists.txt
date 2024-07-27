@@ -17,14 +17,14 @@ set(SOURCES
     src/useprops.c
     src/help.c
     src/interaction.c
-    src/roll.c
+    src/buy_earth.c
+    src/earthup.c
     src/gifthouse.c
     src/mine_earth.c
-    src/earthup.c
     src/tool_house.c
-    src/buy_earth.c
     src/pass_road_money.c
-
+    src/roll.c
+    src/help.c
 )
 
 # 查找cjson库
@@ -40,12 +40,6 @@ set(HEADERS
     include/help.h
     include/interaction.h
     include/roll.h
-    include/gifthouse.h
-    include/mine_earth.h
-    include/earthup.h
-    include/tool_house.h
-    include/buy_earth.h
-    include/pass_road_money.h
 )
 
 # 添加头文件路径

@@ -1,5 +1,5 @@
 /**
- * @file operations.c
+ * @file query.c
  * @author 郑伊恬 李文皓 (1491305138@qq.com)
  * @brief 
  * @version 0.1
@@ -24,3 +24,9 @@
  *   under the License.
  * 
  */
+ #include "players.h"
+ #include "query.h"
+ #include <stdio.h>
+ void query(pPlayers now_user){
+    printf("");
+ }

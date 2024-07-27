@@ -1,6 +1,6 @@
 /**
- * @file useprops.h
- * @author 王航天 (no email)
+ * @file query.h
+ * @author 郑伊恬 李文皓 (1491305138@qq.com)
  * @brief 
  * @version 0.1
  * @date 2024-07-27
@@ -24,16 +24,8 @@
  *   under the License.
  * 
  */
-
-#ifndef USEPROPS_H
-#define USEPROPS_H
-
+ #ifndef QUERY_H
+ #define QUERY_H
 #include "players.h"
-#include "map.h"
-
-void useprops(Players *player, Map *map);//使用道具函数
-
-void useblock(Players *player, Map *map,int place_position);//使用路障函数
-void userobot(Players *player, Map *map);//使用机器人函数
-void usebomb(Players *player, Map *map,int place_position);//使用炸弹函数
-#endif 
+void query(pPlayers now_user);
+ #endif

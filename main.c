@@ -28,12 +28,12 @@
  *
  *
  */
-#include "help.h"
+//#include "help.h"
 #include "init_play.h"
 #include "interaction.h"
 #include "map.h"
 #include "players.h"
-#include "useprops.h"
+//#include "useprops.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
@@ -43,7 +43,7 @@ Map map;
 
 Players players[4];
 
-pPlayers now_user = &players[0];
+pPlayers now_user;
 
 int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
@@ -55,6 +55,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     map_init(&map);
     init_money(&initMoney);                // 初始化金钱部分
     select_players(players, 4, initMoney); // 初始化选角色部分
+    now_user=&players[0];
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
@@ -86,8 +87,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
   map_init(&map);
   while (1) {
-    map_print(&map);
+    //map_init(&map);
     wait_for_input();
+    map_print(&map);
+   
   }
   return 0;
 }
