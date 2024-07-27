@@ -34,16 +34,17 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include "tool_house.h"
 
-Players players[4];
+//Players players[4];
 
-pPlayers now_user = &players[0];
+//pPlayers now_user = &players[0];
 
 int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
       CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
-  if (argc == 1) {
+  /*if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
     init_money(&initMoney);//初始化金钱部分
@@ -71,10 +72,14 @@ int main(int argc, char const *argv[], char const *envp[]) {
     while(1)
     {
         wait_for_input();
-    }
+    }*/
+
+
+    test_tool_house_when_points_is_29_and_0_tool();
+    printf("hello,main\n");
     return 0;
 }
 
-void wait_for_input(){
+/*void wait_for_input(){
 
-}
+}*/
