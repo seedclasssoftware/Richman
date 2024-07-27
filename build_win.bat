@@ -35,3 +35,5 @@ pause
 cd ../build
 
 ctest --parallel 10
+
+cd ..
