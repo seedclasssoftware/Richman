@@ -20,11 +20,11 @@ cmake --build . --config Debug
 
 cd ../out
 
-echo ============Running MyProject.exe=============
+@REM echo ============Running MyProject.exe=============
 
 @REM .\MyProject
 
-echo ============Running MyProject.exe with argument=============
+@REM echo ============Running MyProject.exe with argument=============
 
 @REM .\MyProject ".res/users.json"
 
