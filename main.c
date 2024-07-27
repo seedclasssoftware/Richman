@@ -71,7 +71,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     printPlayers(players, 4);
   }
   while (1) {
-    wait_for_input();
+    // wait_for_input();
   }
   return 0;
 }

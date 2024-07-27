@@ -41,10 +41,6 @@ enum Players_Name {
   JIN_Bei         ///< 金贝 = 4
 } Players_Name;
 
-char* names[5]={"","钱夫人","阿土伯","孙小美","金贝贝"};
-
-int initMoney = 0;
-
 
 /**
  * @brief 玩家结构体
