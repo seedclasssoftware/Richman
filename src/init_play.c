@@ -61,7 +61,7 @@ void init_money(uint32_t *initMoney) {
         *initMoney = atoi(input); // 将输入的字符串转换为整数
         // 检查输入是否在有效范围内
         while (*initMoney < 1000 || *initMoney > 50000) {
-            printf("输入无效，请输入初始金额(1000-50000)，直接按回车默认为10000: ");
+            fprintf(stderr,"输入无效，请输入初始金额(1000-50000)，直接按回车默认为10000: ");
             fgets(input, sizeof(input), stdin);
             if (input[0] == '\n') {
                 *initMoney = 10000; // 默认值
@@ -129,7 +129,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
             }
             break;
         }
-        else printf("您的输入格式不正确，请重新输入！"); 
+        else fprintf(stderr,"您的输入格式不正确，请重新输入！"); 
     }
     return ;
 }
