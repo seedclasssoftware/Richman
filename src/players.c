@@ -74,7 +74,6 @@ char *getPlayerName(uint8_t number) {
 //   cJSON_Delete(json);
 // }
 
-// 辅助函数，用于解析玩家属性
 void parsePlayer(cJSON *player_json, Players *player, const char *player_name) {
   player->name = malloc(strlen(player_name) + 1);
   strcpy(player->name, player_name);
@@ -89,6 +88,21 @@ void parsePlayer(cJSON *player_json, Players *player, const char *player_name) {
   player->hospital = cJSON_GetObjectItem(player_json, "debuff0")->valueint;
   player->magic = cJSON_GetObjectItem(player_json, "debuff1")->valueint;
   player->position = cJSON_GetObjectItem(player_json, "position")->valueint;
+  player->isBankrupt = !cJSON_IsTrue(cJSON_GetObjectItem(player_json, "alive"));
+  player->isPlaying = player_json != NULL;
+
+  cJSON *properties_json = cJSON_GetObjectItem(player_json, "properties");
+  if (properties_json != NULL && cJSON_IsArray(properties_json)) {
+    int properties_count = cJSON_GetArraySize(properties_json);
+    for (int i = 0; i < properties_count; i++) {
+      cJSON *property_item = cJSON_GetArrayItem(properties_json, i);
+      if (cJSON_IsArray(property_item)) {
+        int index = cJSON_GetArrayItem(property_item, 0)->valueint;
+        player->properties[index] =
+            cJSON_GetArrayItem(property_item, 1)->valueint;
+      }
+    }
+  }
 }
 
 void initializePlayers(const char *json_data, Players players[],
@@ -168,7 +182,6 @@ void initializePlayers(const char *json_data, Players players[],
 
   cJSON_Delete(root);
 }
-
 void printPlayers(Players players[], int num_players) {
   for (int i = 0; i < num_players; i++) {
     Players *player = &players[i];
@@ -211,12 +224,12 @@ void print_from_file() {
 
 /**
  * @brief 将玩家信息转换为 JSON 字符串
- * 
- * @param players 
- * @param num_players 
- * @param map 
- * @param now_user 
- * @return char* 
+ *
+ * @param players
+ * @param num_players
+ * @param map
+ * @param now_user
+ * @return char*
  */
 char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user) {
@@ -243,23 +256,39 @@ char *convertToJson(Players players[], int num_players, Map *map,
   // 添加 players
   cJSON *players_json = cJSON_CreateObject();
   for (int i = 0; i < num_players; i++) {
-    cJSON *player_json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(player_json, "money", players[i].money);
-    cJSON_AddNumberToObject(player_json, "point", players[i].point);
-    cJSON_AddNumberToObject(player_json, "number", players[i].number);
-    cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
-    cJSON_AddNumberToObject(player_json, "tool2", players[i].robot);
-    cJSON_AddNumberToObject(player_json, "tool3", players[i].bomb);
-    cJSON_AddNumberToObject(player_json, "buff", players[i].god);
-    cJSON_AddNumberToObject(player_json, "continue", players[i].prison);
-    cJSON_AddNumberToObject(player_json, "debuff0", players[i].hospital);
-    cJSON_AddNumberToObject(player_json, "debuff1", players[i].magic);
-    cJSON_AddNumberToObject(player_json, "position", players[i].position);
+    if (players[i].isPlaying) {
+      cJSON *player_json = cJSON_CreateObject();
+      cJSON_AddNumberToObject(player_json, "money", players[i].money);
+      cJSON_AddNumberToObject(player_json, "point", players[i].point);
+      cJSON_AddNumberToObject(player_json, "number", players[i].number);
+      cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
+      cJSON_AddNumberToObject(player_json, "tool2", players[i].robot);
+      cJSON_AddNumberToObject(player_json, "tool3", players[i].bomb);
+      cJSON_AddNumberToObject(player_json, "buff", players[i].god);
+      cJSON_AddNumberToObject(player_json, "continue", players[i].prison);
+      cJSON_AddNumberToObject(player_json, "debuff0", players[i].hospital);
+      cJSON_AddNumberToObject(player_json, "debuff1", players[i].magic);
+      cJSON_AddNumberToObject(player_json, "position", players[i].position);
+      cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
 
-    cJSON_AddItemToObject(players_json, players[i].name, player_json);
+      cJSON *properties_array = cJSON_CreateArray();
+      for (int j = 0; j < 70; j++) {
+        if (players[i].properties[j] != 0) {
+          cJSON *property_item = cJSON_CreateArray();
+          cJSON_AddItemToArray(property_item, cJSON_CreateNumber(j));
+          cJSON_AddItemToArray(property_item,
+                               cJSON_CreateNumber(players[i].properties[j]));
+          cJSON_AddItemToArray(properties_array, property_item);
+        }
+      }
+      cJSON_AddItemToObject(player_json, "properties", properties_array);
+
+      cJSON_AddItemToObject(players_json, players[i].name, player_json);
+    }
   }
   cJSON_AddItemToObject(root, "players", players_json);
 
+  // 转换为字符串
   char *json_string = cJSON_Print(root);
   cJSON_Delete(root);
 
