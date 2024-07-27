@@ -1,3 +1,6 @@
+/**
+ * author： 史少博
+ */
 #include "earthup.h"
 
 
