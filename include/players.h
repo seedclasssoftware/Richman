@@ -127,5 +127,5 @@ char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
 
 extern pPlayers now_user;
-extern Players players[4]
+extern Players players[4];
 #endif ///< PLAYERS_H
