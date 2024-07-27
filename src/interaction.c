@@ -90,6 +90,8 @@ void handle_step_command(const char *command) {
   }
 }
 
+extern Map map;
+
 /**
  * @brief 处理用户输入的命令
  *
@@ -125,6 +127,15 @@ void handle_command(const char *command) {
     handle_step_command(command);
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
+  } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
+    char *json = convertToJson(players, 4, &map, now_user);
+    // 创建output.json
+    FILE *fp = fopen("output.json", "w");
+    // 写入json
+    fprintf(fp, "%s", json);
+    // 关闭文件
+    fclose(fp);
+    printf("已将游戏数据保存到output.json\n");
   } else {
     printf("未知命令\n");
   }

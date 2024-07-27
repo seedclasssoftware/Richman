@@ -7,3 +7,5 @@ cd ./out
 echo ============Running MyProject.exe=============
 
 .\MyProject.exe
+
+cd ..
