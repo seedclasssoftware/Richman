@@ -1,7 +1,7 @@
 /*write@doyourbesthust  gjy*/
 #include "buy_earth.h"
 #include <stdio.h>
-#include <stdlib.h>
+
 
 
 struct Players buy_earth(Players players,Map *map)
