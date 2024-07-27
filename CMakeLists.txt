@@ -12,6 +12,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(SOURCES 
     main.c
     src/players.c
+    src/init_play.c
 )
 
 # 查找cjson库
@@ -21,6 +22,7 @@ find_library(CJSON_LIB cjson)
 # 添加头文件
 set(HEADERS 
     include/players.h
+    include/init_play.h
 )
 
 # 添加头文件路径
