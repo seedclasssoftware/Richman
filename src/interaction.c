@@ -36,9 +36,6 @@ extern pPlayers now_user;
 void exit_game() {
   printf("正在退出游戏...\n");
 
-  // 执行清理操作
-  // cleanup_resources();
-
   // 显示退出信息
   printf("游戏已退出。感谢您的参与！\n");
 
