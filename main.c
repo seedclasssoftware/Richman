@@ -28,6 +28,7 @@
  *
  *
  */
+#include "include/interaction.h"
 #include "players.h"
 #include <stdint.h>
 #include "players.h"
@@ -75,7 +76,11 @@ int main(int argc, char const *argv[], char const *envp[]) {
     }
     while(1)
     {
-        // wait_for_input();
+        wait_for_input();
     }
     return 0;
+}
+
+void wait_for_input(){
+  
 }
