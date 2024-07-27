@@ -1,4 +1,4 @@
-#include "players.h"
+/*#include "players.h"
 #include "map.h"
 #include <cjson/cjson.h>
 #include <stdint.h>
@@ -177,7 +177,7 @@ void print_from_file() {
   fclose(fp);
   // 打印玩家信息
   printPlayers(players, 4);
-}
+}*/
 
 /**
  * @brief 将玩家信息转换为 JSON 字符串
@@ -188,7 +188,7 @@ void print_from_file() {
  * @param now_user
  * @return char*
  */
-char *convertToJson(Players players[], int num_players, Map *map,
+/*char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user) {
   cJSON *root = cJSON_CreateObject();
 
@@ -262,4 +262,4 @@ char *convertToJson(Players players[], int num_players, Map *map,
   cJSON_Delete(root);
 
   return json_string;
-}
+}*/

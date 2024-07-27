@@ -79,7 +79,8 @@ void buy_tool(pPlayers player) {
   return;
 }
 
-void test_tool_house() {
+void test_tool_house() 
+{
   Players players;
   players.point = 50;
   players.bomb = 0;
