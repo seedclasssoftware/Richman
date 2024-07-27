@@ -84,8 +84,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fwrite(json, 1, strlen(json), fp2);
     fclose(fp2);
   }
+  map_init(&map);
   while (1) {
-    map_init(&map);
     map_print(&map);
     wait_for_input();
   }
