@@ -26,7 +26,7 @@
  */
 #include "interaction.h"
 #include <stdio.h>
-
+#include"players.h"
 
 
 extern pPlayers now_user;

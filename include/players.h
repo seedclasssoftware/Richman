@@ -72,6 +72,7 @@ typedef struct Players {
   uint8_t hospital;
   uint8_t magic;
   uint8_t position;
+  char cap;
   /// properties
 } Players, *pPlayers;
 

@@ -1,5 +1,6 @@
 #ifndef ROLL_H
 #define ROLL_H
+#include "players.h"
 
 int roll_num();
 

@@ -46,10 +46,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
   if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
-    int selected_players[4];
-    init_money(&initMoney); // 初始化金钱部分
-
-    select_players(players, selected_players, 4, initMoney); // 初始化选角色部分
+    init_money(&initMoney);//初始化金钱部分
+    select_players(players,4,initMoney);//初始化选角色部分
 
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
@@ -69,9 +67,14 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fclose(fp);
     initializePlayers(json_data, players, 4);
     printPlayers(players, 4);
-  }
-  while (1) {
-    // wait_for_input();
-  }
-  return 0;
+    }
+    while(1)
+    {
+        wait_for_input();
+    }
+    return 0;
+}
+
+void wait_for_input(){
+
 }

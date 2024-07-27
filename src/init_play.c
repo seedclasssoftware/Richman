@@ -19,6 +19,7 @@ char *player_colors[] = {
     "\033[33m"  // 黄色
 };
 
+char player_caps[] = {'Q','A','S','J'};
 
 void init_money(uint32_t *initMoney) {
     char input[100]; // 用来存储用户输入
@@ -47,7 +48,7 @@ void init_money(uint32_t *initMoney) {
     printf("初始金额为：%d\n", *initMoney);
 }
 
-void select_players(Players *players, int *selected_players, int num_players, uint32_t init_money) {
+void select_players(Players *players, int num_players, uint32_t init_money) {
     char input[100];
     int count = 0;
 
@@ -65,6 +66,7 @@ void select_players(Players *players, int *selected_players, int num_players, ui
         players[i].hospital = 0;
         players[i].magic = 0;
         players[i].position = 0;
+        players[i].cap=player_caps[i];
     }
 
     printf("请选择2-4位不重复玩家，输入编号即可(1、钱夫人;2、阿土伯;3、孙小美;4、金贝贝;),如输入:12: ");
@@ -98,7 +100,6 @@ void select_players(Players *players, int *selected_players, int num_players, ui
         } else {
             printf("您选择的角色是: ");
             for (int i = 0; i < count; i++) {
-                selected_players[i] = selected[i]; // 存储选择的玩家编号
                 // 打印选择的玩家名字和颜色
                 printf("%s%s\033[0m ", player_colors[selected[i]], players[selected[i]].name);
             }
