@@ -20,14 +20,16 @@ cd ../out
 
 echo ============Running MyProject.exe=============
 
-.\MyProject
+@REM .\MyProject
 
 echo ============Running MyProject.exe with argument=============
 
-.\MyProject ".res/users.json"
+@REM .\MyProject ".res/users.json"
 
 echo ============test MyProject.exe with parallel 10=============
 
 pause
+
+cd ../build
 
 ctest --parallel 10

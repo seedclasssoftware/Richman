@@ -31,7 +31,6 @@
 #include "map.h"
 #include <stdint.h>
 
-
 /**
  * @brief 枚举玩家名字宏定义
  *
@@ -79,6 +78,7 @@ typedef struct Players {
   _Bool isBankrupt;
   char cap;
   /// properties
+  uint8_t properties[70];
 } Players, *pPlayers;
 
 extern Players players[4];
@@ -127,4 +127,6 @@ void print_from_file();
  */
 char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
+
+extern pPlayers now_user;
 #endif ///< PLAYERS_H

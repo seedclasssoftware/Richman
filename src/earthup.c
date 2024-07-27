@@ -34,15 +34,15 @@ void earth_up(pPlayers player,Cell* cells)
             else
             {
                 printf("请问是否需要升级您的地产!\n");
-                printf("1.升级\n");
-                printf("2.不升级\n");
+                printf("y.升级\n");
+                printf("n.不升级\n");
                 while(1)
                 {
                     char c;
                     char if_earth_up;
                     if_earth_up = getchar();
                     //选择升级地产
-                    if(if_earth_up=='1')
+                    if(if_earth_up=='y')
                     {
                         if((*cells).rank == 1)
                         {
@@ -64,7 +64,7 @@ void earth_up(pPlayers player,Cell* cells)
                         }
                     }
                     //选择不升级地产
-                    else if(if_earth_up=='2')
+                    else if(if_earth_up=='n')
                     {
                         return;
                     }
@@ -72,8 +72,8 @@ void earth_up(pPlayers player,Cell* cells)
                     else
                     {
                         printf("输入错误！\n");
-                        printf("1.升级\n");
-                        printf("2.不升级\n");
+                        printf("y.升级\n");
+                        printf("n.不升级\n");
                         while ((c = getchar()) != EOF && c != '\n');
                         continue;
                     }
