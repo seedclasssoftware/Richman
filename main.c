@@ -42,8 +42,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
   SetConsoleOutputCP(
       CP_UTF8); ///< 设置控制台输出编码为UTF-8,很重要,否则中文输出乱码
   /// 无参数,默认为游戏模式
-  //test1_buy_earth1_when_money_is_199();
-  
+  test1_buy_earth1_when_money_is_199();
+  test_earth_up();
   printf("hello\n");
   return 0;
 }

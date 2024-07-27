@@ -14,6 +14,6 @@ int is_your_earth(Players player, Cell *cells);
 //功能：判断是否为当前角色的土地
 //返回值：1 为当前角色土地; 0 不为当前角色土地
 
-void test_earth_up(pPlayers player, Cell *cells);
+void test_earth_up(void);
 
 #endif

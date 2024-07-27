@@ -80,7 +80,7 @@ void earth_up(pPlayers player,Cell* cells)
     }
 }
 
-void test_earth_up(pPlayers player, Cell *cells)
+void test_earth_up(void)
 {
     Players player_use_for_test_earth_up;
     player_use_for_test_earth_up.money=299;
