@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include "gifthouse.h"
 
 void gifthouse_event_process(Players *player)
