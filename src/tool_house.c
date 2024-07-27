@@ -26,12 +26,8 @@
  */
 #include "tool_house.h"
 #include "players.h"
-<<<<<<< HEAD
 #include <stdio.h>
 #include <string.h>
-=======
-#include<stdio.h>
->>>>>>> origin/main
 
 void buy_tool(pPlayers player) {
   if (player->point >= 30) {
@@ -68,7 +64,7 @@ void buy_tool(pPlayers player) {
             printf("您当前剩余的点数为%u，不足以购买炸弹道具。\n",player->point);
           }
         } 
-        else {
+        else {//输入错误
           printf("输入错误\n");
         }
       }
@@ -83,9 +79,9 @@ void buy_tool(pPlayers player) {
   return;
 }
 
+//自测试
 void test_tool_house() 
 {
-<<<<<<< HEAD
   Players players;
   players.point = 50;
   players.bomb = 0;
@@ -94,11 +90,4 @@ void test_tool_house()
   buy_tool(&players);
   int tool_number = players.robot + players.block + players.bomb;
   printf("test_result:point:%u,tool_number:%d\n", players.point, tool_number);
-=======
-    Players players;
-    players.point = 29;
-    players = buy_tool(players);
-    printf("test_result:point:%u,tool_number:%u");
-
->>>>>>> origin/main
 }
