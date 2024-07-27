@@ -71,7 +71,6 @@ flag:
 void handle_command(const char *command) {
   if (strcmp(command, "Roll") == 0 || strcmp(command, "roll") == 0) {
     int roll = roll_num();
-    printf("骰子点数为：%d\n", roll);
     change_position(now_user, roll);
     eventJudge(now_user);
     // 切换当前玩家
