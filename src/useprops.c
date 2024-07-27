@@ -113,3 +113,72 @@ void useprops(Players *player, Map *map)
 
 
 }
+
+
+void useblock(Players *player, Map *map)
+{
+    if (player->block > 0)
+    {
+        printf("please select a position to place your block:-10~10\n");
+        int place_position;
+        scanf("%d", &place_position);
+        while(place_position > 10 || place_position < -10)
+        {
+            printf("invalid position\n");
+            scanf("%d", &place_position);
+        }
+        place_position = (player->position+place_position) > 0 ? (player->position+place_position)%69 : (69+(player->position+place_position))%69;
+        map->cells[place_position].has_tool = 1;
+        printf("you have used block\n");
+        player->block--;
+
+        //map->cells[player->position].has_tool = 1;
+    }
+    else
+    {
+        printf("you do not have block\n");
+    }
+}
+
+
+void userobot(Players *player, Map *map)
+{
+    if (player->robot > 0)
+    {
+        for(int i = 1; i < 11; i++)
+        {
+            map->cells[i+player->position].has_tool = 0;
+        }
+        printf("you have used robot\n");
+        player->robot--;
+        
+    }
+    else
+    {
+        printf("you do not have robot\n");
+    }
+}
+
+void usebomb(Players *player, Map *map)
+{
+    if (player->bomb > 0)
+    {
+        printf("please select a position to place your bomb:-10~10\n");
+        int place_position;
+        scanf("%d", &place_position);
+        while(place_position > 10 || place_position < -10)
+        {
+            printf("invalid position\n");
+            scanf("%d", &place_position);
+        }
+        place_position = (player->position+place_position) > 0 ? (player->position+place_position)%69 : (69+(player->position+place_position))%69;
+        map->cells[place_position].has_tool = 3;
+        printf("you have used bomb\n");
+        player->bomb--;
+
+    }
+    else
+    {
+        printf("you do not have bomb\n");
+    }
+}
