@@ -66,5 +66,5 @@ void test1_buy_earth1_when_money_is_199()
   Map map;
   map_init(&map);
   player = buy_earth(player,&map);
-  printf("test1 result: money:%u,position:%u,map_owener:%d\n",player.money,player.position,map->cells[player.position].owner);
+  printf("test1 result: money:%u,position:%u,map_owener:%d\n",player.money,player.position,map.cells[player.position].owner);
 }
