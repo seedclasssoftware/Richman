@@ -14,6 +14,8 @@ set(SOURCES
     src/players.c
     src/init_play.c
     src/map.c
+    src/useprops.c
+    src/help.c
     src/interaction.c
 )
 
@@ -26,6 +28,8 @@ set(HEADERS
     include/players.h
     include/init_play.h
     include/map.h
+    include/useprops.h
+    include/help.h
     include/interaction.h
 )
 
