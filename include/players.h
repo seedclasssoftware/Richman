@@ -37,9 +37,14 @@
 enum Players_Name {
   QIAN_Madam = 1, ///< 钱夫人 = 1
   ATUB,           ///< 阿土伯 = 2
-  SUN_Miss,       ///< 孙小姐 = 2
-  JIN_Bei,        ///< 金贝 = 3
-};
+  SUN_Miss,       ///< 孙小姐 = 3
+  JIN_Bei         ///< 金贝 = 4
+} Players_Name;
+
+char* names[5]={"","钱夫人","阿土伯","孙小美","金贝贝"};
+
+int initMoney = 0;
+
 
 /**
  * @brief 玩家结构体
@@ -74,7 +79,40 @@ typedef struct Players {
   /// properties
 } Players, *pPlayers;
 
+extern Players players[4];
+
+
+/**
+ * @brief 初始化玩家
+ *
+ * @param json_data json数据
+ * @param players 玩家数组
+ * @param num_players 玩家数量
+ */
 void initializePlayers(const char *json_data, Players players[],
                        int num_players);
+
+/**
+ * @brief Get the Player Name object
+ *
+ * @param number 玩家编号
+ * @return char* 玩家名字
+ */
+char *getPlayerName(uint8_t number);
+
+/**
+ * @brief 打印玩家信息
+ *
+ * @param players 玩家数组
+ * @param num_players 玩家数量
+ */
+void printPlayers(Players players[], int num_players);
+
+/**
+ * @brief 从文件打印
+ *
+ */
+void print_from_file();
+
 
 #endif ///< PLAYERS_H

@@ -22,4 +22,12 @@ echo ============Running MyProject.exe=============
 
 .\MyProject
 
+echo ============Running MyProject.exe with argument=============
+
+.\MyProject ".res/users.json"
+
+echo ============test MyProject.exe with parallel 10=============
+
 pause
+
+ctest --parallel 10

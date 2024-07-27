@@ -19,42 +19,36 @@ void map_init(Map *map)
         map->cells[i].show_char = '$';
     }
 
-    map->cells[0].show_char = 'S';
-    map->cells[28].show_char = 'T';
-    map->cells[35].show_char = 'G';
-    map->cells[63].show_char = 'M';
-    map->cells[14].show_char = 'H';
-    map->cells[49].show_char = 'P';
+  map->cells[0].show_char = 'S';
+  map->cells[28].show_char = 'T';
+  map->cells[35].show_char = 'G';
+  map->cells[63].show_char = 'M';
+  map->cells[14].show_char = 'H';
+  map->cells[49].show_char = 'P';
 
-    //初始化kind
-    map->cells[0].kind = 4;
-    map->cells[28].kind = 4;
-    map->cells[35].kind = 4;
-    map->cells[63].kind = 4;
-    map->cells[14].kind = 4;
-    map->cells[49].kind = 4;
+  // 初始化kind
+  map->cells[0].kind = 4;
+  map->cells[28].kind = 4;
+  map->cells[35].kind = 4;
+  map->cells[63].kind = 4;
+  map->cells[14].kind = 4;
+  map->cells[49].kind = 4;
 
-    for (int i = 64; i < 70; i++)
-    {
-        map->cells[i].kind = 4;
-    }
+  for (int i = 64; i < 70; i++) {
+    map->cells[i].kind = 4;
+  }
+  // 初始化rank
+  for (int i = 0; i < 29; i++) {
+    map->cells[i].rank = 1;
+  }
 
-    //初始化rank
-    for(int i=0;i<29;i++)
-    {
-        map->cells[i].rank = 1;
-    }
+  for (int i = 29; i < 35; i++) {
+    map->cells[i].rank = 2;
+  }
 
-    for(int i=29;i<35;i++)
-    {
-        map->cells[i].rank = 2;
-    }
-
-    for(int i=35;i<64;i++)
-    {
-        map->cells[i].rank = 3;
-    }
-    
+  for (int i = 35; i < 64; i++) {
+    map->cells[i].rank = 3;
+  }
 }
 
 void map_print(Map *map)
