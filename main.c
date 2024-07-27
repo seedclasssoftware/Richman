@@ -29,7 +29,7 @@
  *
  */
 #include "players.h"
-#include <stdio.h>
+#include <stdint.h>
 #include "players.h"
 #include <stdio.h>
 #include <windows.h>
