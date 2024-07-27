@@ -68,10 +68,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
     // 关闭文件
     fclose(fp);
     initializePlayers(json_data, players, 4, &map);
-    printf("初始化成功\n");
+    // printf("初始化成功\n");
     printPlayers(players, 4);
     char *json = convertToJson(players, 4, &map, now_user);
-    printf("%s\n", json);
+    // printf("%s\n", json);
 
   }
   while (1) {
