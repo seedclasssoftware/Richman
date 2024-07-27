@@ -72,8 +72,8 @@ foreach(TEST_DIR ${TEST_DIRS})
     # 添加测试
     add_test(
         NAME ${TEST_NAME}
-        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test.py ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_DIR}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_DIR}
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test.py ${TEST_DIR}
+        WORKING_DIRECTORY ${TEST_DIR}
     )
 
     # 设置测试属性，重定向输出和错误输出
