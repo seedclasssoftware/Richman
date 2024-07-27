@@ -46,6 +46,8 @@ char* names[5]={"","钱夫人","阿土伯","孙小美","金贝贝"};
 int initMoney = 0;
 
 
+extern Players[4] players;
+
 /**
  * @brief 玩家结构体
  *

@@ -28,6 +28,7 @@
 #include <stdio.h>
 
 
+
 extern pPlayers now_user;
 
 void wait_for_input() {
@@ -48,5 +49,8 @@ void wait_for_input() {
     printf("error\n");
     break;
   }
-  //创建接受缓冲区
+  // 创建接受缓冲区
+  char buf[100];
+  // 接受用户输入
+
 }

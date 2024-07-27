@@ -27,3 +27,7 @@ echo ============Running MyProject.exe with argument=============
 .\MyProject ".res/users.json"
 
 pause
+
+echo ============test MyProject.exe with parallel 10=============
+
+ctest --parallel 10

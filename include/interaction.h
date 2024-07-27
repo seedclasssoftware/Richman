@@ -33,4 +33,4 @@
  */
 void wait_for_input();
 
-#endif // INTERACTION_H
+#endif // INTERACTION_
