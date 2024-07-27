@@ -30,6 +30,8 @@
 #include <string.h>
 #include <time.h>
 #include "map.h"
+#include "gifthouse.h"
+#include "buy_earth.h"
 
 extern Map map;
 
@@ -67,5 +69,68 @@ void eventJudge(pPlayers now_user){
     int kind=map.cells[now_user->position].kind;
     int rank=map.cells[now_user->position].rank;
     int owner=map.cells[now_user->position].owner;
-    
+    int show_char=map.cells[now_user->position].show_char;
+    if(kind==4){
+        switch(show_char){
+            case 'T':{
+
+                break;
+            }
+            case 'G':{
+                gifthouse_event_process(now_user);
+                break;
+            }
+            case 'M':{
+
+                break;
+            }
+            case 'H':{
+                break;
+            }
+            case 'P':{
+                now_user->prison=2;
+                break;
+            }
+            case '$':{
+                if(now_user->position==64)
+                    now_user->point+=60;
+                else if(now_user->position==65)
+                    now_user->point+=80;
+                else if(now_user->position==66)
+                    now_user->point+=40;
+                else if(now_user->position==67)
+                    now_user->point+=100;
+                else if(now_user->position==68)
+                    now_user->point+=80;
+                else if(now_user->position==69)
+                    now_user->point+=20;
+                break;
+            }
+        }
+    }
+    else if(kind==0){
+        switch(rank){
+            case 1:{
+                if(now_user->money>=200){
+                    printf("您是否要购买这块空地？y/n");
+                    buy_earth(now_user,&map);
+                }
+                break;
+            }
+            case 2:{
+                 if(now_user->money>=500){
+                    printf("您是否要购买这块空地？y/n");
+                    buy_earth(now_user,&map);
+                }
+                break;
+            }
+            case 3:{
+                if(now_user->money>=300){
+                    printf("您是否要购买这块空地？y/n");
+                    buy_earth(now_user,&map);
+                }
+                break;
+            }
+        }
+    }
 }
