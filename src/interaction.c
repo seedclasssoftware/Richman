@@ -30,6 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "roll.h"
+#include "roll.h"
 
 extern pPlayers now_user;
 
@@ -98,7 +100,6 @@ void wait_for_input() {
   switch (now_user->number) {
   case 1:
     printf("\033[31m钱夫人>\033[31m\033[0m");
-
     break;
   case 2:
     printf("\033[32m阿土伯>\033[32m\033[0m");
