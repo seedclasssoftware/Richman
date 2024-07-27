@@ -14,6 +14,7 @@ set(SOURCES
     src/players.c
     src/init_play.c
     src/map.c
+    src/interaction.c
 )
 
 # 查找cjson库
@@ -25,6 +26,7 @@ set(HEADERS
     include/players.h
     include/init_play.h
     include/map.h
+    src/interaction.h
 )
 
 # 添加头文件路径

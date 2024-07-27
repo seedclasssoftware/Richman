@@ -86,5 +86,3 @@ int main(int argc, char const *argv[], char const *envp[]) {
 
   return 0;
 }
-
-void wait_for_input() {}
