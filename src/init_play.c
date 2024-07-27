@@ -82,7 +82,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
     for (int i = 0; i < 4; i++) {
         players[i].money = init_money;
         players[i].point = 0;
-        players[i].number = i + 1;
+        players[i].number = 0;
         players[i].block = 0;
         players[i].robot = 0;
         players[i].bomb = 0;
@@ -124,8 +124,17 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
             for (int i = 0; i < count; i++) {
                 players[i].name=player_names[input[i]-1];
                 players[i].cap=player_caps[input[i]-1];
-                players[i].color=player_colors[input[i]-1];
                 players[i].isPlaying = 1;
+                if(players[i].cap=='Q'){
+                    players[i].number=1;
+                }
+                else if(players[i].cap=='A'){
+                    players[i].number=2;
+                }
+                else if(players[i].cap=='S'){
+                    players[i].number=3;
+                }
+                else players[i].number=4;
                 // 打印选择的玩家名字和颜色
                 printf("%s%s\033[0m ", player_colors[(int)(input[i]-'1')], player_names[(int)(input[i]-'1')]);
             }
