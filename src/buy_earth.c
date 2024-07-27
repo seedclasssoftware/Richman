@@ -14,7 +14,7 @@ void buy_earth(pPlayers players,Map *map)
         if(players->money >= 200)
         {
             printf("是否购买该地[y/n]?\n");
-            scanf("%c",choice);
+            scanf("%c",&choice);
             if(choice == 'y' || choice == 'Y')
             {
                 buy_or_not = 1;
@@ -59,10 +59,10 @@ void buy_earth(pPlayers players,Map *map)
 }
 
 //自测试
-void test1_buy_earth2_when_money_is_199()
+void test1_buy_earth1_when_money_is_200()
 {
   Players player;
-  player.money = 199;
+  player.money = 200;
   player.position = 1;
   player.number = 1;
   Map map;
@@ -70,3 +70,4 @@ void test1_buy_earth2_when_money_is_199()
   buy_earth(&player,&map);
   printf("test1 result: money:%u,position:%u,map_owener:%d\n",player.money,player.position,map.cells[player.position].owner);
 }
+
