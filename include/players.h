@@ -73,6 +73,10 @@ typedef struct Players {
   uint8_t hospital;
   uint8_t magic;
   uint8_t position;
+  /// 是否参与游戏
+  _Bool isPlaying;
+  /// 是否破产
+  _Bool isBankrupt;
   char cap;
   /// properties
 } Players, *pPlayers;
