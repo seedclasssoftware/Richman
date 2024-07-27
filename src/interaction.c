@@ -63,6 +63,33 @@ flag:
   }
 }
 
+void handle_step_command(const char *command) {
+  // 检查 command 是否为 NULL 或长度不足
+  if (command == NULL || strlen(command) < 6) {
+    printf("Invalid command\n");
+    return;
+  }
+
+  // 确保 "Step" 或 "step" 后跟一个空格
+  if ((strncmp(command, "Step ", 5) == 0 ||
+       strncmp(command, "step ", 5) == 0)) {
+    // 检查空格后是否跟随数字
+    char *num_str = command + 5;
+    char *endptr;
+    int n = strtol(num_str, &endptr, 10); // 转换字符串为整数
+
+    // 确保转换成功并且没有非法字符
+    if (*endptr == '\0') {
+      now_user->position += n;
+      change_player();
+    } else {
+      printf("Invalid number in command\n");
+    }
+  } else {
+    printf("Invalid command format\n");
+  }
+}
+
 /**
  * @brief 处理用户输入的命令
  *
@@ -95,9 +122,7 @@ void handle_command(const char *command) {
     help();
   } else if (strncmp(command, "Step", 4) == 0 ||
              strncmp(command, "step", 4) == 0) {
-    int n = atoi(command + 5);
-    now_user->position += n;
-    change_player();
+    handle_step_command(command);
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else {

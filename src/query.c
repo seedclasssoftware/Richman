@@ -41,5 +41,4 @@ void query(pPlayers now_user) {
   printf("监狱：%d\n", now_user->prison);
   printf("医院：%d\n", now_user->hospital);
   printf("魔法：%d\n", now_user->magic);
-  //
 }
