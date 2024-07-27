@@ -75,7 +75,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     }*/
 
 
-    test_tool_house_when_points_is_29_and_0_tool();
+    test_tool_house();
     printf("hello,main\n");
     return 0;
 }
