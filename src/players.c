@@ -126,6 +126,26 @@ void initializePlayers(const char *json_data, Players players[],
         }
       }
     }
+    extern Map map;
+    // 添加同步players.properties与map.cells
+    for (int i = 0; i < 70; i++) {
+      if (map.cells[i].kind != 4) {
+        map.cells[i].kind =
+            (players[0].properties[i] | players[1].properties[i] |
+             players[2].properties[i] | players[3].properties[i]);
+      }
+      if (players[0].properties[i]) {
+        map.cells[i].owner = 1;
+      } else if (players[1].properties[i]) {
+        map.cells[i].owner = 2;
+      } else if (players[2].properties[i]) {
+        map.cells[i].owner = 3;
+      } else if (players[3].properties[i]) {
+        map.cells[i].owner = 4;
+      } else {
+        map.cells[i].owner = 0;
+      }
+    }
   }
 
   for (int i = 0; i < num_players; i++) {
@@ -239,14 +259,16 @@ char *convertToJson(Players players[], int num_players, Map *map,
       cJSON_AddNumberToObject(player_json, "debuff1", players[i].magic);
       cJSON_AddNumberToObject(player_json, "position", players[i].position);
       cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
-
+      extern Map map;
       cJSON *properties_array = cJSON_CreateArray();
       for (int j = 0; j < 70; j++) {
-        if (players[i].properties[j] != 0) {
+        if ((map.cells[j].owner - 1) == i) {
           cJSON *property_item = cJSON_CreateArray();
           cJSON_AddItemToArray(property_item, cJSON_CreateNumber(j));
           cJSON_AddItemToArray(property_item,
-                               cJSON_CreateNumber(players[i].properties[j]));
+                               cJSON_CreateNumber(map.cells[j].kind == 4
+                                                      ? 0
+                                                      : map.cells[j].kind));
           cJSON_AddItemToArray(properties_array, property_item);
         }
       }
