@@ -1,5 +1,7 @@
 @echo off
 
+chcp 65001
+
 conan install . --build=missing --profile=conan_profile_x64
 
 if not exist build (
@@ -20,7 +22,7 @@ cd ../out
 
 echo ============Running MyProject.exe=============
 
-.\MyProject
+@REM .\MyProject
 
 echo ============Running MyProject.exe with argument=============
 
@@ -29,5 +31,7 @@ echo ============Running MyProject.exe with argument=============
 echo ============test MyProject.exe with parallel 10=============
 
 pause
+
+cd ../build
 
 ctest --parallel 10

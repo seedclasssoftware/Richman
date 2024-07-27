@@ -1,3 +1,6 @@
+/**
+ * author： 史少博
+ */
 #include "mine_earth.h"
 void mining_for_point(pPlayers player, Cell *cells, int which_earth)
 {
@@ -21,7 +24,7 @@ void mining_for_point(pPlayers player, Cell *cells, int which_earth)
     case 64:
         (*player).point+=60;
         break;
-        
+
     default:
         break;
     }

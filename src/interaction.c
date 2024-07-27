@@ -25,11 +25,59 @@
  *
  */
 #include "interaction.h"
+#include "players.h"
 #include <stdio.h>
-#include"players.h"
+#include <stdlib.h>
+#include <string.h>
 
 
 extern pPlayers now_user;
+
+// 退出游戏的实现
+void exit_game() {
+    printf("正在退出游戏...\n");
+
+    // 执行清理操作
+    // cleanup_resources();
+
+    // 显示退出信息
+    printf("游戏已退出。感谢您的参与！\n");
+
+    // 退出程序
+    exit(0);
+}
+/**
+ * @brief 处理用户输入的命令
+ * 
+ * @param command 用户输入的命令
+ */
+void handle_command(const char *command) {
+  if (strcmp(command, "Roll") == 0) {
+    // roll_dice();
+  } else if (strncmp(command, "Sell", 4) == 0) {
+    int n = atoi(command + 5);
+    // sell_property(n);
+  } else if (strncmp(command, "Block", 5) == 0) {
+    int n = atoi(command + 6);
+    // place_block(n);
+  } else if (strncmp(command, "Bomb", 4) == 0) {
+    int n = atoi(command + 5);
+    // place_bomb(n);
+  } else if (strcmp(command, "Robot") == 0) {
+    // clean_up();
+  } else if (strcmp(command, "Query") == 0) {
+    // show_assets();
+  } else if (strcmp(command, "Help") == 0) {
+    // show_help();
+  } else if (strncmp(command, "Step", 4) == 0) {
+    int n = atoi(command + 5);
+    // step_dice(n);
+  } else if (strcmp(command, "Quit") == 0) {
+    exit_game();
+  } else {
+    printf("未知命令\n");
+  }
+}
 
 void wait_for_input() {
   switch (now_user->number) {
@@ -52,5 +100,9 @@ void wait_for_input() {
   // 创建接受缓冲区
   char buf[100];
   // 接受用户输入
-
+    // 接受用户输入
+  fgets(buf, sizeof(buf), stdin);
+  // 移除换行符
+  buf[strcspn(buf, "\n")] = '\0';
+  handle_command(buf);
 }

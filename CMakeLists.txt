@@ -15,6 +15,8 @@ set(SOURCES
     src/tool_house.c
     src/earthup.c
     src/map.c
+    src/map.c
+    src/interaction.c
 )
 
 # 查找cjson库
@@ -27,6 +29,8 @@ set(HEADERS
     include/tool_house.h
     include/earthup.h
     include/map.h
+    include/map.h
+    include/interaction.h
 )
 
 # 添加头文件路径
@@ -58,7 +62,7 @@ enable_testing()
 find_package(Python3 REQUIRED)
 
 # 获取所有测试目录
-file(GLOB TEST_DIRS .test/*)
+file(GLOB TEST_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/.test/*)
 
 # 创建输出目录
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/testout)
@@ -74,8 +78,8 @@ foreach(TEST_DIR ${TEST_DIRS})
     # 添加测试
     add_test(
         NAME ${TEST_NAME}
-        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test.py ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_DIR}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_DIR}
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test.py ${TEST_DIR}
+        WORKING_DIRECTORY ${TEST_DIR}
     )
 
     # 设置测试属性，重定向输出和错误输出
@@ -84,5 +88,7 @@ foreach(TEST_DIR ${TEST_DIRS})
         FAIL_REGULAR_EXPRESSION "Test Failed"
         ENVIRONMENT "PYTHONUNBUFFERED=1"
         PROCESSORS 1
+        # 重定向输出
+        TEST_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/testout/${TEST_NAME}
     )
 endforeach()

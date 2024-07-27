@@ -1,3 +1,6 @@
+/**
+ * author： 史少博
+ */
 #include "earthup.h"
 
 
@@ -31,6 +34,8 @@ void earth_up(pPlayers player,Cell* cells)
             else
             {
                 printf("请问是否需要升级您的地产!\n");
+                printf("y.升级\n");
+                printf("n.不升级\n");
                 printf("y.升级\n");
                 printf("n.不升级\n");
                 while(1)
@@ -69,6 +74,8 @@ void earth_up(pPlayers player,Cell* cells)
                     else
                     {
                         printf("输入错误！\n");
+                        printf("y.升级\n");
+                        printf("n.不升级\n");
                         printf("y.升级\n");
                         printf("n.不升级\n");
                         while ((c = getchar()) != EOF && c != '\n');

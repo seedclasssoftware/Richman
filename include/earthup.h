@@ -1,3 +1,6 @@
+/**
+ * author： 史少博
+ */
 #ifndef EARTHUP_H
 #define EARTHUP_H
 
