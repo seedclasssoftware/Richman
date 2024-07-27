@@ -46,7 +46,11 @@ void exit_game() {
     // 退出程序
     exit(0);
 }
-
+/**
+ * @brief 处理用户输入的命令
+ * 
+ * @param command 用户输入的命令
+ */
 void handle_command(const char *command) {
   if (strcmp(command, "Roll") == 0) {
     // roll_dice();
