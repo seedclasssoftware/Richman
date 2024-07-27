@@ -80,23 +80,7 @@ void handle_command(const char *command) {
 }
 
 void wait_for_input() {
-  switch (now_user->number) {
-  case 1:
-    printf("\033[31m钱夫人>\033[31m");
-    break;
-  case 2:
-    printf("\033[32m阿土伯>\033[32m");
-    break;
-  case 3:
-    printf("\033[33m孙小美>\033[33m");
-    break;
-  case 4:
-    printf("\033[34m金贝贝>\033[34m");
-    break;
-  default:
-    printf("error\n");
-    break;
-  }
+  printf("%s%s%s>\033[0m",now_user->color,now_user->name,now_user->color);
   // 创建接受缓冲区
   char buf[100];
   // 接受用户输入
