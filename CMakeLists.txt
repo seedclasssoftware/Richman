@@ -25,6 +25,7 @@ set(SOURCES
     src/pass_road_money.c
     src/roll.c
     src/help.c
+    src/query.c
 )
 
 # 查找cjson库
@@ -40,6 +41,15 @@ set(HEADERS
     include/help.h
     include/interaction.h
     include/roll.h
+    include/buy_earth.h
+    include/earthup.h
+    include/gifthouse.h
+    include/mine_earth.h
+    include/tool_house.h
+    include/pass_road_money.h
+    include/roll.h
+    include/help.h
+    include/query.h
 )
 
 # 添加头文件路径
