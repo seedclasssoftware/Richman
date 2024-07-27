@@ -91,7 +91,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
   map_init(&map);
   while (1) {
-    //map_init(&map);    wait_for_input();
+    //map_init(&map);    
+    wait_for_input();
     map_print(&map);
    
   }
