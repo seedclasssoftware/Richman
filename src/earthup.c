@@ -3,7 +3,7 @@
 
 int is_your_earth(Players player,Cell* cells)
 {
-    if(cells[player.position].owner==player.number)
+    if((*cells).owner==player.number)
     {
         return 1;
     }
@@ -17,16 +17,16 @@ void earth_up(pPlayers player,Cell* cells)
     if(is_your_earth(*player,cells)==1)       
     {
         //判断当前土地的种类是否为空地、茅屋或洋房
-        if(cells[(*player).position].kind==0||cells[(*player).position].kind==1||cells[(*player).position].kind==2)
+        if((*cells).kind==0||(*cells).kind==1||(*cells).kind==2)
         {
             //如果是第一地段但当前资金小于200则退出
-            if (cells[(*player).position].rank == 1 && (*player).money < 200)
+            if ((*cells).rank == 1 && (*player).money < 200)
                 return;
             //如果是第二地段但当前资金小于500则退出
-            else if (cells[(*player).position].rank == 2 && (*player).money < 500)
+            else if ((*cells).rank == 2 && (*player).money < 500)
                 return;
             //如果是第三地段但当前资金小于300则退出
-            else if (cells[(*player).position].rank == 3 && (*player).money < 300)
+            else if ((*cells).rank == 3 && (*player).money < 300)
                 return;
             else
             {
@@ -41,22 +41,22 @@ void earth_up(pPlayers player,Cell* cells)
                     //选择升级地产
                     if(if_earth_up=='1')
                     {
-                        if(cells[(*player).position].rank == 1)
+                        if((*cells).rank == 1)
                         {
                             (*player).money -= 200;
-                            cells[(*player).position].kind += 1;
+                            (*cells).kind += 1;
                             return;
                         }
-                        else if(cells[(*player).position].rank == 2)
+                        else if((*cells).rank == 2)
                         {
                             (*player).money -= 500;
-                            cells[(*player).position].kind += 1;
+                            (*cells).kind += 1;
                             return;
                         }
-                        else if(cells[(*player).position].rank == 3)
+                        else if((*cells).rank == 3)
                         {
                             (*player).money -= 300;
-                            cells[(*player).position].kind += 1;
+                            (*cells).kind += 1;
                             return;
                         }
                     }
@@ -78,4 +78,19 @@ void earth_up(pPlayers player,Cell* cells)
             }
         }
     }
+}
+
+void test_earth_up(pPlayers player, Cell *cells)
+{
+    Players player_use_for_test_earth_up;
+    player_use_for_test_earth_up.money=299;
+    player_use_for_test_earth_up.number=1;
+    player_use_for_test_earth_up.position=6;
+    Map *map;
+    map_init(map);
+    map->cells[5].owner=1;
+    map->cells[5].rank=1;
+    map->cells[5].kind=2;
+    earth_up(&player_use_for_test_earth_up,&(map->cells[5]));
+    printf("%d,%d,%d\n",map->cells[5].owner,map->cells[5].rank,map->cells[5].kind);
 }
