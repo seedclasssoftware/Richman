@@ -79,7 +79,7 @@ typedef struct Players {
   /// properties
 } Players, *pPlayers;
 
-extern Players[4] players;
+extern Players players[4];
 
 
 /**
