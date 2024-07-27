@@ -2,6 +2,8 @@
 
 chcp 65001
 
-cd ../out
+cd ./out
 
-.\MyProject
+echo ============Running MyProject.exe=============
+
+.\MyProject.exe
