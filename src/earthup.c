@@ -34,8 +34,8 @@ void earth_up(pPlayers player,Cell* cells)
             else
             {
                 printf("请问是否需要升级您的地产!\n");
-                printf("1.升级\n");
-                printf("2.不升级\n");
+                printf("y.升级\n");
+                printf("n.不升级\n");
                 while(1)
                 {
                     char c;
