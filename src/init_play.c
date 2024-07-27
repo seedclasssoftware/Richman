@@ -87,7 +87,7 @@ void select_players(Players *players, int *selected_players, int num_players, ui
                 valid = 0; // 标记为无效输入
                 break;
             }
-            selected[count] = index; // 存储有效编号
+            selected[index] = 1; // 存储有效编号
             count++;
         }
 
