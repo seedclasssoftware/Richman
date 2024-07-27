@@ -3,6 +3,7 @@ out
 .cache
 .vscode
 CMakeUserPresets.json
+testout
 
 
 # Prerequisites
