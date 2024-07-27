@@ -15,7 +15,6 @@ set(SOURCES
     src/tool_house.c
     src/earthup.c
     src/map.c
-    src/map.c
     src/interaction.c
 )
 
@@ -28,7 +27,6 @@ set(HEADERS
     include/players.h
     include/tool_house.h
     include/earthup.h
-    include/map.h
     include/map.h
     include/interaction.h
 )
