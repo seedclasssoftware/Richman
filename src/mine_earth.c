@@ -28,7 +28,4 @@ void mining_for_point(pPlayers player, Cell *cells, int which_earth)
     default:
         break;
     }
-    {
-        (*player).point+=20;
-    }
 }
