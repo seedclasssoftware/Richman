@@ -34,8 +34,10 @@
 #include "buy_earth.h"
 #include "earthup.h"
 #include "mine_earth.h"
-
+#include "pass_road_money.h"
+//#include "winnt.h"
 extern Map map;
+extern Players players[4];
 
 int roll_num() {
     // 使用当前时间作为种子
@@ -106,7 +108,7 @@ void eventJudge(pPlayers now_user){
            earth_up(now_user, map.cells);
         }
         else{
-            ///收租金函数调用
+            pay_money(players, map.cells, now_user);
         }
     }
 }
