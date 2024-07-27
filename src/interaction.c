@@ -25,15 +25,15 @@
  *
  */
 #include "interaction.h"
+#include "help.h"
 #include "players.h"
+#include "query.h"
 #include "roll.h"
+#include "useprops.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "roll.h"
-#include "help.h"
-#include "useprops.h"
-#include "query.h"
+
 extern pPlayers now_user;
 extern Map map;
 // 退出游戏的实现
@@ -46,6 +46,23 @@ void exit_game() {
   // 退出程序
   exit(0);
 }
+// 切换玩家
+void change_player() {
+// 切换到下一个玩家
+flag:
+  if ((players[(now_user->number) % 4].hospital == 0 &&
+       players[(now_user->number) % 4].prison == 0 &&
+       players[(now_user->number) % 4].isPlaying == 1 &&
+       players[(now_user->number) % 4].isBankrupt == 0) == 1) {
+    now_user = &(players[(now_user->number) % 4]);
+    printf("切换到玩家%d\n", now_user->number);
+  } else {
+    printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
+    now_user = &(players[(now_user->number) % 4]);
+    goto flag;
+  }
+}
+
 /**
  * @brief 处理用户输入的命令
  *
@@ -57,19 +74,8 @@ void handle_command(const char *command) {
     printf("骰子点数为：%d\n", roll);
     change_position(now_user, roll);
     eventJudge(now_user);
-  // 切换当前玩家
-  flag:
-    if ((players[(now_user->number) % 4].hospital == 0 &&
-         players[(now_user->number) % 4].prison == 0 &&
-         players[(now_user->number) % 4].isPlaying == 1 &&
-         players[(now_user->number) % 4].isBankrupt == 0) == 1) {
-      now_user = &(players[(now_user->number) % 4]);
-      printf("切换到玩家%d\n", now_user->number);
-    } else {
-      printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
-      now_user = &(players[(now_user->number) % 4]);
-      goto flag;
-    }
+    // 切换当前玩家
+    change_player();
   } else if (strncmp(command, "Sell", 4) == 0 ||
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
@@ -77,11 +83,11 @@ void handle_command(const char *command) {
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
-     useblock(now_user ,&map,n);
+    useblock(now_user, &map, n);
   } else if (strncmp(command, "Bomb", 4) == 0 ||
              strncmp(command, "bomb", 4) == 0) {
     int n = atoi(command + 5);
-    usebomb(now_user,&map,n);
+    usebomb(now_user, &map, n);
   } else if (strcmp(command, "Robot") == 0 || strcmp(command, "robot") == 0) {
     userobot(now_user, &map);
   } else if (strcmp(command, "Query") == 0 || strcmp(command, "query") == 0) {
@@ -91,7 +97,8 @@ void handle_command(const char *command) {
   } else if (strncmp(command, "Step", 4) == 0 ||
              strncmp(command, "step", 4) == 0) {
     int n = atoi(command + 5);
-    // step_dice(n);
+    now_user->position += n;
+    change_player();
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else {
