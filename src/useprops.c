@@ -1,3 +1,8 @@
+/*
+*王航天
+*实现道具的使用功能
+*/
+
 #include "useprops.h"
 #include "players.h"
 #include "map.h"

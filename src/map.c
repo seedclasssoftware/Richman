@@ -1,3 +1,8 @@
+/*
+*王航天
+*实现地图的初始化、在终端打印出地图的功能
+*/
+
 #include "map.h"
 #include <stdio.h>
 
