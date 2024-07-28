@@ -128,7 +128,7 @@ void eventJudge(pPlayers now_user){
            earth_up(now_user, &map.cells[(*now_user).position]);
         }
         else{
-            pay_money(players, &map.cells[(*now_user).position], now_user);
+            pay_money(players, &map.cells[(*now_user).position], now_user, &map);
         }
     }
 }
