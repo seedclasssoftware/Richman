@@ -64,7 +64,7 @@ def run_test(test_dir):
             text=True,
         )
         try:
-            process.communicate(input=input_data, timeout=15)
+            process.communicate(input=input_data, timeout=3)
         except subprocess.TimeoutExpired:
             print(f"Process timed out after 15 seconds.")
             process.terminate()
