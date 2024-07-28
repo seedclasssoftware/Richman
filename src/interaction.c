@@ -63,14 +63,14 @@ void print_working_directory() {
 void change_player() {
 // 切换到下一个玩家
 flag:
-  printf("切换到玩家%d\n", now_user->number);
+  // printf("切换到玩家%d\n", now_user->number);
   // printPlayers(players, 4);
   if (((players[(now_user->number) % 4].hospital == 0) &&
        (players[(now_user->number) % 4].prison == 0) &&
        (players[(now_user->number) % 4].isPlaying == 1) &&
        (players[(now_user->number) % 4].isBankrupt == 0)) == 1) {
     now_user = &(players[(now_user->number) % 4]);
-    printf("成功切换到玩家%d\n", now_user->number);
+    // printf("成功切换到玩家%d\n", now_user->number);
   } else {
     if ((players[(now_user->number) % 4].hospital != 0 &&
          players[(now_user->number) % 4].prison != 0) == 1) {
