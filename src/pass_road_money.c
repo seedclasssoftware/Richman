@@ -50,6 +50,43 @@ void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money)
             //现有钱数少于支付钱数
             else
             {
+                int is_anyone_there=0;
+                (*now_user_for_pay_money).isBankrupt=1;
+                for(int i=0;i<=3;i++)
+                {
+                    //如果当前位置有人并且这个人不是当前角色
+                    if(player[i].position==(*now_user_for_pay_money).position && player[i].number!=(*now_user_for_pay_money).number)
+                    {
+                        //根据当前位置的人重置地图符号
+                        switch(player[i].number)
+                        {
+                            case 1:
+                                (*cells).show_char='Q';
+                                is_anyone_there=1;
+                                break;
+                            case 2:
+                                (*cells).show_char='A';
+                                is_anyone_there=1;
+                                break;
+                            case 3:
+                                (*cells).show_char='S';
+                                is_anyone_there=1;
+                                break;
+                            case 4:
+                                (*cells).show_char='J';
+                                is_anyone_there=1;
+                                break;
+                            default:
+                                printf("player_number_in_no_money_wrong!\n");
+                                break;
+                        }
+                    }
+                    if(is_anyone_there=0)
+                    {
+                        (*cells).show_char=(*cells).kind+48;
+                    }
+                }
+
                 //等待破产模块
             }
         }
