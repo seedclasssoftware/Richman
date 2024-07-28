@@ -299,9 +299,9 @@ char *convertToJson(Players players[], int num_players, Map *map,
         cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
         cJSON_AddNumberToObject(player_json, "continue", players[i].god);
         cJSON_AddNumberToObject(player_json, "debuff0",
-                                ((0b1) != (players[i].prison)));
+                                !((0) == (players[i].prison)));
         cJSON_AddNumberToObject(player_json, "debuff1",
-                                ((0b10) != (players[i].hospital)));
+                                !((0) == (players[i].hospital)));
         cJSON_AddNumberToObject(player_json, "decontinue",
                                 (players[i].prison > players[i].hospital)
                                     ? players[i].prison
