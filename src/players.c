@@ -57,6 +57,28 @@ void initializePlayers(const char *json_data, Players players[],
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
   // printf("now_user: %s\n", now_user_name ? now_user_name : "null");
+  switch ((now_user_name[0])) {
+  case 'Q':
+  case '1':
+    now_user = &players[0];
+    printf("now_user: %s\n", now_user->name);
+    break;
+  case 'A':
+  case '2':
+    now_user = &players[1];
+    printf("now_user: %s\n", now_user->name);
+    break;
+  case 'S':
+  case '3':
+    now_user = &players[2];
+    printf("now_user: %s\n", now_user->name);
+    break;
+  case 'J':
+  case '4':
+    now_user = &players[3];
+    printf("now_user: %s\n", now_user->name);
+    break;
+  }
 
   cJSON *players_array = cJSON_GetObjectItem(root, "players");
   if (!players_array) {

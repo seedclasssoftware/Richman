@@ -209,12 +209,12 @@ void handle_command(const char *command) {
       fclose(fp);
       // 调用initializePlayers函数
       initializePlayers(json_d, players, 4, &map);
-      // printPlayers(players, 4);
-      now_user = &players[0];
       free(json_d);
     } else {
       printf("文件不存在\n");
     }
+    printf("游戏数据已加载\n");
+    printf("当前玩家: %s\n", now_user->name);
   } else {
     printf("未知命令\n");
   }
