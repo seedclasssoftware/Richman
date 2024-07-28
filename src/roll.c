@@ -43,18 +43,21 @@ extern Players players[4];
 
 char temp[70][5];
 void init(){
-    temp[0][4]='S';
-    temp[14][4]='H';
-    temp[28][4]='T';
-    temp[35][4]='G';
-    temp[49][4]='P';
-    temp[63][4]='M';
-    temp[64][4]='$';
-    temp[65][4]='$';
-    temp[66][4]='$';
-    temp[67][4]='$';
-    temp[68][4]='$';
-    temp[69][4]='$';
+    for(int i=0;i<5;i++)
+    {
+        temp[0][i]='S';
+        temp[14][i]='H';
+        temp[28][i]='T';
+        temp[35][i]='G';
+        temp[49][i]='P';
+        temp[63][i]='M';
+        temp[64][i]='$';
+        temp[65][i]='$';
+        temp[66][i]='$';
+        temp[67][i]='$';
+        temp[68][i]='$';
+        temp[69][i]='$';
+    }
 }
 
 /**
