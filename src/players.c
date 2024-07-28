@@ -119,9 +119,9 @@ void initializePlayers(const char *json_data, Players players[],
           cJSON_GetObjectItem(player_json, "buff")->valueint;
       players[player_index].prison =
           cJSON_GetObjectItem(player_json, "continue")->valueint;
-      players[player_index].hospital =
+      players[player_index].prison =//TODO: 修复监狱回合数
           cJSON_GetObjectItem(player_json, "debuff0")->valueint;
-      players[player_index].magic =
+      players[player_index].hospital =//TODO: 修复医院回合数
           cJSON_GetObjectItem(player_json, "debuff1")->valueint;
       players[player_index].position =
           cJSON_GetObjectItem(player_json, "position")->valueint;
