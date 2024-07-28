@@ -120,6 +120,9 @@ void initializePlayers(const char *json_data, Players players[],
     now_user = &players[3];
     printf("now_user: %s\n", now_user->name);
     break;
+  default:
+    printf("Error: now_user not found.\n");
+    break;
   }
 
   cJSON *players_array = cJSON_GetObjectItem(root, "players");
