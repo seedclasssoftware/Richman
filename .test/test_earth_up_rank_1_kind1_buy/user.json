@@ -6,8 +6,8 @@
 	"now_user":	"1",
 	"players":	[{
 			"alive":	1,
-			"money":	1000,
-			"point":	49,
+			"money":	200,
+			"point":	0,
 			"number":	1,
 			"tool1":	0,
 			"tool2":	0,
@@ -18,10 +18,10 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-			"properties":	[]
+			"properties":	[[1,1]]
 		}, {
 			"alive":	1,
-			"money":	1000,
+			"money":	0,
 			"point":	0,
 			"number":	2,
 			"tool1":	0,
