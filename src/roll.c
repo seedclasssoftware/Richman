@@ -89,6 +89,7 @@ void change_position(pPlayers now_user, int steps) {
       continue;
     else if (tool == 1) {
       map.cells[now_user->position + i].has_tool = 0;
+      map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
       now_user->position += (uint8_t)i;
       now_user->position %= 70;
       change_show(now_user);
@@ -99,6 +100,7 @@ void change_position(pPlayers now_user, int steps) {
       break;
     } else if (tool == 3) {
       map.cells[now_user->position + i].has_tool = 0;
+      map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
       now_user->position = (uint8_t)14;
       now_user->hospital = (uint8_t)3;
       flag = 1;
