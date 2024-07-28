@@ -28,13 +28,13 @@
 #include <stdio.h>
 
 void gifthouse_event_process(Players *player) {
-  printf("Welcome to the gift house!\n");
+  printf("欢迎光临礼品屋！\n");
 
-  printf("You have 3 choices:\n");
+  printf("您有如下三个选项:\n");
   printf("1. 2000 money\n");
   printf("2. 200 points\n");
   printf("3. 1 godBuff\n");
-  printf("Please input your choice(1-3): ");
+  printf("请输入您的选项(1-3): ");
 
   int choice;
   // 读入用户的选择，并清除缓冲区

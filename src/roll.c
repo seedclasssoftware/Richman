@@ -144,21 +144,9 @@ void eventJudge(pPlayers now_user) {
       gifthouse_event_process(now_user);
       break;
     }
-    case 'M': {
-
-      break;
-    }
-    case 'H': {
-      break;
-    }
+    
     case 'P': {
-      printf("很不幸！你进入了监狱，请休息两轮！\n");
-      now_user->position=(uint8_t)49;
-      now_user->prison = 2;
-      change_show(now_user);
-      map.cells[now_user->position].show_char =
-        temp[now_user->position][3] ? temp[now_user->position][3]
-                                    : map.cells[now_user->position].init_char;
+      printf("来到了医院，休息一下~\n");
       break;
     }
     case '$': {
