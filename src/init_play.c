@@ -31,7 +31,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 char *player_names[] = {"钱夫人", "阿土伯", "孙小美", "金贝贝"};
 
 char *player_colors[] = {
@@ -44,7 +43,7 @@ char *player_colors[] = {
 char player_caps[] = {'Q', 'A', 'S', 'J'};
 /**
  * @brief Initializes the money for the game
- * 
+ *
  * @param initMoney Pointer to the variable that will store the initial money
  */
 void init_money(uint32_t *initMoney) {
@@ -76,9 +75,10 @@ void init_money(uint32_t *initMoney) {
 }
 /**
  * @brief Selects the players for the game
- * 
+ *
  * @param players Pointer to the players struct
- * @param selected_players Pointer to the array that will store the selected players
+ * @param selected_players Pointer to the array that will store the selected
+ * players
  * @param num_players Number of players
  * @param init_money Initial money for the game
  */
@@ -90,7 +90,7 @@ void select_players(Players *players, int num_players, uint32_t init_money) {
   for (int i = 0; i < 4; i++) {
     players[i].money = init_money;
     players[i].point = 0;
-    players[i].number = 0;
+    players[i].number = i + 1;
     players[i].block = 0;
     players[i].robot = 0;
     players[i].bomb = 0;
