@@ -1,10 +1,23 @@
 #include "players.h"
 #include "map.h"
 #include <cjson/cjson.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+
+// 检查字符串是否包含字符
+bool contains_char(const char *str, char ch) {
+  while (*str) {
+    if (*str == ch) {
+      return true;
+    }
+    str++;
+  }
+  return false;
+}
 
 char *getPlayerName(uint8_t number) {
   switch (number) {
@@ -53,6 +66,34 @@ void initializePlayers(const char *json_data, Players players[],
   cJSON *user_item = cJSON_GetObjectItem(root, "user");
   const char *user = cJSON_GetStringValue(user_item);
   // printf("user: %s\n", user ? user : "null");
+  for (int i = 0; i < num_players; i++) {
+    players[i].isPlaying = 0;
+  }
+  // 如果字符串包含字符 '1'，设置 players[0].isPlaying
+  if (contains_char(user, '1')) {
+    players[0].isPlaying = 1;
+  }else if(contains_char(user, 'Q')){
+    players[0].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '2'，设置 players[1].isPlaying
+  if (contains_char(user, '2')) {
+    players[1].isPlaying = 1;
+  }else if(contains_char(user, 'A')){
+    players[1].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '3'，设置 players[2].isPlaying
+  if (contains_char(user, '3')) {
+    players[2].isPlaying = 1;
+  }else if(contains_char(user, 'S')){
+    players[2].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '4'，设置 players[3].isPlaying
+  if (contains_char(user, '4')) {
+    players[3].isPlaying = 1;
+  }else if(contains_char(user, 'J')){
+    players[3].isPlaying = 1;
+  }
+  
 
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
