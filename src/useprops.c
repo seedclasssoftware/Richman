@@ -55,6 +55,7 @@ void useprops(Players *player, Map *map) {
                            ? (player->position + place_position) % 69
                            : (69 + (player->position + place_position)) % 69;
       map->cells[place_position].has_tool = 1;
+      map->cells[place_position].show_char = '#';
       printf("you have used block\n");
       player->block--;
 
@@ -90,6 +91,7 @@ void useprops(Players *player, Map *map) {
                            ? (player->position + place_position) % 69
                            : (69 + (player->position + place_position)) % 69;
       map->cells[place_position].has_tool = 3;
+      map->cells[place_position].show_char = '@';
       printf("you have used bomb\n");
       player->bomb--;
 
