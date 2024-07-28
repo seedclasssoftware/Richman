@@ -105,25 +105,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
 
   while (1) {
-    char temp_show_char_last=map.cells[now_user->position].show_char;
-    switch(now_user->number)
-    {
-      case 1:
-        map.cells[now_user->position].show_char='Q';
-        break;
-      case 2:
-        map.cells[now_user->position].show_char='A';
-        break;
-      case 3:
-        map.cells[now_user->position].show_char='S';
-        break;
-      case 4:
-        map.cells[now_user->position].show_char='J';
-        break;
-      
-    }
     map_print(&map);
-    map.cells[now_user->position].show_char=temp_show_char_last;
     wait_for_input();
   }
   return 0;
