@@ -116,3 +116,39 @@ foreach(TEST_DIR ${TEST_DIRS})
         TEST_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/testout/${TEST_NAME}
     )
 endforeach()
+
+# 获取所有测试目录
+file(GLOB TEST_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/.test_without_arge/*)
+
+# 创建输出目录
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/testout)
+
+# 为每个测试目录添加一个测试
+foreach(TEST_DIR ${TEST_DIRS})
+    # 提取目录名称
+    get_filename_component(TEST_NAME ${TEST_DIR} NAME)
+    
+    # 为测试名称添加前缀，防止冲突
+    set(TEST_NAME_WITHOUT_ARGE WITHOUT_ARGE_${TEST_NAME})
+
+    # 创建测试特定的输出目录
+    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/testout/${TEST_NAME_WITHOUT_ARGE})
+
+    # 添加测试
+    add_test(
+        NAME ${TEST_NAME_WITHOUT_ARGE}
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_without_arge.py ${TEST_DIR}
+        WORKING_DIRECTORY ${TEST_DIR}
+    )
+
+    # 设置测试属性，重定向输出和错误输出
+    set_tests_properties(${TEST_NAME_WITHOUT_ARGE} PROPERTIES
+        PASS_REGULAR_EXPRESSION "Test Passed"
+        FAIL_REGULAR_EXPRESSION "Test Failed"
+        ENVIRONMENT "PYTHONUNBUFFERED=1"
+        PROCESSORS 1
+        # 重定向输出
+        TEST_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/testout/${TEST_NAME_WITHOUT_ARGE}
+    )
+endforeach()
+
