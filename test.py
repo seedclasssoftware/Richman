@@ -10,7 +10,7 @@ def run_test(test_dir):
     input_path = os.path.join(test_dir, "input.txt")
     output_path = os.path.join(test_dir, "output.txt")
     error_path = os.path.join(test_dir, "error.txt")
-    user_json_path = os.path.join(test_dir, "input.json")
+    user_json_path = os.path.join(test_dir, "user.json")
     expected_output_path = os.path.join(test_dir, "expected_output.json")
     output_json_path = os.path.join(test_dir, "output.json")
     expected_output_txt_path = os.path.join(test_dir, "expected_output.txt")
@@ -45,7 +45,7 @@ def run_test(test_dir):
         actual_error_path, "w", encoding="utf-8"
     ) as error_file:
         process = subprocess.Popen(
-            [executable_path],
+            [executable_path, user_json_path],#user_json_path,启动程序时的参数
             stdin=subprocess.PIPE,
             stdout=output_file,
             stderr=error_file,
