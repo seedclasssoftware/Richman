@@ -37,11 +37,10 @@
 #include "players.h"
 // #include "tool_house.h"
 // #include "useprops.h"
+#include "roll.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
-#include "roll.h"
-
 
 Map map;
 
@@ -65,6 +64,15 @@ int main(int argc, char const *argv[], char const *envp[]) {
     selectPlayers(&initMoney);
     // 初始化选角色部分
     now_user = &players[0];
+    for (int i = 0; i < 4; i++) {
+      if (players[i].isPlaying) {
+        now_user = &(players[i]);
+        break;
+      }
+    }
+    //map_init(&map);
+    //map.cells[0].show_char = now_user->cap;
+    // map.cells[0].show_char = now_user->cap;
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
@@ -93,14 +101,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
     // }
     // fwrite(json, 1, strlen(json), fp2);
     // fclose(fp2);
+    //map_init(&map);
   }
+
   map_init(&map);
-  for (int i = 0; i < 4; i++) {
-    if (players[i].isPlaying) {
-      now_user = &(players[i]);
-      break;
-    }
-  }
   while (1) {
     map_print(&map);
     wait_for_input();

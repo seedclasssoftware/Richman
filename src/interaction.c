@@ -29,6 +29,7 @@
 #include "players.h"
 #include "query.h"
 #include "roll.h"
+#include "sell_house.h"
 #include "useprops.h"
 #include <limits.h>
 #include <stdio.h>
@@ -141,7 +142,7 @@ void handle_command(const char *command) {
   } else if (strncmp(command, "Sell", 4) == 0 ||
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
-    // sell_property(n);
+    sell_house(now_user, &map);
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
