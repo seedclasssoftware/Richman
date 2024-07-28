@@ -63,14 +63,14 @@ void print_working_directory() {
 void change_player() {
 // 切换到下一个玩家
 flag:
-  printf("切换到玩家%d\n", now_user->number);
+  // printf("切换到玩家%d\n", now_user->number);
   // printPlayers(players, 4);
   if (((players[(now_user->number) % 4].hospital == 0) &&
        (players[(now_user->number) % 4].prison == 0) &&
        (players[(now_user->number) % 4].isPlaying == 1) &&
        (players[(now_user->number) % 4].isBankrupt == 0)) == 1) {
     now_user = &(players[(now_user->number) % 4]);
-    printf("成功切换到玩家%d\n", now_user->number);
+    // printf("成功切换到玩家%d\n", now_user->number);
   } else {
     if ((players[(now_user->number) % 4].hospital != 0 &&
          players[(now_user->number) % 4].prison != 0) == 1) {
@@ -209,12 +209,12 @@ void handle_command(const char *command) {
       fclose(fp);
       // 调用initializePlayers函数
       initializePlayers(json_d, players, 4, &map);
-      // printPlayers(players, 4);
-      now_user = &players[0];
       free(json_d);
     } else {
       printf("文件不存在\n");
     }
+    printf("游戏数据已加载\n");
+    printf("当前玩家: %s\n", now_user->name);
   } else {
     printf("未知命令\n");
   }

@@ -45,37 +45,53 @@ void initialize_Players() {
 }
 
 char player_caps[] = {'Q', 'A', 'S', 'J'};
+
+// 定义默认初始金额
+#define DEFAULT_INIT_MONEY 10000
+#define MIN_INIT_MONEY 1000
+#define MAX_INIT_MONEY 50000
+
 /**
  * @brief Initializes the money for the game
  * 
  * @param initMoney Pointer to the variable that will store the initial money
  */
 void init_money(uint32_t *initMoney) {
-  char input[100]; // 用来存储用户输入
-  printf("请输入初始金额(1000-50000)，直接按回车默认为10000: ");
+    char input[100]; // 用来存储用户输入
+    int money;
 
-  // 获取输入
-  fgets(input, sizeof(input), stdin);
+    printf("请输入初始金额(%d-%d)，直接按回车默认为%d: ", MIN_INIT_MONEY, MAX_INIT_MONEY, DEFAULT_INIT_MONEY);
 
-  // 判断用户是否输入了值
-  if (input[0] == '\n') {
-    *initMoney = 10000; // 默认值
-  } else {
-    *initMoney = atoi(input); // 将输入的字符串转换为整数
-    // 检查输入是否在有效范围内
-    while (*initMoney < 1000 || *initMoney > 50000) {
-      fprintf(stderr,
-              "输入无效，请输入初始金额(1000-50000)，直接按回车默认为10000: ");
-      fgets(input, sizeof(input), stdin);
-      if (input[0] == '\n') {
-        *initMoney = 10000; // 默认值
-        break;
-      } else {
-        *initMoney = atoi(input); // 转换为整数
-      }
+    // 获取输入
+    if (fgets(input, sizeof(input), stdin) != NULL) {
+        // 去除输入中的换行符
+        input[strcspn(input, "\n")] = 0;
+
+        // 判断用户是否输入了值
+        if (input[0] == '\0') {
+            *initMoney = DEFAULT_INIT_MONEY; // 默认值
+        } else {
+            // 尝试将输入转换为整数
+            if (sscanf(input, "%d", &money) == 1) {
+                // 检查输入是否在有效范围内
+                if (money >= MIN_INIT_MONEY && money <= MAX_INIT_MONEY) {
+                    *initMoney = (uint32_t)money;
+                } else {
+                    fprintf(stderr, "输入无效，请输入初始金额(%d-%d)，直接按回车默认为%d: ", MIN_INIT_MONEY, MAX_INIT_MONEY, DEFAULT_INIT_MONEY);
+                    init_money(initMoney); // 递归调用直到输入有效
+                }
+            } else {
+                fprintf(stderr, "输入无效，请输入初始金额(%d-%d)，直接按回车默认为%d: ", MIN_INIT_MONEY, MAX_INIT_MONEY, DEFAULT_INIT_MONEY);
+                init_money(initMoney); // 递归调用直到输入有效
+            }
+        }
+    } else {
+        *initMoney = DEFAULT_INIT_MONEY; // 如果fgets失败，设置默认值
+        printf("初始金额为：%u\n", *initMoney);
+        printf("fgets失败\n");
     }
-  }
-  printf("初始金额为：%d\n", *initMoney);
+
+    printf("初始金额为：%u\n", *initMoney);
 }
 /**
  * @brief Selects the players for the game

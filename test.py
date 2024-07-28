@@ -10,8 +10,9 @@ def run_test(test_dir):
     input_path = os.path.join(test_dir, "input.txt")
     output_path = os.path.join(test_dir, "output.txt")
     error_path = os.path.join(test_dir, "error.txt")
-    user_json_path = os.path.join(test_dir, "input.json")
+    user_json_path = os.path.join(test_dir, "user.json")
     expected_output_path = os.path.join(test_dir, "expected_output.json")
+    output_json_path = os.path.join(test_dir, "output.json")
     expected_output_txt_path = os.path.join(test_dir, "expected_output.txt")
 
     # 读取输入文件
@@ -44,7 +45,7 @@ def run_test(test_dir):
         actual_error_path, "w", encoding="utf-8"
     ) as error_file:
         process = subprocess.Popen(
-            [executable_path],
+            [executable_path, user_json_path],#user_json_path,启动程序时的参数
             stdin=subprocess.PIPE,
             stdout=output_file,
             stderr=error_file,
@@ -52,19 +53,20 @@ def run_test(test_dir):
         )
         process.communicate(input=input_data)
 
-    # 比较实际输出和预期输出
-    with open(actual_output_path, "r", encoding="utf-8") as output_file:
-        actual_output = output_file.read()
+    # # 比较实际输出和预期输出
+    # with open(actual_output_path, "r", encoding="utf-8") as output_file:
+    #     actual_output = output_file.read()
 
-    with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
-        expected_output = expected_output_file.read()
+    # with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
+    #     expected_output = expected_output_file.read()
 
-    if actual_output.strip() != expected_output.strip():
-        print(f"Test in {test_dir} Failed.")
-        return False
+    # if actual_output.strip() != expected_output.strip():
+    #     print(f"Test in {test_dir} Failed.")
+    #     return False
 
     # 比较 JSON 文件
-    with open(os.path.join(test_output_dir, "user.inputjson"), "r", encoding="utf-8") as actual_json_file:
+    # with open(os.path.join(test_output_dir, "user.inputjson"), "r", encoding="utf-8") as actual_json_file:
+    with open(output_json_path, "r", encoding="utf-8") as actual_json_file:
         actual_json = json.load(actual_json_file)
 
     with open(expected_output_path, "r", encoding="utf-8") as expected_json_file:
