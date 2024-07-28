@@ -1,10 +1,22 @@
 #include "players.h"
 #include "map.h"
 #include <cjson/cjson.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// 检查字符串是否包含字符
+bool contains_char(const char *str, char ch) {
+  while (*str) {
+    if (*str == ch) {
+      return true;
+    }
+    str++;
+  }
+  return false;
+}
 
 char *getPlayerName(uint8_t number) {
   switch (number) {
@@ -53,6 +65,33 @@ void initializePlayers(const char *json_data, Players players[],
   cJSON *user_item = cJSON_GetObjectItem(root, "user");
   const char *user = cJSON_GetStringValue(user_item);
   // printf("user: %s\n", user ? user : "null");
+  for (int i = 0; i < num_players; i++) {
+    players[i].isPlaying = 0;
+  }
+  // 如果字符串包含字符 '1'，设置 players[0].isPlaying
+  if (contains_char(user, '1')) {
+    players[0].isPlaying = 1;
+  } else if (contains_char(user, 'Q')) {
+    players[0].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '2'，设置 players[1].isPlaying
+  if (contains_char(user, '2')) {
+    players[1].isPlaying = 1;
+  } else if (contains_char(user, 'A')) {
+    players[1].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '3'，设置 players[2].isPlaying
+  if (contains_char(user, '3')) {
+    players[2].isPlaying = 1;
+  } else if (contains_char(user, 'S')) {
+    players[2].isPlaying = 1;
+  }
+  // 如果字符串包含字符 '4'，设置 players[3].isPlaying
+  if (contains_char(user, '4')) {
+    players[3].isPlaying = 1;
+  } else if (contains_char(user, 'J')) {
+    players[3].isPlaying = 1;
+  }
 
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
@@ -89,10 +128,6 @@ void initializePlayers(const char *json_data, Players players[],
   int player_count = cJSON_GetArraySize(players_array);
   // printf("player_count: %d\n", player_count);
 
-  for (int i = 0; i < num_players; i++) {
-    players[i].isPlaying = 0;
-  }
-
   for (int i = 0; i < player_count; i++) {
     cJSON *player_json = cJSON_GetArrayItem(players_array, i);
     if (!player_json)
@@ -115,14 +150,18 @@ void initializePlayers(const char *json_data, Players players[],
           cJSON_GetObjectItem(player_json, "tool2")->valueint;
       players[player_index].bomb =
           cJSON_GetObjectItem(player_json, "tool3")->valueint;
-      players[player_index].god =
-          cJSON_GetObjectItem(player_json, "buff")->valueint;
-      players[player_index].prison =
-          cJSON_GetObjectItem(player_json, "continue")->valueint;
-      players[player_index].prison =//TODO: 修复监狱回合数
-          cJSON_GetObjectItem(player_json, "debuff0")->valueint;
-      players[player_index].hospital =//TODO: 修复医院回合数
-          cJSON_GetObjectItem(player_json, "debuff1")->valueint;
+      int continue_god = cJSON_GetObjectItem(player_json, "continue")->valueint;
+      int god_is = cJSON_GetObjectItem(player_json, "buff")->valueint;
+      players[player_index].god = god_is & continue_god;
+      // 获取玩家的监狱回合数和医院回合数
+      int continue_turns =
+          cJSON_GetObjectItem(player_json, "decontinue")->valueint;
+      int debuff0 = cJSON_GetObjectItem(player_json, "debuff0")->valueint;
+      int debuff1 = cJSON_GetObjectItem(player_json, "debuff1")->valueint;
+      // 修复监狱回合数
+      players[player_index].prison = debuff0 & continue_turns;
+      // 修复医院回合数
+      players[player_index].hospital = debuff1 & continue_turns;
       players[player_index].position =
           cJSON_GetObjectItem(player_json, "position")->valueint;
       players[player_index].isBankrupt =
@@ -171,8 +210,8 @@ void initializePlayers(const char *json_data, Players players[],
   }
 
   for (int i = 0; i < num_players; i++) {
-    if (players[i].isPlaying && players[i].name &&
-        strcmp(players[i].name, now_user_name) == 0) {
+    if ((players[i].isPlaying) && (players[i].name) &&
+        (strcmp(players[i].name, now_user_name) == 0)) {
       now_user = &players[i];
       break;
     }
@@ -270,13 +309,13 @@ char *convertToJson(Players players[], int num_players, Map *map,
 
   // 添加 user 字段
   char user_string[5] = "";
-  if (players[QIAN_Madam - 1].isPlaying)
+  if ((players[QIAN_Madam - 1].isPlaying) == 1)
     strcat(user_string, "1");
-  if (players[ATUB - 1].isPlaying)
+  if ((players[ATUB - 1].isPlaying) == 1)
     strcat(user_string, "2");
-  if (players[SUN_Miss - 1].isPlaying)
+  if ((players[SUN_Miss - 1].isPlaying) == 1)
     strcat(user_string, "3");
-  if (players[JIN_Bei - 1].isPlaying)
+  if ((players[JIN_Bei - 1].isPlaying) == 1)
     strcat(user_string, "4");
   cJSON_AddStringToObject(root, "user", user_string);
 
@@ -292,10 +331,16 @@ char *convertToJson(Players players[], int num_players, Map *map,
         cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
         cJSON_AddNumberToObject(player_json, "tool2", players[i].robot);
         cJSON_AddNumberToObject(player_json, "tool3", players[i].bomb);
-        cJSON_AddNumberToObject(player_json, "buff", players[i].god);
-        cJSON_AddNumberToObject(player_json, "continue", players[i].prison);
-        cJSON_AddNumberToObject(player_json, "debuff0", players[i].hospital);
-        cJSON_AddNumberToObject(player_json, "debuff1", players[i].magic);
+        cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
+        cJSON_AddNumberToObject(player_json, "continue", players[i].god);
+        cJSON_AddNumberToObject(player_json, "debuff0",
+                                !((0) == (players[i].prison)));
+        cJSON_AddNumberToObject(player_json, "debuff1",
+                                !((0) == (players[i].hospital)));
+        cJSON_AddNumberToObject(player_json, "decontinue",
+                                (players[i].prison > players[i].hospital)
+                                    ? players[i].prison
+                                    : players[i].hospital);
         cJSON_AddNumberToObject(player_json, "position", players[i].position);
         cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
         extern Map map;

@@ -29,15 +29,14 @@
 #include "players.h"
 #include "query.h"
 #include "roll.h"
-#include "useprops.h"
 #include "sell_house.h"
+#include "useprops.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
 
 extern pPlayers now_user;
 extern Map map;
@@ -144,7 +143,6 @@ void handle_command(const char *command) {
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
     sell_house(now_user, &map);
-    // sell_property(n);
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
