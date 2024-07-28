@@ -38,7 +38,10 @@ void gifthouse_event_process(Players *player)
     printf("Please input your choice(1-3): ");
 
     int choice;
+    // 读入用户的选择，并清除缓冲区
     scanf("%d", &choice);
+    while (getchar() != '\n')
+        ;
 
     switch (choice)
     {

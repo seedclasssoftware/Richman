@@ -31,19 +31,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *player_names[] = {"钱夫人", "阿土伯", "孙小美", "金贝贝"};
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
 
-char *player_colors[] = {
-    "\033[31m", // 红色
-    "\033[32m", // 绿色
-    "\033[34m", // 蓝色
-    "\033[33m"  // 黄色
-};
+void initialize_Players() {
+    players[0] = (Players){"钱夫人", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+    players[1] = (Players){"阿土伯", 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+    players[2] = (Players){"孙小美", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+    players[3] = (Players){"金贝贝", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+}
 
 char player_caps[] = {'Q', 'A', 'S', 'J'};
 /**
  * @brief Initializes the money for the game
- *
+ * 
  * @param initMoney Pointer to the variable that will store the initial money
  */
 void init_money(uint32_t *initMoney) {
@@ -75,81 +79,73 @@ void init_money(uint32_t *initMoney) {
 }
 /**
  * @brief Selects the players for the game
- *
+ * 
  * @param players Pointer to the players struct
- * @param selected_players Pointer to the array that will store the selected
- * players
+ * @param selected_players Pointer to the array that will store the selected players
  * @param num_players Number of players
  * @param init_money Initial money for the game
  */
-void select_players(Players *players, int num_players, uint32_t init_money) {
-  char input[10];
-  int count = 0;
 
-  // 初始化所有角色
-  for (int i = 0; i < 4; i++) {
-    players[i].money = init_money;
-    players[i].point = 0;
-    players[i].number = i + 1;
-    players[i].block = 0;
-    players[i].robot = 0;
-    players[i].bomb = 0;
-    players[i].god = 0;
-    players[i].prison = 0;
-    players[i].hospital = 0;
-    players[i].magic = 0;
-    players[i].position = 0;
-    players[i].isPlaying = 0;
-    players[i].isBankrupt = 0;
-  }
-
-  printf("请选择2-4位不重复玩家，输入编号即可");
-  for (int i = 0; i < 4; i++) {
-    printf("%s%d、%s%s\033[0m; ", player_colors[i], i + 1, player_colors[i],
-           player_names[i]);
-  }
-  printf("如输入:12: ");
-  printf("\n");
-  // 循环直到用户输入有效的玩家编号
-  while (1) {
-    fgets(input, sizeof(input), stdin); // 获取输入
-    count = 0;
-    int valid = 1;
-    int selected[4] = {0};
-    // 遍历输入的每个字符
-    for (int i = 0; input[i] != '\n' && input[i] != '\0'; i++) {
-      int index = input[i] - '1'; // 将字符转换为索引
-      // 检查编号是否有效且未被选择
-      if (index < 0 || index > 3 || selected[index] == 1) {
-        valid = 0; // 标记为无效输入
-        break;
-      }
-      selected[index]++; // 存储有效编号
-      count++;
+const char* getPlayerColor(const char* name) {
+    if (strcmp(name, "钱夫人") == 0) {
+        return RED;
+    } else if (strcmp(name, "阿土伯") == 0) {
+        return GREEN;
+    } else if (strcmp(name, "孙小美") == 0) {
+        return BLUE;
+    } else if (strcmp(name, "金贝贝") == 0) {
+        return YELLOW;
     }
-    // 检查输入是否有效且选择的玩家数量在2-4之间
-    if (valid == 1 && count >= 2 && count <= 4) {
-      printf("您选择的角色是: ");
-      for (int i = 0; i < count; i++) {
-        players[i].name = player_names[input[i] - '1'];
-        players[i].cap = player_caps[input[i] - '1'];
-        players[i].isPlaying = 1;
-        if (players[i].cap == 'Q') {
-          players[i].number = 1;
-        } else if (players[i].cap == 'A') {
-          players[i].number = 2;
-        } else if (players[i].cap == 'S') {
-          players[i].number = 3;
-        } else
-          players[i].number = 4;
-        // 打印选择的玩家名字和颜色
-        printf("%s%s\033[0m ", player_colors[(int)(input[i] - '1')],
-               player_names[(int)(input[i] - '1')]);
-      }
-      printf("\n");
-      break;
-    } else
-      fprintf(stderr, "您的输入格式不正确，请重新输入！");
-  }
-  return;
+    return RESET;
+}
+void printPlayerName(const char* name) {
+    printf("%s%s%s", getPlayerColor(name), name, RESET);
+}
+
+void selectPlayers(uint32_t initMoney) {
+    char input[5];
+    int valid = 0;
+
+    while (!valid) {
+        printf("请选择2-4位不重复玩家，输入编号即可(1. 钱夫人; 2. 阿土伯; 3. 孙小美; 4. 金贝贝;), 如输入: 12 23\n");
+        scanf("%s", input);
+        while(getchar() !='\n');
+
+        int length = strlen(input);
+        valid = 1;
+
+        // 检查输入长度
+        if (length < 2 || length > 4) {
+            printf("输入无效，请输入2到4位不重复数字。\n");
+            valid = 0;
+            continue;
+        }
+
+        // 检查输入字符范围和重复
+        for (int i = 0; i < length; i++) {
+            if (input[i] < '1' || input[i] > '4') {
+                printf("输入无效，数字必须是1到4。\n");
+                valid = 0;
+                break;
+            }
+            for (int j = i + 1; j < length; j++) {
+                if (input[i] == input[j]) {
+                    printf("输入无效，数字不能重复。\n");
+                    valid = 0;
+                    break;
+                }
+            }
+            if (!valid) break;
+        }
+    }
+
+    printf("您选择的角色是: ");
+    for (int i = 0; i < strlen(input); i++) {
+        int index = input[i] - '1';
+        players[index].isPlaying = 1;
+        players[index].money = 10000; // 设置初始金额
+        players[index].cap = player_caps[index];
+        printf("%s ", players[index].name);
+    }
+    printf("\n"); 
 }

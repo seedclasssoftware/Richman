@@ -93,7 +93,7 @@ void eventJudge(pPlayers now_user){
     int kind=map.cells[now_user->position].kind;
     int rank=map.cells[now_user->position].rank;
     int owner=map.cells[now_user->position].owner;
-    int show_char=map.cells[now_user->position].show_char;
+    int show_char=map.cells[now_user->position].init_char;
     if(kind==4){
         switch(show_char){
             case 'T':{
