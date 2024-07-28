@@ -81,7 +81,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
-
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     free(json_data);
