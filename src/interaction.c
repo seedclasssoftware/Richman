@@ -93,7 +93,8 @@ void handle_step_command(const char *command) {
 
     // 确保转换成功并且没有非法字符
     if (*endptr == '\0') {
-      now_user->position += n;
+      change_position(now_user, n);
+      eventJudge(now_user);
       change_player();
     } else {
       printf("Invalid number in command\n");
