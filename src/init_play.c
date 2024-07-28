@@ -176,4 +176,6 @@ void selectPlayers(uint32_t *initMoney) {
     printf("%s ", players[index].name);
   }
   printf("\n");
+  // 根据input初始化next
+
 }
