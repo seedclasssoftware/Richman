@@ -32,6 +32,7 @@
 #include "pass_road_money.h"
 #include "players.h"
 #include "tool_house.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,13 +85,13 @@ void change_position(pPlayers now_user, int steps) {
       temp[now_user->position][3] ? temp[now_user->position][3]
                                   : map.cells[now_user->position].init_char;
   for (int i = 1; i <= steps; i++) {
-    int tool = map.cells[now_user->position + i].has_tool;
+    int tool = map.cells[(now_user->position + i)%70].has_tool;
     if (tool == 0)
       continue;
     else if (tool == 1) {
-      printf("很不幸！你碰到了路障，止步于此！");
-      map.cells[now_user->position + i].has_tool = 0;
-      map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
+      printf("很不幸！你碰到了路障，止步于此！\n");
+      map.cells[(now_user->position + i)%70].has_tool = 0;
+      map.cells[(now_user->position + i)%70].show_char = map.cells[(now_user->position + i)%70].init_char;
       now_user->position += (uint8_t)i;
       now_user->position %= 70;
       change_show(now_user);
@@ -100,11 +101,15 @@ void change_position(pPlayers now_user, int steps) {
       flag = 1;
       break;
     } else if (tool == 3) {
-      printf("很不幸！你碰到了炸弹，请在医院休息三天！");
-      map.cells[now_user->position + i].has_tool = 0;
-      map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
+      printf("很不幸！你碰到了炸弹，请在医院休息三天！\n");
+      map.cells[(now_user->position + i)%70].has_tool = 0;
+      map.cells[(now_user->position + i)%70].show_char = map.cells[(now_user->position + i)%70].init_char;
       now_user->position = (uint8_t)14;
       now_user->hospital = (uint8_t)3;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
       flag = 1;
       break;
     }
@@ -147,7 +152,13 @@ void eventJudge(pPlayers now_user) {
       break;
     }
     case 'P': {
+      printf("很不幸！你进入了监狱，请休息两轮！\n");
+      now_user->position=(uint8_t)49;
       now_user->prison = 2;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+        temp[now_user->position][3] ? temp[now_user->position][3]
+                                    : map.cells[now_user->position].init_char;
       break;
     }
     case '$': {
