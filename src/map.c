@@ -48,15 +48,15 @@ void map_init(Map *map) {
   map->cells[0].show_char = 'S';
   map->cells[28].show_char = 'T';
   map->cells[35].show_char = 'G';
-  map->cells[63].show_char = 'M';
-  map->cells[14].show_char = 'H';
+  map->cells[63].show_char = 'P';
+  map->cells[14].show_char = 'P';
   map->cells[49].show_char = 'P';
 
   map->cells[0].init_char = 'S';
   map->cells[28].init_char = 'T';
   map->cells[35].init_char = 'G';
-  map->cells[63].init_char = 'M';
-  map->cells[14].init_char = 'H';
+  map->cells[63].init_char = 'P';
+  map->cells[14].init_char = 'P';
   map->cells[49].init_char = 'P';
 
   // 初始化kind

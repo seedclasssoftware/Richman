@@ -32,50 +32,48 @@
 #include "tool_house.h"
 #include "players.h"
 #include <stdio.h>
-#include <string.h>
 
 // 传参Players类型变量的地址，以&Players形式传参。例子：已初始化变量Players
 // player,调用函数buy_tool(&player)；
 void buy_tool(pPlayers player) {
   if (player->point >= 30) {
     char choice_tool = 'F';
-    printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 "
-           "F.退出\n");
+    printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
     choice_tool = getchar();
     while (choice_tool != 'F') {
-      int tool_number = player->block + player->bomb + player->robot;
+      int tool_number = player->block + player->robot;
       if (tool_number == 10) { // 道具数为10
         printf("您的道具数已达最大值，不能购买.\n");
         break;
       } else {
+        printf("请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
+        choice_tool = getchar();
         if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
           player->point -= 30;
           player->robot++;
-        } else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
+          printf("你已购买机器娃娃。\n");
+        }
+        else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
           if (player->point >= 50) {
             player->point -= 50;
             player->block++;
+            printf("你已购买路障。\n");
           } else {
             printf("您当前剩余的点数为%u，不足以购买路障道具。\n",
                    player->point);
           }
-        } else if (choice_tool == '3' && getchar() == '\n') { // 选择炸弹
-          if (player->point >= 50) {
-            player->point -= 50;
-            player->bomb++;
-          } else {
-            printf("您当前剩余的点数为%u，不足以购买炸弹道具。\n",
-                   player->point);
-          }
-        } else { // 输入错误
+        }else { // 输入错误
           printf("输入错误\n");
-          while ((choice_tool = getchar()) != '\n' && choice_tool != EOF)
-            ;
+          while ((choice_tool = getchar()) != '\n' && choice_tool != EOF);
         }
       }
-      printf("请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
-      choice_tool = getchar();
+      if (player->point < 30)
+      {
+        printf("您所剩点数不足买任何道具，自动退出。\n");
+        break;
+      }
     }
+    getchar();//去除回车
   } else { // 点数不足
     printf("点数不足.\n");
   }
@@ -86,7 +84,6 @@ void buy_tool(pPlayers player) {
 void test_tool_house() {
   Players players;
   players.point = 50;
-  players.bomb = 0;
   players.block = 0;
   players.robot = 9;
   buy_tool(&players);

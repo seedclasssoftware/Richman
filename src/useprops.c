@@ -44,23 +44,24 @@ void useprops(Players *player, Map *map) {
   switch (choice) {
   case 1:
     if (player->block > 0) {
-      printf("please select a position to place your block:-10~10\n");
+      //printf("please select a position to place your block:-10~10\n");
       int place_position;
       scanf("%d", &place_position);
       while (place_position > 10 || place_position < -10) {
-        printf("invalid position\n");
+        printf("非法的位置输入！\n");
         scanf("%d", &place_position);
       }
       place_position = (player->position + place_position) > 0
                            ? (player->position + place_position) % 69
                            : (69 + (player->position + place_position)) % 69;
       map->cells[place_position].has_tool = 1;
-      printf("you have used block\n");
+      map->cells[place_position].show_char = '#';
+      printf("你在 地图的%d 放置了路障！\n", place_position);
       player->block--;
 
       // map->cells[player->position].has_tool = 1;
     } else {
-      printf("you do not have block\n");
+      printf("你没有路障！\n");
     }
     break;
 
@@ -69,32 +70,33 @@ void useprops(Players *player, Map *map) {
       for (int i = 1; i < 11; i++) {
         map->cells[i + player->position].has_tool = 0;
       }
-      printf("you have used robot\n");
+      printf("你使用了机器人\n");
       player->robot--;
 
     } else {
-      printf("you do not have robot\n");
+      printf("你没有机器人！\n");
     }
     break;
 
   case 3:
     if (player->bomb > 0) {
-      printf("please select a position to place your bomb:-10~10\n");
+      //printf("please select a position to place your bomb:-10~10\n");
       int place_position;
       scanf("%d", &place_position);
       while (place_position > 10 || place_position < -10) {
-        printf("invalid position\n");
+        printf("非法的位置输入！\n");
         scanf("%d", &place_position);
       }
       place_position = (player->position + place_position) > 0
                            ? (player->position + place_position) % 69
                            : (69 + (player->position + place_position)) % 69;
       map->cells[place_position].has_tool = 3;
-      printf("you have used bomb\n");
+      map->cells[place_position].show_char = '@';
+      printf("你在地图的 %d 放置了炸弹！\n", place_position);
       player->bomb--;
 
     } else {
-      printf("you do not have bomb\n");
+      printf("你没有炸弹！\n");
     }
     break;
 
@@ -105,21 +107,22 @@ void useprops(Players *player, Map *map) {
 
 void useblock(Players *player, Map *map, int place_position) {
   if (player->block > 0) {
-    printf("please select a position to place your block:-10~10\n");
+    //printf("please select a position to place your block:-10~10\n");
     while (place_position > 10 || place_position < -10) {
-      printf("invalid position\n");
+      printf("非法的位置输入！\n");
       scanf("%d", &place_position);
     }
     place_position = (player->position + place_position) > 0
                          ? (player->position + place_position) % 69
                          : (69 + (player->position + place_position)) % 69;
     map->cells[place_position].has_tool = 1;
-    printf("you have used block\n");
+    map->cells[place_position].show_char = '#';
+    printf("你在 地图的 %d 放置了路障！\n", place_position);
     player->block--;
 
     // map->cells[player->position].has_tool = 1;
   } else {
-    printf("you do not have block\n");
+    printf("你没有路障！\n");
   }
 }
 
@@ -128,29 +131,30 @@ void userobot(Players *player, Map *map) {
     for (int i = 1; i < 11; i++) {
       map->cells[i + player->position].has_tool = 0;
     }
-    printf("you have used robot\n");
+    printf("你使用了机器人！\n");
     player->robot--;
 
   } else {
-    printf("you do not have robot\n");
+    printf("你没有机器人！\n");
   }
 }
 
 void usebomb(Players *player, Map *map, int place_position) {
   if (player->bomb > 0) {
-    printf("please select a position to place your bomb:-10~10\n");
+    //printf("please select a position to place your bomb:-10~10\n");
     while (place_position > 10 || place_position < -10) {
-      printf("invalid position\n");
+      printf("非法的位置输入！\n");
       scanf("%d", &place_position);
     }
     place_position = (player->position + place_position) > 0
                          ? (player->position + place_position) % 69
                          : (69 + (player->position + place_position)) % 69;
     map->cells[place_position].has_tool = 3;
-    printf("you have used bomb\n");
+    map->cells[place_position].show_char = '@';
+    printf("你在地图的 %d 放置了炸弹！\n", place_position);
     player->bomb--;
 
   } else {
-    printf("you do not have bomb\n");
+    printf("你没有炸弹！\n");
   }
 }

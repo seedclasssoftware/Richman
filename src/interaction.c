@@ -29,14 +29,15 @@
 #include "players.h"
 #include "query.h"
 #include "roll.h"
-#include "sell_house.h"
 #include "useprops.h"
+#include "sell_house.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
 
 extern pPlayers now_user;
 extern Map map;

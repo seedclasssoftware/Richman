@@ -78,6 +78,7 @@ typedef struct Players {
   _Bool isBankrupt;
   char cap;
   /// properties
+  int next;
   uint8_t properties[70];
 } Players, *pPlayers;
 
