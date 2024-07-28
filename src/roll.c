@@ -125,10 +125,10 @@ void eventJudge(pPlayers now_user){
            buy_earth(now_user, &map);
         }
         else if(owner==now_user->number){
-           earth_up(now_user, map.cells);
+           earth_up(now_user, &map.cells[(*now_user).position]);
         }
         else{
-            pay_money(players, map.cells, now_user);
+            pay_money(players, &map.cells[(*now_user).position], now_user);
         }
     }
 }
