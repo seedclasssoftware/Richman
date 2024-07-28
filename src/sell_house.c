@@ -37,6 +37,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
     printf("1.sell\n");
 
     int choice;
+    int own = 0;
     scanf("%d", &choice);
 
     switch (choice)
@@ -44,7 +45,6 @@ void sell_house(Players *player, Map *map)//卖房子函数
         case 0:
             break;
         case 1:
-            int own = 0;
             for (int i = 0; i < 70; i++)
             {
                 if (map->cells[i].owner == player->number)
@@ -57,6 +57,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                 printf("which house do you want to sell?\n");
                 int house;
                 scanf("%d", &house);
+                while (getchar() != '\n');
                 if (map->cells[house].owner == player->number)
                 {
                     if (map->cells[house].rank == 1)
@@ -66,6 +67,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
                         map->cells[house].show_char = '0';
+                        printf("you have sold the house\n");
                     }
                     else if (map->cells[house].rank == 2)
                     {
@@ -74,6 +76,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
                         map->cells[house].show_char = '0';
+                        printf("you have sold the house\n");
                     }
                     else if (map->cells[house].rank == 3)
                     {
@@ -82,6 +85,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
                         map->cells[house].show_char = '0';
+                        printf("you have sold the house\n");
                     }
                     else {
                         printf("you do not have any house\n");
