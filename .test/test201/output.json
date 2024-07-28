@@ -2,7 +2,7 @@
 	"MAP":	{
 		"tool":	[]
 	},
-	"now_user":	"",
+	"now_user":	"2",
 	"user":	"123",
 	"players":	[{
 			"number":	3,
@@ -34,7 +34,7 @@
 			"properties":	[]
 		}, {
 			"number":	1,
-			"money":	800,
+			"money":	1000,
 			"point":	0,
 			"tool1":	0,
 			"tool2":	0,
@@ -45,6 +45,6 @@
 			"debuff1":	0,
 			"position":	6,
 			"alive":	1,
-			"properties":	[[6, 0]]
+			"properties":	[]
 		}]
 }
