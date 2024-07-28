@@ -32,6 +32,7 @@
 #include "pass_road_money.h"
 #include "players.h"
 #include "tool_house.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -88,7 +89,7 @@ void change_position(pPlayers now_user, int steps) {
     if (tool == 0)
       continue;
     else if (tool == 1) {
-      printf("很不幸！你碰到了路障，止步于此！");
+      printf("很不幸！你碰到了路障，止步于此！\n");
       map.cells[now_user->position + i].has_tool = 0;
       map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
       now_user->position += (uint8_t)i;
@@ -100,7 +101,7 @@ void change_position(pPlayers now_user, int steps) {
       flag = 1;
       break;
     } else if (tool == 3) {
-      printf("很不幸！你碰到了炸弹，请在医院休息三天！");
+      printf("很不幸！你碰到了炸弹，请在医院休息三天！\n");
       map.cells[now_user->position + i].has_tool = 0;
       map.cells[now_user->position + i].show_char = map.cells[now_user->position + i].init_char;
       now_user->position = (uint8_t)14;
@@ -147,6 +148,8 @@ void eventJudge(pPlayers now_user) {
       break;
     }
     case 'P': {
+      printf("很不幸！你进入了监狱，请休息两轮！\n");
+      now_user->position=(uint8_t)49;
       now_user->prison = 2;
       break;
     }
