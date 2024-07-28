@@ -5,6 +5,8 @@ out
 CMakeUserPresets.json
 testout
 testout_without_args
+**/output.json
+
 
 # Prerequisites
 *.d
