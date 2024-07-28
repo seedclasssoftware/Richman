@@ -45,6 +45,7 @@ void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money, Ma
             //现有钱数大于需支付钱数
             if((*now_user_for_pay_money).money>=pay_money)
             {
+                printf("您需要支付租金 %d 元\n",pay_money);
                 (*now_user_for_pay_money).money-=pay_money;
                 player[(*cells).owner-1].money+=pay_money;
             }
