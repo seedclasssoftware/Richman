@@ -105,7 +105,23 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
 
   while (1) {
-    map.cells[now_user->position].show_char=(now_user->number)+48;
+    switch(now_user->number)
+    {
+      case 1:
+        map.cells[now_user->position].show_char='Q';
+        break;
+      case 2:
+        map.cells[now_user->position].show_char='A';
+        break;
+      case 3:
+        map.cells[now_user->position].show_char='S';
+        break;
+      case 4:
+        map.cells[now_user->position].show_char='J';
+        break;
+      
+    }
+    
     map_print(&map);
     wait_for_input();
   }
