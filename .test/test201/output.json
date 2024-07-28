@@ -2,7 +2,7 @@
 	"MAP":	{
 		"tool":	[]
 	},
-	"now_user":	"2",
+	"now_user":	"1",
 	"user":	"123",
 	"players":	[{
 			"number":	3,
@@ -15,7 +15,7 @@
 			"continue":	0,
 			"debuff0":	0,
 			"debuff1":	0,
-			"position":	22,
+			"position":	28,
 			"alive":	1,
 			"properties":	[]
 		}, {
@@ -43,7 +43,7 @@
 			"continue":	0,
 			"debuff0":	0,
 			"debuff1":	0,
-			"position":	6,
+			"position":	0,
 			"alive":	1,
 			"properties":	[]
 		}]
