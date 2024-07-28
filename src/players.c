@@ -115,14 +115,18 @@ void initializePlayers(const char *json_data, Players players[],
           cJSON_GetObjectItem(player_json, "tool2")->valueint;
       players[player_index].bomb =
           cJSON_GetObjectItem(player_json, "tool3")->valueint;
-      players[player_index].god =
-          cJSON_GetObjectItem(player_json, "buff")->valueint;
-      players[player_index].prison =
-          cJSON_GetObjectItem(player_json, "continue")->valueint;
-      players[player_index].prison =//TODO: 修复监狱回合数
-          cJSON_GetObjectItem(player_json, "debuff0")->valueint;
-      players[player_index].hospital =//TODO: 修复医院回合数
-          cJSON_GetObjectItem(player_json, "debuff1")->valueint;
+      int continue_god = cJSON_GetObjectItem(player_json, "continue")->valueint;
+      int god_is = cJSON_GetObjectItem(player_json, "buff")->valueint;
+      players[player_index].god = god_is & continue_god;
+      // 获取玩家的监狱回合数和医院回合数
+      int continue_turns =
+          cJSON_GetObjectItem(player_json, "decontinue")->valueint;
+      int debuff0 = cJSON_GetObjectItem(player_json, "debuff0")->valueint;
+      int debuff1 = cJSON_GetObjectItem(player_json, "debuff1")->valueint;
+      // 修复监狱回合数
+      players[player_index].prison = debuff0 & continue_turns;
+      // 修复医院回合数
+      players[player_index].hospital = debuff1 & continue_turns;
       players[player_index].position =
           cJSON_GetObjectItem(player_json, "position")->valueint;
       players[player_index].isBankrupt =
@@ -292,10 +296,16 @@ char *convertToJson(Players players[], int num_players, Map *map,
         cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
         cJSON_AddNumberToObject(player_json, "tool2", players[i].robot);
         cJSON_AddNumberToObject(player_json, "tool3", players[i].bomb);
-        cJSON_AddNumberToObject(player_json, "buff", players[i].god);
-        cJSON_AddNumberToObject(player_json, "continue", players[i].prison);
-        cJSON_AddNumberToObject(player_json, "debuff0", players[i].hospital);
-        cJSON_AddNumberToObject(player_json, "debuff1", players[i].magic);
+        cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
+        cJSON_AddNumberToObject(player_json, "continue", players[i].god);
+        cJSON_AddNumberToObject(player_json, "debuff0",
+                                ((0b1) != (players[i].prison)));
+        cJSON_AddNumberToObject(player_json, "debuff1",
+                                ((0b10) != (players[i].hospital)));
+        cJSON_AddNumberToObject(player_json, "decontinue",
+                                (players[i].prison > players[i].hospital)
+                                    ? players[i].prison
+                                    : players[i].hospital);
         cJSON_AddNumberToObject(player_json, "position", players[i].position);
         cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
         extern Map map;
