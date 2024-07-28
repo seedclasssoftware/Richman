@@ -48,11 +48,6 @@ void buy_tool(pPlayers player) {
         printf("您的道具数已达最大值，不能购买.\n");
         break;
       } else {
-        if (player->point < 30)
-        {
-          printf("您所剩点数不足买任何道具，自动退出。\n");
-          break;
-        }
         if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
           if(player->point >= 30)
           {
@@ -83,6 +78,11 @@ void buy_tool(pPlayers player) {
           while ((choice_tool = getchar()) != '\n' && choice_tool != EOF)
             ;
         }
+      }
+      if (player->point < 30)
+      {
+        printf("您所剩点数不足买任何道具，自动退出。\n");
+        break;
       }
       printf("请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
       choice_tool = getchar();
