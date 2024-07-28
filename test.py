@@ -78,6 +78,7 @@ def run_test(test_dir):
 
     if actual_json != expected_json:
         print(f"JSON Output in {test_dir} does not match expected output.")
+        print(f"Expected: {expected_json}")
         return False
 
     print(f"Test in {test_dir} Passed.")
