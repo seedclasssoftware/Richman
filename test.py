@@ -37,6 +37,10 @@ def run_test(test_dir):
     executable_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out', 'MyProject.exe')
     print(f"Executable path: {executable_path}")
 
+    # 在输入数据后面添加一行 'quit'
+    
+    input_data += "\nquit\n"
+
     if not os.path.isfile(executable_path):
         print(f"Executable not found: {executable_path}")
         return False
