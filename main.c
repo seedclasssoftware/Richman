@@ -29,14 +29,14 @@
  *
  */
 //#include "buy_earth.h"
-#include "help.h"
+//#include "help.h"
 #include "init_play.h"
 #include "interaction.h"
 #include "map.h"
-#include "pass_road_money.h"
+//#include "pass_road_money.h"
 #include "players.h"
-#include "tool_house.h"
-#include "useprops.h"
+//#include "tool_house.h"
+//#include "useprops.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
