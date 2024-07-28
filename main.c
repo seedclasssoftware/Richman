@@ -37,7 +37,7 @@
 #include "players.h"
 // #include "tool_house.h"
 // #include "useprops.h"
-#include "roll.h"
+//#include "roll.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
