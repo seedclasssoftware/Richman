@@ -102,7 +102,7 @@ void printPlayerName(const char* name) {
     printf("%s%s%s", getPlayerColor(name), name, RESET);
 }
 
-void selectPlayers(uint32_t initMoney) {
+void selectPlayers( uint32_t *initMoney) {
     char input[5];
     int valid = 0;
 
@@ -143,7 +143,7 @@ void selectPlayers(uint32_t initMoney) {
     for (int i = 0; i < strlen(input); i++) {
         int index = input[i] - '1';
         players[index].isPlaying = 1;
-        players[index].money = 10000; // 设置初始金额
+        players[index].money = *initMoney; // 设置初始金额
         players[index].cap = player_caps[index];
         printf("%s ", players[index].name);
     }
