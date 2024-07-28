@@ -47,6 +47,8 @@ Players players[4];
 
 pPlayers now_user;
 
+
+
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -55,9 +57,12 @@ int main(int argc, char const *argv[], char const *envp[]) {
   if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
+    
     map_init(&map);
+    initialize_Players();
     init_money(&initMoney);                // 初始化金钱部分
-    select_players(players, 4, initMoney); // 初始化选角色部分
+    selectPlayers(initMoney);
+    // 初始化选角色部分
     now_user = &players[0];
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");

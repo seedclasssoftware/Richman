@@ -217,6 +217,7 @@ void handle_command(const char *command) {
 }
 
 void wait_for_input() {
+  printPlayers(players, 4);
   switch (now_user->number) {
   case 1:
     printf("\033[31m钱夫人>\033[31m\033[0m");
