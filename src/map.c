@@ -135,7 +135,30 @@ void map_print(Map *map)
     printf("\n");
 
     //第二行
-    printf("\033[0m%c\033[0m", map->cells[69].show_char);
+    if(map->cells[69].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[69].show_char);
+    }
+    
+    else if(map->cells[69].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[69].show_char);
+    }
+
+    else if(map->cells[69].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[69].show_char);
+    }
+
+    else if(map->cells[69].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[69].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[69].show_char);
+    }
+    
     
     for (int i = 0; i < 27; i++)
     {
@@ -187,7 +210,29 @@ void map_print(Map *map)
     printf("\n");
 
     //第三行
-    printf("\033[0m%c\033[0m", map->cells[68].show_char);
+    if(map->cells[68].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[68].show_char);
+    }
+    
+    else if(map->cells[68].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[68].show_char);
+    }
+
+    else if(map->cells[68].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[68].show_char);
+    }
+
+    else if(map->cells[68].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[68].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[68].show_char);
+    }
 
     for (int i = 0; i < 27; i++)
     {
@@ -239,7 +284,29 @@ void map_print(Map *map)
     printf("\n");
 
     //第四行
-    printf("\033[0m%c\033[0m", map->cells[67].show_char);
+    if(map->cells[67].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[67].show_char);
+    }
+    
+    else if(map->cells[67].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[67].show_char);
+    }
+
+    else if(map->cells[67].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[67].show_char);
+    }
+
+    else if(map->cells[67].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[67].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[67].show_char);
+    }
 
     for (int i = 0; i < 27; i++)
     {
@@ -291,7 +358,29 @@ void map_print(Map *map)
     printf("\n");
 
     //第五行
-    printf("\033[0m%c\033[0m", map->cells[66].show_char);
+    if(map->cells[66].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[66].show_char);
+    }
+    
+    else if(map->cells[66].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[66].show_char);
+    }
+
+    else if(map->cells[66].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[66].show_char);
+    }
+
+    else if(map->cells[66].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[66].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[66].show_char);
+    }
 
     for (int i = 0; i < 27; i++)
     {
@@ -343,7 +432,29 @@ void map_print(Map *map)
     printf("\n");
 
     //第六行
-    printf("\033[0m%c\033[0m", map->cells[65].show_char);
+    if(map->cells[65].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[65].show_char);
+    }
+    
+    else if(map->cells[65].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[65].show_char);
+    }
+
+    else if(map->cells[65].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[65].show_char);
+    }
+
+    else if(map->cells[65].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[65].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[65].show_char);
+    }
 
     for (int i = 0; i < 27; i++)
     {
@@ -395,7 +506,29 @@ void map_print(Map *map)
     printf("\n");
     
     //第七行
-    printf("\033[0m%c\033[0m", map->cells[64].show_char);
+    if(map->cells[64].show_char == 'Q')//最高优先级，如果钱夫人站在这，显示红色
+    {
+        printf("\033[31m%c\033[31m", map->cells[64].show_char);
+    }
+    
+    else if(map->cells[64].show_char == 'A')//次优先级，如果阿土伯站在这，显示绿色
+    {
+        printf("\033[32m%c\033[32m", map->cells[64].show_char);
+    }
+
+    else if(map->cells[64].show_char == 'S')//再次优先级，如果孙小美站在这，显示蓝色
+    {
+        printf("\033[34m%c\033[34m", map->cells[64].show_char);
+    }
+
+    else if(map->cells[64].show_char == 'J')//最次优先级，如果金贝贝站在这，显示黄色
+    {
+        printf("\033[33m%c\033[33m", map->cells[64].show_char);
+    }
+    else
+    {
+        printf("\033[0m%c\033[0m", map->cells[64].show_char);
+    }
 
     for (int i = 0; i < 27; i++)
     {
