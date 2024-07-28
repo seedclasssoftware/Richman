@@ -320,7 +320,7 @@ char *convertToJson(Players players[], int num_players, Map *map,
     strcat(user_string, "3");
   if ((players[JIN_Bei - 1].isPlaying) == 1)
     strcat(user_string, "4");
-  cJSON_AddStringToObject(root, "user", user_string);
+  cJSON_AddStringToObject(root, "users", user_string);
 
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
