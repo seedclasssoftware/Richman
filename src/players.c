@@ -311,13 +311,13 @@ char *convertToJson(Players players[], int num_players, Map *map,
 
   // 添加 user 字段
   char user_string[5] = "";
-  if (players[QIAN_Madam - 1].isPlaying)
+  if ((players[QIAN_Madam - 1].isPlaying) == 1)
     strcat(user_string, "1");
-  if (players[ATUB - 1].isPlaying)
+  if ((players[ATUB - 1].isPlaying)==1)
     strcat(user_string, "2");
-  if (players[SUN_Miss - 1].isPlaying)
+  if ((players[SUN_Miss - 1].isPlaying)==1)
     strcat(user_string, "3");
-  if (players[JIN_Bei - 1].isPlaying)
+  if ((players[JIN_Bei - 1].isPlaying)==1)
     strcat(user_string, "4");
   cJSON_AddStringToObject(root, "user", user_string);
 
