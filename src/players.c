@@ -159,6 +159,8 @@ void initializePlayers(const char *json_data, Players players[],
   cJSON_Delete(root);
 }
 
+extern Map map;
+
 void printPlayers(Players players[], int num_players) {
   for (int i = 0; i < num_players; i++) {
     Players *player = &players[i];
@@ -176,6 +178,14 @@ void printPlayers(Players players[], int num_players) {
     printf("医院：%d\n", player->hospital);
     printf("魔法：%d\n", player->magic);
     printf("位置：%d\n", player->position);
+    printf("是否参与游戏：%d\n", player->isPlaying);
+    printf("是否破产：%d\n", player->isBankrupt);
+    printf("资产：");
+    for (int i = 0; i < 70; i++) {
+      if (map.cells[i].owner == now_user->number) {
+        printf("%d ,", i);
+      }
+    }
     printf("\n");
   }
 }

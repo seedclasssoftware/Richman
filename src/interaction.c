@@ -68,7 +68,7 @@ flag:
   printf("玩家是否正在游戏：%d\n", now_user->isPlaying);
   printf("玩家是否处于监狱：%d\n", now_user->prison);
   printf("玩家是否处于医院：%d\n", now_user->hospital);
-  
+  printPlayers(players, 4);
   if ((players[(now_user->number) % 4].hospital == 0 &&
        players[(now_user->number) % 4].prison == 0 &&
        players[(now_user->number) % 4].isPlaying == 1 &&
