@@ -156,6 +156,7 @@ void handle_command(const char *command) {
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
+    printPlayers(players, 4);
     printf("Dumping game data...\n");
     char *json = convertToJson(players, 4, &map, now_user);
     // 创建output.json
@@ -166,9 +167,11 @@ void handle_command(const char *command) {
     }
     // 写入json
     fprintf(fp, "%s", json);
+    printf("游戏数据已保存到output.json\n");
     // 关闭文件
     fclose(fp);
     printf("已将游戏数据保存到output.json\n");
+    free(json);
   } else if (strncmp(command, "load ", 5) == 0 ||
              strncmp(command, "Load ", 5) == 0) {
     const char *path = command + 5;
