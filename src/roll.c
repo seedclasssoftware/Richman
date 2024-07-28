@@ -88,6 +88,7 @@ void change_position(pPlayers now_user, int steps) {
     if (tool == 0)
       continue;
     else if (tool == 1) {
+      printf("很不幸！你碰到了路障，止步于此！");
       map.cells[now_user->position + i].has_tool = 0;
       now_user->position += (uint8_t)i;
       now_user->position %= 70;
@@ -98,6 +99,7 @@ void change_position(pPlayers now_user, int steps) {
       flag = 1;
       break;
     } else if (tool == 3) {
+      printf("很不幸！你碰到了炸弹，请在医院休息三天！");
       map.cells[now_user->position + i].has_tool = 0;
       now_user->position = (uint8_t)14;
       now_user->hospital = (uint8_t)3;
