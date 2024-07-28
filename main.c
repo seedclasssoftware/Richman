@@ -90,7 +90,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fclose(fp);
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
-    free(json_data);
+    // free(json_data);
     // printPlayers(players, 4);
     // char *json = convertToJson(players, 4, &map, now_user);
     // printf("%s\n", json);

@@ -10,7 +10,7 @@ def run_test(test_dir):
     input_path = os.path.join(test_dir, "input.txt")
     output_path = os.path.join(test_dir, "output.txt")
     error_path = os.path.join(test_dir, "error.txt")
-    user_json_path = os.path.join(test_dir, "users.json")
+    user_json_path = os.path.join(test_dir, "user.json")
     expected_output_path = os.path.join(test_dir, "expected_output.json")
     output_json_path = os.path.join(test_dir, "output.json")
     expected_output_txt_path = os.path.join(test_dir, "expected_output.txt")
@@ -32,6 +32,12 @@ def run_test(test_dir):
     # 输出路径output与error.txt
     print(f"Output path: {actual_output_path}")
     print(f"Error path: {actual_error_path}")
+
+    # 删除旧的 output.txt 和 output.json
+    if os.path.exists(actual_output_path):
+        os.remove(actual_output_path)
+    if os.path.exists(actual_output_json_path):
+        os.remove(actual_output_json_path)
 
     # 使用 subprocess 重定向 stdout 和 stderr
     executable_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out', 'MyProject.exe')
