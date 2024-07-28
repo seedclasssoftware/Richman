@@ -48,18 +48,21 @@ void earth_up(pPlayers player,Cell* cells)
                         {
                             (*player).money -= 200;
                             (*cells).kind += 1;
+                            cells->init_char += 1;
                             return;
                         }
                         else if((*cells).rank == 2)
                         {
                             (*player).money -= 500;
                             (*cells).kind += 1;
+                            cells->init_char += 1;
                             return;
                         }
                         else if((*cells).rank == 3)
                         {
                             (*player).money -= 300;
                             (*cells).kind += 1;
+                            cells->init_char += 1;
                             return;
                         }
                     }

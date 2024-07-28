@@ -64,18 +64,24 @@ void sell_house(Players *player, Map *map)//卖房子函数
                         player->money += 2*200*map->cells[house].kind;
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
+                        map->cells[house].init_char = '0';
+                        map->cells[house].show_char = '0';
                     }
                     else if (map->cells[house].rank == 2)
                     {
                         player->money += 2*500*map->cells[house].kind;
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
+                        map->cells[house].init_char = '0';
+                        map->cells[house].show_char = '0';
                     }
                     else if (map->cells[house].rank == 3)
                     {
                         player->money += 2*300*map->cells[house].kind;
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
+                        map->cells[house].init_char = '0';
+                        map->cells[house].show_char = '0';
                     }
                     else {
                         printf("you do not have any house\n");
