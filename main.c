@@ -40,6 +40,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include "roll.h"
+
 
 Map map;
 
@@ -47,6 +49,7 @@ Players players[4];
 
 pPlayers now_user;
 
+extern char temp[70][5];
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -57,6 +60,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     uint32_t initMoney;
 
     map_init(&map);
+    init();
     initialize_Players();
     init_money(&initMoney); // 初始化金钱部分
     selectPlayers(&initMoney);

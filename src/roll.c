@@ -42,6 +42,21 @@ extern Map map;
 extern Players players[4];
 
 char temp[70][5];
+void init(){
+    temp[0][4]='S';
+    temp[14][4]='H';
+    temp[28][4]='T';
+    temp[35][4]='G';
+    temp[49][4]='P';
+    temp[63][4]='M';
+    temp[64][4]='$';
+    temp[65][4]='$';
+    temp[66][4]='$';
+    temp[67][4]='$';
+    temp[68][4]='$';
+    temp[69][4]='$';
+}
+
 /**
  * @brief 玩家掷骰子 
  * @return 骰子点数
@@ -54,22 +69,19 @@ int roll_num() {
     return steps;
 }
 
-void change_show(int position,char cap){
-    int len=0;
-    for(int i=0;temp[position][i]==0;i++)
-        len++;
-    for(int i=len-1;i<3;i++){
-        temp[position][i]=temp[position][i+1];
+void change_show(pPlayers now_user){
+    for(int i=0;i<=3;i++){
+        temp[now_user->position][i]=temp[now_user->position][i+1];
     }
-    temp[position][3]=cap;
+    temp[now_user->position][4]=now_user->cap;
 }
-
-void change_now(int position){
-    int len=0;
-    for(int i=0;temp[position][i]==0;i++)
-        len++;
-    for(int i=3;i>len;i--){
-        temp[position][i]=temp[position][i-1];
+void change_now(pPlayers now_user){
+    int idx=4;
+    while(temp[now_user->position][idx]!=now_user->cap){
+        idx--;
+    }
+    for(int i=idx;i>=1;i--){
+        temp[now_user->position][i]=temp[now_user->position][i-1];
     }
 }
 /**
@@ -80,8 +92,8 @@ void change_now(int position){
 void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
+    change_now(now_user);
     map.cells[now_user->position].show_char=temp[now_user->position][4];
-    change_now(now_user->position);
     for(int i=1;i<=steps;i++){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
@@ -89,7 +101,7 @@ void change_position(pPlayers now_user,int steps){
             map.cells[now_user->position+i].has_tool=0;
             now_user->position+=(uint8_t)i;
             now_user->position%=70;
-            change_show(now_user->position,now_user->cap);
+            change_show(now_user);
             map.cells[now_user->position].show_char=temp[now_user->position][4];
             flag=1;
             break;
@@ -106,8 +118,8 @@ void change_position(pPlayers now_user,int steps){
     {
         now_user->position+=steps;
         now_user->position%=70;
-        change_show(now_user->position,now_user->cap);
-        map.cells[now_user->position].show_char=temp[now_user->position][3];
+        change_show(now_user);
+        map.cells[now_user->position].show_char=temp[now_user->position][4];
      
     }
 }
