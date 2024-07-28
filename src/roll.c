@@ -41,24 +41,7 @@
 extern Map map;
 extern Players players[4];
 
-char temp[70][5];
-void init(){
-    for(int i=0;i<5;i++)
-    {
-        temp[0][i]='S';
-        temp[14][i]='H';
-        temp[28][i]='T';
-        temp[35][i]='G';
-        temp[49][i]='P';
-        temp[63][i]='M';
-        temp[64][i]='$';
-        temp[65][i]='$';
-        temp[66][i]='$';
-        temp[67][i]='$';
-        temp[68][i]='$';
-        temp[69][i]='$';
-    }
-}
+char temp[70][4];
 
 /**
  * @brief 玩家掷骰子 
@@ -73,13 +56,13 @@ int roll_num() {
 }
 
 void change_show(pPlayers now_user){
-    for(int i=0;i<=3;i++){
+    for(int i=0;i<3;i++){
         temp[now_user->position][i]=temp[now_user->position][i+1];
     }
-    temp[now_user->position][4]=now_user->cap;
+    temp[now_user->position][3]=now_user->cap;
 }
 void change_now(pPlayers now_user){
-    int idx=4;
+    int idx=3;
     while(temp[now_user->position][idx]!=now_user->cap){
         idx--;
     }
@@ -96,7 +79,7 @@ void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
     change_now(now_user);
-    map.cells[now_user->position].show_char=temp[now_user->position][4];
+    map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
     for(int i=1;i<=steps;i++){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
@@ -105,7 +88,7 @@ void change_position(pPlayers now_user,int steps){
             now_user->position+=(uint8_t)i;
             now_user->position%=70;
             change_show(now_user);
-            map.cells[now_user->position].show_char=temp[now_user->position][4];
+            map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
             flag=1;
             break;
         }
@@ -122,7 +105,7 @@ void change_position(pPlayers now_user,int steps){
         now_user->position+=steps;
         now_user->position%=70;
         change_show(now_user);
-        map.cells[now_user->position].show_char=temp[now_user->position][4];
+        map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
      
     }
 }

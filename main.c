@@ -60,7 +60,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
     uint32_t initMoney;
 
     map_init(&map);
-    init();
     initialize_Players();
     init_money(&initMoney); // 初始化金钱部分
     selectPlayers(&initMoney);
