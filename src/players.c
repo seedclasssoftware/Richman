@@ -93,7 +93,7 @@ void initializePlayers(const char *json_data, Players players[],
   }else if(contains_char(user, 'J')){
     players[3].isPlaying = 1;
   }
-  
+
 
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
@@ -129,10 +129,6 @@ void initializePlayers(const char *json_data, Players players[],
   }
   int player_count = cJSON_GetArraySize(players_array);
   // printf("player_count: %d\n", player_count);
-
-  for (int i = 0; i < num_players; i++) {
-    players[i].isPlaying = 0;
-  }
 
   for (int i = 0; i < player_count; i++) {
     cJSON *player_json = cJSON_GetArrayItem(players_array, i);
