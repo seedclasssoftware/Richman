@@ -82,6 +82,7 @@ void buy_tool(pPlayers player) {
       printf("请选择您所需要的道具：1.路障 2.机器娃娃 3.炸弹 F.退出\n");
       choice_tool = getchar();
     }
+    getchar();//去除回车
   } else { // 点数不足
     printf("点数不足.\n");
   }
