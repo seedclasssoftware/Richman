@@ -62,7 +62,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                 {
                     if (map->cells[house].rank == 1)
                     {
-                        player->money += 2*200*map->cells[house].kind;
+                        player->money += 2*200*(map->cells[house].kind+1);
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
@@ -71,7 +71,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                     }
                     else if (map->cells[house].rank == 2)
                     {
-                        player->money += 2*500*map->cells[house].kind;
+                        player->money += 2*500*(map->cells[house].kind+1);
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
@@ -80,7 +80,7 @@ void sell_house(Players *player, Map *map)//卖房子函数
                     }
                     else if (map->cells[house].rank == 3)
                     {
-                        player->money += 2*300*map->cells[house].kind;
+                        player->money += 2*300*(map->cells[house].kind+1);
                         map->cells[house].kind = 0;
                         map->cells[house].owner = 0;
                         map->cells[house].init_char = '0';
