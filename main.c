@@ -70,10 +70,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
         break;
       }
     }
-    //map_init(&map);
-    //map.cells[0].show_char = now_user->cap;
-    // map.cells[0].show_char = now_user->cap;
+    map_init(&map);
+
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
+    map_init(&map);
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) {
       printf("文件打开失败\n");
@@ -101,10 +101,9 @@ int main(int argc, char const *argv[], char const *envp[]) {
     // }
     // fwrite(json, 1, strlen(json), fp2);
     // fclose(fp2);
-    //map_init(&map);
+    // map_init(&map);
   }
 
-  map_init(&map);
   while (1) {
     map_print(&map);
     wait_for_input();
