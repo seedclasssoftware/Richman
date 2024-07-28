@@ -49,8 +49,14 @@ void buy_tool(pPlayers player) {
         break;
       } else {
         if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
-          player->point -= 30;
-          player->robot++;
+          if(player->point >= 30)
+          {
+            player->point -= 30;
+            player->robot++;
+          }
+          else{
+            printf("您当前剩余的点数为%u，不足以购买机器娃娃道具。\n",player->point);
+          }
         } else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
           if (player->point >= 50) {
             player->point -= 50;
