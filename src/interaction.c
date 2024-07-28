@@ -107,10 +107,13 @@ extern Map map;
 
 // 检查文件是否存在
 int file_exists(const char *path) {
-  struct stat buffer;
-  return (stat(path, &buffer) == 0);
+  FILE *file = fopen(path, "r");
+  if (file) {
+    fclose(file);
+    return 1;
+  }
+  return 0;
 }
-
 /**
  * @brief 处理用户输入的命令
  *
@@ -160,12 +163,24 @@ void handle_command(const char *command) {
     const char *path = command + 5;
     print_working_directory();
 
+    // 处理路径
+    char cleaned_path[256];
+    int j = 0;
+    for (int i = 0; i < strlen(path) && j < sizeof(cleaned_path) - 1; i++) {
+      if (path[i] != '"' && path[i] != '\n') {
+        cleaned_path[j++] = (path[i] == '\\') ? '/' : path[i];
+      }
+    }
+    cleaned_path[j] = '\0';
+
+    printf("Trying to open file: %s\n", cleaned_path);
+
     // 检查文件是否存在, 接受绝对路径和相对路径
-    if (file_exists(path)) {
+    if (file_exists(cleaned_path)) {
       // 读取文件内容
-      FILE *fp = fopen(path, "r");
+      FILE *fp = fopen(cleaned_path, "r");
       if (fp == NULL) {
-        printf("文件打开失败\n");
+        perror("文件打开失败");
         return;
       }
       // 获取文件大小
@@ -173,18 +188,18 @@ void handle_command(const char *command) {
       long size = ftell(fp);
       fseek(fp, 0, SEEK_SET);
       // 读取文件内容
-      char *json_data = (char *)malloc(size + 1);
-      fread(json_data, 1, size, fp);
-      json_data[size] = '\0';
-            printf("初始化成功\n");
+      char *json_d = (char *)malloc(size + 1);
+      fread(json_d, 1, size, fp);
+      json_d[size] = '\0';
       // 关闭文件
       fclose(fp);
-      // Call the initializePlayers function
-      initializePlayers(json_data, players, 4, &map);
-      printf("初始化成功\n");
-      printPlayers(players, 4);
+      // 调用initializePlayers函数
+      initializePlayers(json_d, players, 4, &map);
+      // printPlayers(players, 4);
       now_user = &players[0];
-      free(json_data);
+      free(json_d);
+    } else {
+      printf("文件不存在\n");
     }
   } else {
     printf("未知命令\n");

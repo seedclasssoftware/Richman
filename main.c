@@ -29,14 +29,14 @@
  *
  */
 //#include "buy_earth.h"
-#include "help.h"
+//#include "help.h"
 #include "init_play.h"
 #include "interaction.h"
 #include "map.h"
-#include "pass_road_money.h"
+//#include "pass_road_money.h"
 #include "players.h"
-#include "tool_house.h"
-#include "useprops.h"
+//#include "tool_house.h"
+//#include "useprops.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
@@ -78,6 +78,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
 
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
+    free(json_data);
     printPlayers(players, 4);
     char *json = convertToJson(players, 4, &map, now_user);
     // printf("%s\n", json);
@@ -93,7 +94,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
   while (1) {
     wait_for_input();
     map_print(&map);
-    
   }
   return 0;
 }
