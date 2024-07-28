@@ -144,7 +144,6 @@ void handle_command(const char *command) {
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
     sell_house(now_user, &map);
-    // sell_property(n);
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
