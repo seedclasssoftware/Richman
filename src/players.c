@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 // 检查字符串是否包含字符
 bool contains_char(const char *str, char ch) {
   while (*str) {
@@ -72,28 +71,27 @@ void initializePlayers(const char *json_data, Players players[],
   // 如果字符串包含字符 '1'，设置 players[0].isPlaying
   if (contains_char(user, '1')) {
     players[0].isPlaying = 1;
-  }else if(contains_char(user, 'Q')){
+  } else if (contains_char(user, 'Q')) {
     players[0].isPlaying = 1;
   }
   // 如果字符串包含字符 '2'，设置 players[1].isPlaying
   if (contains_char(user, '2')) {
     players[1].isPlaying = 1;
-  }else if(contains_char(user, 'A')){
+  } else if (contains_char(user, 'A')) {
     players[1].isPlaying = 1;
   }
   // 如果字符串包含字符 '3'，设置 players[2].isPlaying
   if (contains_char(user, '3')) {
     players[2].isPlaying = 1;
-  }else if(contains_char(user, 'S')){
+  } else if (contains_char(user, 'S')) {
     players[2].isPlaying = 1;
   }
   // 如果字符串包含字符 '4'，设置 players[3].isPlaying
   if (contains_char(user, '4')) {
     players[3].isPlaying = 1;
-  }else if(contains_char(user, 'J')){
+  } else if (contains_char(user, 'J')) {
     players[3].isPlaying = 1;
   }
-
 
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
@@ -212,8 +210,8 @@ void initializePlayers(const char *json_data, Players players[],
   }
 
   for (int i = 0; i < num_players; i++) {
-    if (players[i].isPlaying && players[i].name &&
-        strcmp(players[i].name, now_user_name) == 0) {
+    if ((players[i].isPlaying) && (players[i].name) &&
+        (strcmp(players[i].name, now_user_name) == 0)) {
       now_user = &players[i];
       break;
     }
@@ -313,11 +311,11 @@ char *convertToJson(Players players[], int num_players, Map *map,
   char user_string[5] = "";
   if ((players[QIAN_Madam - 1].isPlaying) == 1)
     strcat(user_string, "1");
-  if ((players[ATUB - 1].isPlaying)==1)
+  if ((players[ATUB - 1].isPlaying) == 1)
     strcat(user_string, "2");
-  if ((players[SUN_Miss - 1].isPlaying)==1)
+  if ((players[SUN_Miss - 1].isPlaying) == 1)
     strcat(user_string, "3");
-  if ((players[JIN_Bei - 1].isPlaying)==1)
+  if ((players[JIN_Bei - 1].isPlaying) == 1)
     strcat(user_string, "4");
   cJSON_AddStringToObject(root, "user", user_string);
 
