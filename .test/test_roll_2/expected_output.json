@@ -2,10 +2,10 @@
 	"MAP":	{
 		"tool":	[]
 	},
-	"now_user":	"1",
-	"user":	"123",
+	"now_user":	"3",
+	"users":	"123",
 	"players":	[{
-			"number":	3,
+			"number":	1,
 			"money":	1000,
 			"point":	0,
 			"tool1":	0,
@@ -35,8 +35,8 @@
 			"alive":	1,
 			"properties":	[]
 		}, {
-			"number":	1,
-			"money":	1000,
+			"number":	3,
+			"money":	0,
 			"point":	0,
 			"tool1":	0,
 			"tool2":	0,
@@ -46,7 +46,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	0,
+			"position":	1,
 			"alive":	1,
 			"properties":	[]
 		}]

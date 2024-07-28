@@ -3,7 +3,7 @@
 		"tool":	[]
 	},
 	"now_user":	"1",
-	"user":	"1",
+	"users":	"1",
 	"players":	[{
 			"number":	1,
 			"money":	0,
