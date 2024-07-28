@@ -276,6 +276,7 @@ void print_from_file() {
   printPlayers(players, 4);
 }
 
+extern Players players[4];
 /**
  * @brief 将玩家信息转换为 JSON 字符串
  *

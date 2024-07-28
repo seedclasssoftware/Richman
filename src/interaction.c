@@ -29,14 +29,15 @@
 #include "players.h"
 #include "query.h"
 #include "roll.h"
-#include "sell_house.h"
 #include "useprops.h"
+#include "sell_house.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
 
 extern pPlayers now_user;
 extern Map map;
@@ -229,10 +230,6 @@ void handle_command(const char *command) {
 
 void wait_for_input() {
   // printPlayers(players, 4);
-  // 防止now_user为空
-  if (now_user == NULL) {
-    now_user = &players[0];
-  }
   switch (now_user->number) {
   case 1:
     printf("\033[31m钱夫人>\033[31m\033[0m");
