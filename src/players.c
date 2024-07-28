@@ -324,7 +324,7 @@ char *convertToJson(Players players[], int num_players, Map *map,
 
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
-  for (int i = num_players; i >= 0; i--) {
+  for (int i = 0; i < num_players; i++) {
     if (i < num_players && i >= 0) {
       if (players[i].isPlaying) {
         cJSON *player_json = cJSON_CreateObject();
