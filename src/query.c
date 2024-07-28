@@ -47,7 +47,7 @@ void query(pPlayers now_user) {
   printf("玩家%d的房产：", now_user->number);
   for (int i = 0; i < 70;
        i++) {
-        if (map[i].owner == now_user->number) {
+        if (map.cells[i].owner == now_user->number) {
           printf("%d ,", i);
         
         }
