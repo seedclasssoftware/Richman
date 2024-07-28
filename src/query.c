@@ -45,9 +45,12 @@ void query(pPlayers now_user) {
   printf("医院轮空次数：%d\n", now_user->hospital);
   printf("魔法：%d\n", now_user->magic);
   printf("玩家%d的房产：", now_user->number);
-  for (int i = 0; ((map.cells[i].owner) == (now_user->number - 1)) || (i < 70);
+  for (int i = 0; i < 70;
        i++) {
-    printf("%d ,", i);
+        if (map.cells[i].owner == now_user->number) {
+          printf("%d ,", i);
+        
+        }
   }
   printf("\n");
 }
