@@ -9,7 +9,11 @@
 
 // 检查字符串是否包含字符
 bool contains_char(const char *str, char ch) {
-  while (*str) {
+  if (str == NULL) {
+    return false; // 确保 str 不是空指针
+  }
+
+  while (*str != '\0') {
     if (*str == ch) {
       return true;
     }
@@ -17,7 +21,6 @@ bool contains_char(const char *str, char ch) {
   }
   return false;
 }
-
 char *getPlayerName(uint8_t number) {
   switch (number) {
   case QIAN_Madam:
