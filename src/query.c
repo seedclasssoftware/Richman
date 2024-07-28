@@ -25,8 +25,11 @@
  *
  */
 #include "query.h"
+#include "map.h"
 #include "players.h"
 #include <stdio.h>
+
+extern Map map;
 void query(pPlayers now_user) {
   printf("玩家%d的信息如下：\n", now_user->number);
   printf("玩家%d的金钱：%d\n", now_user->number, now_user->money);
@@ -42,8 +45,12 @@ void query(pPlayers now_user) {
   printf("医院轮空次数：%d\n", now_user->hospital);
   printf("魔法：%d\n", now_user->magic);
   printf("玩家%d的房产：", now_user->number);
-  for(int i=0;i<70;i++){
-    if(now_user->properties[i]==1)
-    printf("%d ",i);
+  for (int i = 0; i < 70;
+       i++) {
+        if (map.cells[i].owner == now_user->number) {
+          printf("%d ,", i);
+        
+        }
   }
+  printf("\n");
 }
