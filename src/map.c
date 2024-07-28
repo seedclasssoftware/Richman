@@ -126,7 +126,7 @@ void map_print(Map *map)
     printf("\n");
 
     //第二行
-    printf("%c", map->cells[69].show_char);
+    printf("\033[0m%c\033[0m", map->cells[69].show_char);
     
     for (int i = 0; i < 27; i++)
     {
@@ -178,7 +178,7 @@ void map_print(Map *map)
     printf("\n");
 
     //第三行
-    printf("%c", map->cells[68].show_char);
+    printf("\033[0m%c\033[0m", map->cells[68].show_char);
 
     for (int i = 0; i < 27; i++)
     {
@@ -230,7 +230,7 @@ void map_print(Map *map)
     printf("\n");
 
     //第四行
-    printf("%c", map->cells[67].show_char);
+    printf("\033[0m%c\033[0m", map->cells[67].show_char);
 
     for (int i = 0; i < 27; i++)
     {
@@ -282,7 +282,7 @@ void map_print(Map *map)
     printf("\n");
 
     //第五行
-    printf("%c", map->cells[66].show_char);
+    printf("\033[0m%c\033[0m", map->cells[66].show_char);
 
     for (int i = 0; i < 27; i++)
     {
@@ -334,7 +334,7 @@ void map_print(Map *map)
     printf("\n");
 
     //第六行
-    printf("%c", map->cells[65].show_char);
+    printf("\033[0m%c\033[0m", map->cells[65].show_char);
 
     for (int i = 0; i < 27; i++)
     {
@@ -386,7 +386,7 @@ void map_print(Map *map)
     printf("\n");
     
     //第七行
-    printf("%c", map->cells[64].show_char);
+    printf("\033[0m%c\033[0m", map->cells[64].show_char);
 
     for (int i = 0; i < 27; i++)
     {
