@@ -59,7 +59,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     map_init(&map);
     initialize_Players();
     init_money(&initMoney); // 初始化金钱部分
-    selectPlayers(initMoney);
+    selectPlayers(&initMoney);
     // 初始化选角色部分
     now_user = &players[0];
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)

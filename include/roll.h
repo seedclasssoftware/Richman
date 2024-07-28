@@ -46,4 +46,8 @@ void change_position(pPlayers now_user,int steps);
  * @param now_user 当前玩家指针
  */
 void eventJudge(pPlayers now_user);
+
+void change_show(int position,char cap);
+
+void change_now(int position);
 #endif
