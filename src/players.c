@@ -243,18 +243,18 @@ char *convertToJson(Players players[], int num_players, Map *map,
   // 添加 user 字段
   char user_string[5] = "";
   if (players[QIAN_Madam - 1].isPlaying)
-    strcat(user_string, "Q");
+    strcat(user_string, "1");
   if (players[ATUB - 1].isPlaying)
-    strcat(user_string, "A");
+    strcat(user_string, "2");
   if (players[SUN_Miss - 1].isPlaying)
-    strcat(user_string, "S");
+    strcat(user_string, "3");
   if (players[JIN_Bei - 1].isPlaying)
-    strcat(user_string, "J");
+    strcat(user_string, "4");
   cJSON_AddStringToObject(root, "user", user_string);
 
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
-  for (int i = 0; i < num_players; i++) {
+  for (int i = num_players; i < num_players || i >= 0; i--) {
     if (players[i].isPlaying) {
       cJSON *player_json = cJSON_CreateObject();
       cJSON_AddNumberToObject(player_json, "number", players[i].number);

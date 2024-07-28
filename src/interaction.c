@@ -156,9 +156,14 @@ void handle_command(const char *command) {
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
+    printf("Dumping game data...\n");
     char *json = convertToJson(players, 4, &map, now_user);
     // 创建output.json
     FILE *fp = fopen("output.json", "w");
+    if (fp == NULL) {
+      perror("文件打开失败");
+      return;
+    }
     // 写入json
     fprintf(fp, "%s", json);
     // 关闭文件
