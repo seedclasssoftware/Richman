@@ -28,6 +28,7 @@ set(SOURCES
     src/help.c
     src/query.c
     src/init_play.c
+    src/sell_house.c
 )
 
 # 查找cjson库
@@ -55,6 +56,7 @@ set(HEADERS
     include/help.h
     include/query.h
     include/init_play.h
+    include/sell_house.h
 )
 
 # 添加头文件路径
