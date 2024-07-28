@@ -28,7 +28,7 @@
 #define ROLL_H
 #include "players.h"
 
-void init();
+
 /**
  * @brief 玩家掷骰子 
  * @return 骰子点数
