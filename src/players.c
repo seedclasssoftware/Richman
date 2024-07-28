@@ -259,8 +259,14 @@ char *convertToJson(Players players[], int num_players, Map *map,
   cJSON_AddItemToObject(map_json, "tool", tool_array);
   cJSON_AddItemToObject(root, "MAP", map_json);
 
-  // 添加 now_user
-  cJSON_AddStringToObject(root, "now_user", &now_user->cap);
+  // 创建用于存储整数的字符串缓冲区
+  char number_str[12]; // 足够大以容纳整数的字符串表示
+
+  // 将整数转换为字符串
+  snprintf(number_str, sizeof(number_str), "%d", now_user->number);
+
+  // 将字符串添加到 JSON 对象中
+  cJSON_AddStringToObject(root, "now_user", number_str);
 
   // 添加 user 字段
   char user_string[5] = "";
@@ -277,8 +283,7 @@ char *convertToJson(Players players[], int num_players, Map *map,
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
   for (int i = num_players; i >= 0; i--) {
-    if(i < num_players && i >= 0)
-    {
+    if (i < num_players && i >= 0) {
       if (players[i].isPlaying) {
         cJSON *player_json = cJSON_CreateObject();
         cJSON_AddNumberToObject(player_json, "number", players[i].number);
