@@ -22,7 +22,7 @@ def run_test(test_dir):
     # 确定输出目录
     test_output_dir = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        "testout",
+        "testout_without_args",
         os.path.basename(test_dir),
     )
     os.makedirs(test_output_dir, exist_ok=True)
