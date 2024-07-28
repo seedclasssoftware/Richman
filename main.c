@@ -47,8 +47,6 @@ Players players[4];
 
 pPlayers now_user;
 
-
-
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -57,10 +55,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
   if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
-    
+
     map_init(&map);
     initialize_Players();
-    init_money(&initMoney);                // 初始化金钱部分
+    init_money(&initMoney); // 初始化金钱部分
     selectPlayers(initMoney);
     // 初始化选角色部分
     now_user = &players[0];
@@ -95,6 +93,12 @@ int main(int argc, char const *argv[], char const *envp[]) {
     fclose(fp2);
   }
   map_init(&map);
+  for (int i = 0; i < 4; i++) {
+    if (players[i].isPlaying) {
+      now_user = &(players[i]);
+      break;
+    }
+  }
   while (1) {
     map_print(&map);
     wait_for_input();
