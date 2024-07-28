@@ -106,6 +106,10 @@ void change_position(pPlayers now_user, int steps) {
       map.cells[(now_user->position + i)%70].show_char = map.cells[(now_user->position + i)%70].init_char;
       now_user->position = (uint8_t)14;
       now_user->hospital = (uint8_t)3;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
       flag = 1;
       break;
     }
@@ -151,6 +155,10 @@ void eventJudge(pPlayers now_user) {
       printf("很不幸！你进入了监狱，请休息两轮！\n");
       now_user->position=(uint8_t)49;
       now_user->prison = 2;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+        temp[now_user->position][3] ? temp[now_user->position][3]
+                                    : map.cells[now_user->position].init_char;
       break;
     }
     case '$': {
