@@ -13,7 +13,7 @@ void mining_for_point(pPlayers player, Cell *cells, int which_earth) {
     (*player).point += 80;
     break;
   case 67:
-    printf("你通过辛勤的挖矿劳动获得了100点数！\n");
+    printf("你通过辛勤的挖矿劳动获得了100点数！\n");   
     (*player).point += 100;
     break;
   case 66:
