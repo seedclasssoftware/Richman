@@ -40,6 +40,9 @@
 //#include "winnt.h"
 extern Map map;
 extern Players players[4];
+
+char temp[70][4];
+
 /**
  * @brief 玩家掷骰子 
  * @return 骰子点数
@@ -51,6 +54,22 @@ int roll_num() {
     int steps = rand() % 6 + 1;
     return steps;
 }
+
+void change_show(pPlayers now_user){
+    for(int i=0;i<3;i++){
+        temp[now_user->position][i]=temp[now_user->position][i+1];
+    }
+    temp[now_user->position][3]=now_user->cap;
+}
+void change_now(pPlayers now_user){
+    int idx=3;
+    while(temp[now_user->position][idx]!=now_user->cap){
+        idx--;
+    }
+    for(int i=idx;i>=1;i--){
+        temp[now_user->position][i]=temp[now_user->position][i-1];
+    }
+}
 /**
  * @brief 根据点数以及玩家当前位置将玩家移到指定地方
  * @param now_user 当前玩家指针
@@ -59,14 +78,17 @@ int roll_num() {
 void change_position(pPlayers now_user,int steps){
     int flag=0;
     printf("当前骰子点数为：%d\n",steps);
-    map.cells[now_user->position].show_char='0';
+    change_now(now_user);
+    map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
     for(int i=1;i<=steps;i++){
         int tool=map.cells[now_user->position+i].has_tool;
         if(tool==0) continue;
         else if(tool==1){
             map.cells[now_user->position+i].has_tool=0;
             now_user->position+=(uint8_t)i;
-            map.cells[now_user->position].show_char=now_user->cap;
+            now_user->position%=70;
+            change_show(now_user);
+            map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
             flag=1;
             break;
         }
@@ -81,9 +103,13 @@ void change_position(pPlayers now_user,int steps){
     if(flag==0) 
     {
         now_user->position+=steps;
-        map.cells[now_user->position].show_char=now_user->cap;
+        now_user->position%=70;
+        change_show(now_user);
+        map.cells[now_user->position].show_char=temp[now_user->position][3]?temp[now_user->position][3]:map.cells[now_user->position].init_char;
+     
     }
 }
+
 /**
  * @brief 根据玩家所在格属性判断触发的事件
  * 
@@ -125,10 +151,10 @@ void eventJudge(pPlayers now_user){
            buy_earth(now_user, &map);
         }
         else if(owner==now_user->number){
-           earth_up(now_user, map.cells);
+           earth_up(now_user, &map.cells[(*now_user).position]);
         }
         else{
-            pay_money(players, map.cells, now_user);
+            pay_money(players, &map.cells[(*now_user).position], now_user, &map);
         }
     }
 }

@@ -19,6 +19,9 @@ void init_money(uint32_t *initMoney);
  * @param num_players Number of players
  * @param init_money Initial money for the game
  */
-void select_players(Players *players, int num_players, uint32_t init_money);
+void selectPlayers(uint32_t *initMoney);
+void initialize_Players();
+const char* getPlayerColor(const char* name);
+void printPlayerName(const char* name);
 
 #endif

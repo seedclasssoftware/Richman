@@ -28,6 +28,7 @@
 #define ROLL_H
 #include "players.h"
 
+
 /**
  * @brief 玩家掷骰子 
  * @return 骰子点数
@@ -46,4 +47,9 @@ void change_position(pPlayers now_user,int steps);
  * @param now_user 当前玩家指针
  */
 void eventJudge(pPlayers now_user);
+
+void change_now(pPlayers now_user);
+
+void change_show(pPlayers now_user);
+
 #endif

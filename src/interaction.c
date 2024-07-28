@@ -63,18 +63,24 @@ void print_working_directory() {
 void change_player() {
 // 切换到下一个玩家
 flag:
-  printf("切换到玩家%d\n", now_user->number);
+  // printf("切换到玩家%d\n", now_user->number);
   // printPlayers(players, 4);
   if (((players[(now_user->number) % 4].hospital == 0) &&
        (players[(now_user->number) % 4].prison == 0) &&
        (players[(now_user->number) % 4].isPlaying == 1) &&
        (players[(now_user->number) % 4].isBankrupt == 0)) == 1) {
     now_user = &(players[(now_user->number) % 4]);
-    printf("成功切换到玩家%d\n", now_user->number);
+    // printf("成功切换到玩家%d\n", now_user->number);
   } else {
     if ((players[(now_user->number) % 4].hospital != 0 &&
-         players[(now_user->number) % 4].prison != 0) == 1) {
+         players[(now_user->number) % 4].prison != 0) == 1 &&
+        players[(now_user->number) % 4].isPlaying == 1) {
       printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
+      if (players[(now_user->number) % 4].hospital != 0) {
+        players[(now_user->number) % 4].hospital--;
+      }
+      if (players[(now_user->number) % 4].prison != 0)
+        players[(now_user->number) % 4].prison--;
     }
     now_user = &(players[(now_user->number) % 4]);
     goto flag;
@@ -156,14 +162,22 @@ void handle_command(const char *command) {
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
+    printPlayers(players, 4);
+    printf("Dumping game data...\n");
     char *json = convertToJson(players, 4, &map, now_user);
     // 创建output.json
     FILE *fp = fopen("output.json", "w");
+    if (fp == NULL) {
+      perror("文件打开失败");
+      return;
+    }
     // 写入json
     fprintf(fp, "%s", json);
+    printf("游戏数据已保存到output.json\n");
     // 关闭文件
     fclose(fp);
     printf("已将游戏数据保存到output.json\n");
+    free(json);
   } else if (strncmp(command, "load ", 5) == 0 ||
              strncmp(command, "Load ", 5) == 0) {
     const char *path = command + 5;
@@ -201,18 +215,19 @@ void handle_command(const char *command) {
       fclose(fp);
       // 调用initializePlayers函数
       initializePlayers(json_d, players, 4, &map);
-      // printPlayers(players, 4);
-      now_user = &players[0];
       free(json_d);
     } else {
       printf("文件不存在\n");
     }
+    printf("游戏数据已加载\n");
+    printf("当前玩家: %s\n", now_user->name);
   } else {
     printf("未知命令\n");
   }
 }
 
 void wait_for_input() {
+  // printPlayers(players, 4);
   switch (now_user->number) {
   case 1:
     printf("\033[31m钱夫人>\033[31m\033[0m");

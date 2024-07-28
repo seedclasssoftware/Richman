@@ -40,6 +40,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include "roll.h"
+
 
 Map map;
 
@@ -47,6 +49,7 @@ Players players[4];
 
 pPlayers now_user;
 
+extern char temp[70][5];
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -55,9 +58,12 @@ int main(int argc, char const *argv[], char const *envp[]) {
   if (argc == 1) {
     printf("游戏模式\n");
     uint32_t initMoney;
+
     map_init(&map);
-    init_money(&initMoney);                // 初始化金钱部分
-    select_players(players, 4, initMoney); // 初始化选角色部分
+    initialize_Players();
+    init_money(&initMoney); // 初始化金钱部分
+    selectPlayers(&initMoney);
+    // 初始化选角色部分
     now_user = &players[0];
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     FILE *fp = fopen(argv[1], "r");
@@ -74,22 +80,27 @@ int main(int argc, char const *argv[], char const *envp[]) {
     json_data[size] = '\0';
     // 关闭文件
     fclose(fp);
-
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     free(json_data);
-    printPlayers(players, 4);
-    char *json = convertToJson(players, 4, &map, now_user);
+    // printPlayers(players, 4);
+    // char *json = convertToJson(players, 4, &map, now_user);
     // printf("%s\n", json);
     // 创建expected_output.json
-    FILE *fp2 = fopen("expected_output.json", "w");
-    if (fp2 == NULL) {
-      printf("文件打开失败\n");
-    }
-    fwrite(json, 1, strlen(json), fp2);
-    fclose(fp2);
+    // FILE *fp2 = fopen("expected_output.json", "w");
+    // if (fp2 == NULL) {
+    //   printf("文件打开失败\n");
+    // }
+    // fwrite(json, 1, strlen(json), fp2);
+    // fclose(fp2);
   }
   map_init(&map);
+  for (int i = 0; i < 4; i++) {
+    if (players[i].isPlaying) {
+      now_user = &(players[i]);
+      break;
+    }
+  }
   while (1) {
     map_print(&map);
     wait_for_input();
