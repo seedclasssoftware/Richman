@@ -33,12 +33,17 @@ void query(pPlayers now_user) {
   printf("玩家%d的道具点数：%d\n", now_user->number, now_user->point);
   printf("玩家%d的位置：%d\n", now_user->number, now_user->position);
   printf("玩家%d的道具：\n", now_user->number);
-  printf("障碍：%d\n", now_user->block);
-  printf("机器娃娃：%d\n", now_user->robot);
-  printf("炸弹：%d\n", now_user->bomb);
-  printf("玩家%d的增益：\n", now_user->number);
-  printf("财神：%d\n", now_user->god);
-  printf("监狱：%d\n", now_user->prison);
-  printf("医院：%d\n", now_user->hospital);
+  printf("路障数量：%d\n", now_user->block);
+  printf("机器娃娃数量：%d\n", now_user->robot);
+  printf("炸弹数量：%d\n", now_user->bomb);
+  printf("玩家%d的正负增益：\n", now_user->number);
+  printf("财神剩余轮数：%d\n", now_user->god);
+  printf("监狱轮空次数：%d\n", now_user->prison);
+  printf("医院轮空次数：%d\n", now_user->hospital);
   printf("魔法：%d\n", now_user->magic);
+  printf("玩家%d的房产：", now_user->number);
+  for(int i=0;i<70;i++){
+    if(now_user->properties[i]==1)
+    printf("%d ",i);
+  }
 }
