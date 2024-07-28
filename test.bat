@@ -3,6 +3,6 @@ chcp 65001
 
 cd ./build
 
-ctest --parallel 10
+ctest --parallel 20
 
 cd ..
