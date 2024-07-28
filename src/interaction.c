@@ -75,6 +75,8 @@ flag:
     if ((players[(now_user->number) % 4].hospital != 0 &&
          players[(now_user->number) % 4].prison != 0) == 1) {
       printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
+      players[(now_user->number) % 4].hospital--;
+      players[(now_user->number) % 4].prison--;
     }
     now_user = &(players[(now_user->number) % 4]);
     goto flag;
