@@ -4,7 +4,7 @@ out
 .vscode
 CMakeUserPresets.json
 testout
-
+testout_without_args
 
 # Prerequisites
 *.d
