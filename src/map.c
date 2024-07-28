@@ -30,10 +30,11 @@
 
 void map_init(Map *map)
 {
-    //初始化show_char
+    //初始化show_char、init chars
     for (int i = 0; i < 70; i++)
     {
         map->cells[i].show_char = '0';
+        map->cells[i].init_char = '0';
         map->cells[i].kind = 0;
         map->cells[i].rank = 0;
         map->cells[i].has_tool = 0;
@@ -44,6 +45,7 @@ void map_init(Map *map)
     for (int i=64;i<70;i++ )
     {
         map->cells[i].show_char = '$';
+        map->cells[i].init_char = '$';
     }
 
   map->cells[0].show_char = 'S';
@@ -52,6 +54,13 @@ void map_init(Map *map)
   map->cells[63].show_char = 'M';
   map->cells[14].show_char = 'H';
   map->cells[49].show_char = 'P';
+
+  map->cells[0].init_char = 'S';
+  map->cells[28].init_char = 'T';
+  map->cells[35].init_char = 'G';
+  map->cells[63].init_char = 'M';
+  map->cells[14].init_char = 'H';
+  map->cells[49].init_char = 'P';
 
   // 初始化kind
   map->cells[0].kind = 4;
