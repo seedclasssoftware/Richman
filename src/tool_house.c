@@ -46,17 +46,17 @@ void buy_tool(pPlayers player) {
         printf("您的道具数已达最大值，不能购买.\n");
         break;
       } else {
-        printf("请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
-        choice_tool = getchar();
         if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
           player->point -= 30;
           player->robot++;
+          tool_number++;
           printf("你已购买机器娃娃。\n");
         }
         else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
           if (player->point >= 50) {
             player->point -= 50;
             player->block++;
+            tool_number++;
             printf("你已购买路障。\n");
           } else {
             printf("您当前剩余的点数为%u，不足以购买路障道具。\n",
@@ -71,6 +71,14 @@ void buy_tool(pPlayers player) {
       {
         printf("您所剩点数不足买任何道具，自动退出。\n");
         break;
+      }
+      else if(tool_number == 10)
+      {
+        printf("您的道具数已达10，不能继续购买，自动退出。\n");
+      }
+      else {
+        printf("请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
+        choice_tool = getchar();
       }
     }
     getchar();//去除回车
