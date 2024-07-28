@@ -6,7 +6,7 @@
 	"users":	"12",
 	"players":	[{
 			"number":	1,
-			"money":	199,
+			"money":	0,
 			"point":	0,
 			"tool1":	0,
 			"tool2":	0,
@@ -16,9 +16,9 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	29,
+			"position":	1,
 			"alive":	1,
-			"properties":	[[29, 0]]
+			"properties":	[[1, 2]]
 		}, {
 			"number":	2,
 			"money":	0,
