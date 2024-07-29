@@ -21,7 +21,7 @@
 			"properties":	[]
 		}, {
 			"alive":	1,
-			"money":	0,
+			"money":	1000,
 			"point":	0,
 			"number":	2,
 			"tool1":	0,

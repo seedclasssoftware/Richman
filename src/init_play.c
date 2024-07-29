@@ -39,13 +39,13 @@
 
 void initialize_Players() {
   players[0] =
-      (Players){"钱夫人", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+      (Players){"钱夫人", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', 0, {0}};
   players[1] =
-      (Players){"阿土伯", 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+      (Players){"阿土伯", 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', 0, {0}};
   players[2] =
-      (Players){"孙小美", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+      (Players){"孙小美", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', 0, {0}};
   players[3] =
-      (Players){"金贝贝", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', {0}};
+      (Players){"金贝贝", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0', 0, {0}};
 }
 
 char player_caps[] = {'Q', 'A', 'S', 'J'};
@@ -177,5 +177,9 @@ void selectPlayers(uint32_t *initMoney) {
   }
   printf("\n");
   // 根据input初始化next
+  initPlayersorder(input);
 
+  // printPlayers(players, 4);
+
+  // system("pause");
 }
