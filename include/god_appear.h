@@ -34,5 +34,6 @@ extern int god_position;
 
 void god_appear(Map *map);
 void god_time(Map *map, Players players[], int player_count);
+void god_init(int player_count);
 
 #endif

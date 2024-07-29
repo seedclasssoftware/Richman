@@ -37,13 +37,13 @@
 #include "players.h"
 // #include "tool_house.h"
 // #include "useprops.h"
-//#include "roll.h"
+// #include "roll.h"
+#include "god_appear.h"
 #include <stdint.h>
 #include <stdio.h>
-#include <windows.h>
-#include <time.h>
 #include <stdlib.h>
-#include "god_appear.h"
+#include <time.h>
+#include <windows.h>
 
 Map map;
 
@@ -52,7 +52,6 @@ Players players[4];
 pPlayers now_user;
 
 extern char temp[70][5];
-
 
 int main(int argc, char const *argv[], char const *envp[]) {
 
@@ -68,10 +67,13 @@ int main(int argc, char const *argv[], char const *envp[]) {
     init_money(&initMoney); // 初始化金钱部分
     selectPlayers(&initMoney);
     map_init(&map);
-    
-    //初始化财神爷出现的倒计时
-    srand((unsigned)time(NULL));
-    god_countdown = (rand() % 11) + 10;
+    int all_players = 0;
+    for (int i = 0; i < 4; i++) {
+      if (players[i].isPlaying || players[i].isBankrupt) {
+        all_players++;
+      }
+    }
+    god_init(all_players);
 
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     map_init(&map);
@@ -92,10 +94,17 @@ int main(int argc, char const *argv[], char const *envp[]) {
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     free(json_data);
+    int all_players = 0;
+    for (int i = 0; i < 4; i++) {
+      if (players[i].isPlaying || players[i].isBankrupt) {
+        all_players++;
+      }
+    }
+    god_init(all_players);
   }
   while (1) {
     map_print(&map);
-    god_time( &map,  players,  4);
+    god_time(&map, players, 4);
     wait_for_input();
   }
   return 0;
