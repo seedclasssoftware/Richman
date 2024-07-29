@@ -2,8 +2,13 @@
 	"MAP":	{
 		"tool":	[]
 	},
+<<<<<<< HEAD
 	"now_user":	"1",
 	"users":	"1",
+=======
+	"now_user":	"2",
+	"users":	"12",
+>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd
 	"players":	[{
 			"number":	1,
 			"money":	0,
@@ -17,6 +22,21 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	66,
+			"alive":	1,
+			"properties":	[]
+		}, {
+			"number":	2,
+			"money":	0,
+			"point":	0,
+			"tool1":	0,
+			"tool2":	0,
+			"tool3":	0,
+			"buff":	0,
+			"continue":	0,
+			"debuff0":	0,
+			"debuff1":	0,
+			"decontinue":	0,
+			"position":	0,
 			"alive":	1,
 			"properties":	[]
 		}]

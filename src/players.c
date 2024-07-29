@@ -9,7 +9,11 @@
 
 // 检查字符串是否包含字符
 bool contains_char(const char *str, char ch) {
-  while (*str) {
+  if (str == NULL) {
+    return false; // 确保 str 不是空指针
+  }
+
+  while (*str != '\0') {
     if (*str == ch) {
       return true;
     }
@@ -17,7 +21,6 @@ bool contains_char(const char *str, char ch) {
   }
   return false;
 }
-
 char *getPlayerName(uint8_t number) {
   switch (number) {
   case QIAN_Madam:
@@ -116,6 +119,9 @@ void initializePlayers(const char *json_data, Players players[],
   case '4':
     now_user = &players[3];
     printf("now_user: %s\n", now_user->name);
+    break;
+  default:
+    printf("Error: now_user not found.\n");
     break;
   }
 
@@ -270,6 +276,7 @@ void print_from_file() {
   printPlayers(players, 4);
 }
 
+extern Players players[4];
 /**
  * @brief 将玩家信息转换为 JSON 字符串
  *
@@ -317,11 +324,11 @@ char *convertToJson(Players players[], int num_players, Map *map,
     strcat(user_string, "3");
   if ((players[JIN_Bei - 1].isPlaying) == 1)
     strcat(user_string, "4");
-  cJSON_AddStringToObject(root, "user", user_string);
+  cJSON_AddStringToObject(root, "users", user_string);
 
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
-  for (int i = num_players; i >= 0; i--) {
+  for (int i = 0; i < num_players; i++) {
     if (i < num_players && i >= 0) {
       if (players[i].isPlaying) {
         cJSON *player_json = cJSON_CreateObject();

@@ -3,7 +3,7 @@
 		"tool":	[]
 	},
 	"users":	"12",
-	"now_user":	"1",
+	"now_user":	"2",
 	"players":	[{
 			"alive":	1,
 			"money":	0,
@@ -19,11 +19,11 @@
 			"decontinue":	0,
 			"position":	66,
 			"properties":	[]
-		}, {
-			"alive":	0,
+		},{
+			"alive":	1,
 			"money":	0,
 			"point":	0,
-			"number":	0,
+			"number":	2,
 			"tool1":	0,
 			"tool2":	0,
 			"tool3":	0,
@@ -34,35 +34,6 @@
 			"decontinue":	0,
 			"position":	0,
 			"properties":	[]
-		}, {
-			"alive":	0,
-			"money":	0,
-			"point":	0,
-			"number":	0,
-			"tool1":	0,
-			"tool2":	0,
-			"tool3":	0,
-			"buff":	0,
-			"continue":	0,
-			"debuff0":	0,
-			"debuff1":	0,
-			"decontinue":	0,
-			"position":	0,
-			"properties":	[]
-		}, {
-			"alive":	0,
-			"money":	0,
-			"point":	0,
-			"number":	0,
-			"tool1":	0,
-			"tool2":	0,
-			"tool3":	0,
-			"buff":	0,
-			"continue":	0,
-			"debuff0":	0,
-			"debuff1":	0,
-			"decontinue":	0,
-			"position":	0,
-			"properties":	[]
-		}]
+		}
+		]
 }
