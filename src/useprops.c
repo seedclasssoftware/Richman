@@ -114,8 +114,8 @@ void useblock(Players *player, Map *map, int place_position) {
       //scanf("%d", &place_position);
     }
     place_position = (player->position + place_position) > 0
-                         ? (player->position + place_position) % 69
-                         : (69 + (player->position + place_position)) % 69;
+                         ? (player->position + place_position) % 70
+                         : (70 + (player->position + place_position)) % 70;
     map->cells[place_position].has_tool = 1;
     map->cells[place_position].show_char = '#';
     printf("你在 地图的 %d 放置了路障！\n", place_position);
