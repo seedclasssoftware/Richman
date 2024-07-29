@@ -198,9 +198,13 @@ void initializePlayers(const char *json_data, Players players[],
     for (int i = 0; i < 70; i++) {
       if (map.cells[i].kind != 4) {
         map.cells[i].kind =
-            (players[0].properties[i] | players[1].properties[i] |
-             players[2].properties[i] | players[3].properties[i]) -
-            1;
+            ((players[0].properties[i] | players[1].properties[i] |
+              players[2].properties[i] | players[3].properties[i]) -
+             1) >= 0
+                ? ((players[0].properties[i] | players[1].properties[i] |
+                    players[2].properties[i] | players[3].properties[i]) -
+                   1)
+                : 0;
       }
       if (players[0].properties[i]) {
         map.cells[i].owner = 1;
