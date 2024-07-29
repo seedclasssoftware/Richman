@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Block 0
+=======
+step 1
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 Dump

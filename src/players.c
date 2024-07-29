@@ -188,7 +188,7 @@ void initializePlayers(const char *json_data, Players players[],
           if (property_item && cJSON_GetArraySize(property_item) == 2) {
             int prop_position = cJSON_GetArrayItem(property_item, 0)->valueint;
             int prop_value = cJSON_GetArrayItem(property_item, 1)->valueint;
-            players[player_index].properties[prop_position] = prop_value;
+            players[player_index].properties[prop_position] = prop_value + 1;
           }
         }
       }
@@ -198,8 +198,13 @@ void initializePlayers(const char *json_data, Players players[],
     for (int i = 0; i < 70; i++) {
       if (map.cells[i].kind != 4) {
         map.cells[i].kind =
-            (players[0].properties[i] | players[1].properties[i] |
-             players[2].properties[i] | players[3].properties[i]);
+            (((players[0].properties[i] | players[1].properties[i] |
+               players[2].properties[i] | players[3].properties[i]) -
+              1) >= 0)
+                ? ((players[0].properties[i] | players[1].properties[i] |
+                    players[2].properties[i] | players[3].properties[i]) -
+                   1)
+                : 0;
       }
       if (players[0].properties[i]) {
         map.cells[i].owner = 1;

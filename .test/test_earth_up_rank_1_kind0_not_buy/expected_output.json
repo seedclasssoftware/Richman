@@ -43,6 +43,7 @@
 			"decontinue":	0,
 			"position":	0,
 			"properties":	[]
+<<<<<<< HEAD
 		}, {
 <<<<<<<< HEAD:.test/test_roll_3/expected_output.json
 			"alive":	1,
@@ -80,5 +81,7 @@
 			"decontinue":	0,
 			"position":	1,
 			"properties":	[]
+=======
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 		}]
 }

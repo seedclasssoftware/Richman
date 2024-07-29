@@ -2,6 +2,7 @@
 	"MAP":	{
 		"tool":	[]
 	},
+<<<<<<< HEAD
 <<<<<<<< HEAD:.test/test_roll_2/expected_output.json
 	"now_user":	"3",
 	"users":	"123",
@@ -33,6 +34,26 @@
 			"number":	1,
 			"tool1":	9,
 >>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
+=======
+<<<<<<<< HEAD:.test/test_mine_66/output.json
+<<<<<<< HEAD
+	"now_user":	"1",
+	"users":	"1",
+=======
+	"now_user":	"2",
+	"users":	"12",
+>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd
+========
+	"users":	"12",
+	"now_user":	"2",
+>>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0:.test/test_roll_2/expected_output.json
+	"players":	[{
+			"alive":	1,
+			"money":	0,
+			"point":	0,
+			"number":	1,
+			"tool1":	0,
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 			"tool2":	0,
 			"tool3":	0,
 			"buff":	0,
@@ -40,6 +61,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
+<<<<<<< HEAD
 			"position":	0,
 <<<<<<<< HEAD:.test/test_roll_2/expected_output.json
 			"alive":	1,
@@ -48,11 +70,17 @@
 			"number":	3,
 			"money":	0,
 ========
+=======
+			"position":	2,
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 			"properties":	[]
 		}, {
 			"alive":	1,
 			"money":	1000,
+<<<<<<< HEAD
 >>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
+=======
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 			"point":	0,
 			"number":	2,
 			"tool1":	0,
@@ -65,6 +93,7 @@
 			"decontinue":	0,
 			"position":	0,
 			"properties":	[]
+<<<<<<< HEAD
 		}, {
 			"alive":	0,
 			"money":	0,
@@ -100,5 +129,7 @@
 			"position":	0,
 >>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
 			"properties":	[]
+=======
+>>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 		}]
 }
