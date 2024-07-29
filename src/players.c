@@ -171,9 +171,9 @@ void initializePlayers(const char *json_data, Players players[],
       players[player_index].number = player_number;
       players[player_index].block =
           cJSON_GetObjectItem(player_json, "tool1")->valueint;
+      players[player_index].bomb = 0;
+      // cJSON_GetObjectItem(player_json, "tool2")->valueint;
       players[player_index].robot =
-          cJSON_GetObjectItem(player_json, "tool2")->valueint;
-      players[player_index].bomb =
           cJSON_GetObjectItem(player_json, "tool3")->valueint;
       int continue_god = cJSON_GetObjectItem(player_json, "continue")->valueint;
       int god_is = cJSON_GetObjectItem(player_json, "buff")->valueint;
@@ -340,24 +340,24 @@ char *convertToJson(Players players[], int num_players, Map *map,
   // 将字符串添加到 JSON 对象中
   cJSON_AddStringToObject(root, "now_user", number_str);
 
-  char user_string[5] = ""; // 初始化空字符串
-  int current = 0;          // 从第一个玩家开始
+  char user_string[5] = "";    // 初始化空字符串
+  int current = 0;             // 从第一个玩家开始
   bool processed[4] = {false}; // 记录已经处理过的玩家
 
-    for (int i = 0; i < 4; ++i) {
-        if (players[i].isPlaying && !processed[i]) {
-            int current = i;
-            do {
-                if(processed[current]) {
-                    break;
-                }
-                char digit = '1' + current;
-                strncat(user_string, &digit, 1); // 将字符追加到字符串末尾
-                processed[current] = true; // 标记当前玩家为已处理
-                current = players[current].next; // 移动到下一个玩家
-            } while (current != i);
+  for (int i = 0; i < 4; ++i) {
+    if (players[i].isPlaying && !processed[i]) {
+      int current = i;
+      do {
+        if (processed[current]) {
+          break;
         }
+        char digit = '1' + current;
+        strncat(user_string, &digit, 1); // 将字符追加到字符串末尾
+        processed[current] = true;       // 标记当前玩家为已处理
+        current = players[current].next; // 移动到下一个玩家
+      } while (current != i);
     }
+  }
   cJSON_AddStringToObject(root, "users", user_string);
 
   // 添加 players
@@ -370,8 +370,8 @@ char *convertToJson(Players players[], int num_players, Map *map,
         cJSON_AddNumberToObject(player_json, "money", players[i].money);
         cJSON_AddNumberToObject(player_json, "point", players[i].point);
         cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
-        cJSON_AddNumberToObject(player_json, "tool2", players[i].robot);
-        cJSON_AddNumberToObject(player_json, "tool3", players[i].bomb);
+        cJSON_AddNumberToObject(player_json, "tool2", 0);
+        cJSON_AddNumberToObject(player_json, "tool3", players[i].robot);
         cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
         cJSON_AddNumberToObject(player_json, "continue", players[i].god);
         cJSON_AddNumberToObject(player_json, "debuff0",

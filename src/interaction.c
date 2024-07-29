@@ -68,6 +68,7 @@ void change_player() {
 
     // 切换成功后，可以输出当前玩家的信息
     printf("切换到玩家%d\n", now_user->number);
+    map.cells[now_user->position].show_char=now_user->cap;
 }
 
 // 处理 Step 命令
@@ -146,7 +147,7 @@ void handle_command(const char *command) {
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
-    printPlayers(players, 4);
+    // printPlayers(players, 4);
     printf("Dumping game data...\n");
     char *json = convertToJson(players, 4, &map, now_user);
     // 创建output.json

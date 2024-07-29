@@ -29,7 +29,7 @@ set(SOURCES
     src/query.c
     src/init_play.c
     src/sell_house.c
-    src/god_appar.c
+    src/god_appear.c
     src/clean_body.c
 )
 
@@ -59,7 +59,7 @@ set(HEADERS
     include/query.h
     include/init_play.h
     include/sell_house.h
-    include/god_appar.h
+    include/god_appear.h
     include/clean_body.h
 )
 

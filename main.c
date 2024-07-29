@@ -41,6 +41,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include <time.h>
+#include <stdlib.h>
+#include "god_appear.h"
 
 Map map;
 
@@ -49,6 +52,8 @@ Players players[4];
 pPlayers now_user;
 
 extern char temp[70][5];
+
+
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -62,15 +67,11 @@ int main(int argc, char const *argv[], char const *envp[]) {
     initialize_Players();
     init_money(&initMoney); // 初始化金钱部分
     selectPlayers(&initMoney);
-    // 初始化选角色部分
-    now_user = &players[0];
-    for (int i = 0; i < 4; i++) {
-      if (players[i].isPlaying) {
-        now_user = &(players[i]);
-        break;
-      }
-    }
     map_init(&map);
+    
+    //初始化财神爷出现的倒计时
+    srand((unsigned)time(NULL));
+    god_countdown = (rand() % 11) + 10;
 
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     map_init(&map);
@@ -91,21 +92,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     free(json_data);
-    // printPlayers(players, 4);
-    // char *json = convertToJson(players, 4, &map, now_user);
-    // printf("%s\n", json);
-    // 创建expected_output.json
-    // FILE *fp2 = fopen("expected_output.json", "w");
-    // if (fp2 == NULL) {
-    //   printf("文件打开失败\n");
-    // }
-    // fwrite(json, 1, strlen(json), fp2);
-    // fclose(fp2);
-    // map_init(&map);
   }
-
   while (1) {
     map_print(&map);
+    god_time(&map);
     wait_for_input();
   }
   return 0;
