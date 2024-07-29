@@ -54,6 +54,7 @@ void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money, Ma
             {
                 int is_anyone_there=0;
                 (*now_user_for_pay_money).isBankrupt=1;
+                (*now_user_for_pay_money).money=0;
                 printf("您已破产，感觉挺惨！\n");
                 for(int i=0;i<=3;i++)
                 {
