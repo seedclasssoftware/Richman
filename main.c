@@ -44,6 +44,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+#include <stdbool.h>
 
 Map map;
 
@@ -117,18 +118,24 @@ int main(int argc, char const *argv[], char const *envp[]) {
     god_time(&map, players, 4);
     wait_for_input();
     for (int i = 0; i < 70; i++) {
-      // 如果当前位置没有活着的玩家且没有道具, 则显示地图上的字符
-      if (players[0].position != i && players[1].position != i &&
-          players[2].position != i && players[3].position != i &&
-          map.cells[i].has_tool == 0) {
-        if (map.cells[i].owner == 0) {
-          map.cells[i].show_char = map.cells[i].init_char;
-        } else {
-          map.cells[i].show_char =
-              map.cells[i].owner ? (map.cells[i].init_char + map.cells[i].kind)
-                                 : map.cells[i].init_char;
+        bool player_at_position = false;
+
+        // 检查是否有活着且参与游戏的玩家在当前位置
+        for (int j = 0; j < 4; j++) {
+            if (!players[j].isBankrupt && !players[j].isBankrupt && players[j].position == i) {
+                player_at_position = true;
+                break;
+            }
         }
-      }
+
+        // 如果当前位置没有活着且参与游戏的玩家且没有道具, 则显示地图上的字符
+        if (!player_at_position && map.cells[i].has_tool == 0) {
+            if (map.cells[i].owner == 0) {
+                map.cells[i].show_char = map.cells[i].init_char;
+            } else {
+                map.cells[i].show_char = map.cells[i].init_char + map.cells[i].kind;
+            }
+        }
     }
   }
 
