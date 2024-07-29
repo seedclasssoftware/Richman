@@ -177,7 +177,7 @@ void initializePlayers(const char *json_data, Players players[],
           cJSON_GetObjectItem(player_json, "tool3")->valueint;
       int continue_god = cJSON_GetObjectItem(player_json, "continue")->valueint;
       int god_is = cJSON_GetObjectItem(player_json, "buff")->valueint;
-      players[player_index].god = god_is & continue_god;
+      players[player_index].god = god_is ? continue_god : 0;
       // 获取玩家的监狱回合数和医院回合数
       int continue_turns =
           cJSON_GetObjectItem(player_json, "decontinue")->valueint;

@@ -37,7 +37,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include "roll.h"
+
 
 extern pPlayers now_user;
 extern Map map;
@@ -62,19 +62,19 @@ void print_working_directory() {
 }
 
 void change_player() {
-    do {
-        // 切换到下一个玩家
-        now_user = &(players[now_user->next]);
-    } while (!now_user->isPlaying || now_user->isBankrupt);
+  if (now_user->god > 0) {
+    now_user->god--;
+    printf("财神爷上身，剩余回合数：%d\n", now_user->god);
+  }
+  do {
+    // 切换到下一个玩家
+    now_user = &(players[now_user->next]);
+  } while (!now_user->isPlaying || now_user->isBankrupt);
 
-    // 切换成功后，可以输出当前玩家的信息
-    printf("切换到玩家%d\n", now_user->number);
-    map.cells[now_user->position].show_char=now_user->cap;
-    //change_now(now_user);
-    if(now_user->god>0){
-        now_user->god--;
-        printf("财神爷上身，剩余回合数：%d\n",now_user->god);
-    }
+  // 切换成功后，可以输出当前玩家的信息
+  printf("切换到玩家%d\n", now_user->number);
+  map.cells[now_user->position].show_char = now_user->cap;
+  // change_now(now_user);
 }
 
 // 处理 Step 命令
