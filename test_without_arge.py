@@ -3,6 +3,7 @@ import json
 import os
 import sys
 from deepdiff import DeepDiff
+import difflib
 
 # 设置 PYTHONIOENCODING 环境变量为 utf-8
 os.environ['PYTHONIOENCODING'] = 'utf-8'
@@ -35,7 +36,6 @@ def run_test(test_dir):
     print(f"Output path: {actual_output_path}")
     print(f"Error path: {actual_error_path}")
 
-
     # 删除旧的 output.txt 和 output.json
     if os.path.exists(actual_output_path):
         os.remove(actual_output_path)
@@ -54,7 +54,7 @@ def run_test(test_dir):
         actual_error_path, "w", encoding="utf-8"
     ) as error_file:
         process = subprocess.Popen(
-            [executable_path],#user_json_path,启动程序时的参数
+            [executable_path], # user_json_path, 启动程序时的参数
             stdin=subprocess.PIPE,
             stdout=output_file,
             stderr=error_file,
@@ -67,16 +67,29 @@ def run_test(test_dir):
             process.terminate()
             return False
 
-            
-    # # 比较实际输出和预期输出
-    # with open(actual_output_path, "r", encoding="utf-8") as output_file:
-    #     actual_output = output_file.read()
+    # 比较实际输出和预期输出txt
+    try:
+        with open(actual_output_path, "r", encoding="utf-8") as output_file:
+            actual_output = output_file.read()
 
-    with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
-        expected_output = expected_output_file.read()
+        with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
+            expected_output = expected_output_file.read()
 
-    if actual_output.strip() != expected_output.strip():
-        print(f"Test in {test_dir} Failed.")
+        if actual_output.strip() != expected_output.strip():
+            print(f"Test in {test_dir} Failed.")
+            print("Text differences:")
+            diff = difflib.unified_diff(
+                expected_output.splitlines(),
+                actual_output.splitlines(),
+                fromfile='expected_output.txt',
+                tofile='actual_output.txt',
+                lineterm=''
+            )
+            for line in diff:
+                print(line)
+            return False
+    except Exception as e:
+        print(f"Error reading or comparing text files: {e}")
         return False
 
     # 比较实际输出和预期输出json
@@ -101,9 +114,6 @@ def run_test(test_dir):
     except Exception as e:
         print(f"Error reading or parsing JSON files: {e}")
         return False
-        
-    print(f"Test in {test_dir} Passed.")
-    return True
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

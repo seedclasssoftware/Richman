@@ -96,7 +96,7 @@ message(STATUS "Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
 
 # 安装 deepdiff 包
 execute_process(
-    COMMAND ${Python3_EXECUTABLE} -m pip install deepdiff difflib
+    COMMAND ${Python3_EXECUTABLE} -m pip install deepdiff
     RESULT_VARIABLE _install_result
     OUTPUT_VARIABLE _install_output
     ERROR_VARIABLE _install_error
