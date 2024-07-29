@@ -145,9 +145,8 @@ void eventJudge(pPlayers now_user) {
       break;
     }
     case 'F': {
-      printf("财神附体，接下来的五回合内免过路费！\n");
+      printf("财神附体，接下来的五回合内免过路费!\n");
       now_user->god = 5;
-      map.cells[now_user->position].show_char = map.cells[now_user->position].init_char;
       printf("财神将持续 %d 回合\n", now_user->god);
       break;
     }

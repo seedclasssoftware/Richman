@@ -3,7 +3,7 @@
  */
 
 #include "pass_road_money.h"
-
+#include "clean_body.h"
 void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money, Map *map) 
 {
     //判断不为特殊建筑且这个地的所有者不为当前角色
@@ -93,7 +93,8 @@ void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money, Ma
                     (*cells).show_char=(*cells).kind+48;
                 }
 
-                //将破产角色地产清空
+                //将破产角色地产清空，并且清除掉破产者的尸体
+                
                 for(int i=0;i<=69;i++)
                 {
                     if((*map).cells[i].owner==(*now_user_for_pay_money).number)
@@ -109,6 +110,7 @@ void pay_money(pPlayers player, Cell *cells, pPlayers now_user_for_pay_money, Ma
                     if(player[i].isPlaying==1) playing_num++;
                     if(player[i].isBankrupt==1) dead_num++;
                     if(player[i].isPlaying==1 && player[i].isBankrupt==0) final_role_num=player[i].number;
+                    if(player[i].isPlaying==1 && player[i].isBankrupt==1) clean_body(map,&player[i]);
                 }
                 if(1==playing_num-dead_num)
                 {

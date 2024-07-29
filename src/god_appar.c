@@ -41,4 +41,5 @@ void god_appar(Map *map)
         god_pos = rand() % 70;
     }
     map->cells[god_pos].show_char = 'F';
+    map->cells[god_pos].has_tool = 3;//3代表财神
 }

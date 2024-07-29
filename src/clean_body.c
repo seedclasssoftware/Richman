@@ -31,5 +31,5 @@
 void clean_body(Map *map, Players *player)
 {
     printf("%c被抬走了\n", map->cells[player->position].show_char);
-    map->cells[player->position].show_char = map->cells[player->position].init_char;
+    map->cells[player->position].show_char = map->cells[player->position].init_char + map->cells[player->position].kind;
 }
