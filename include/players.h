@@ -127,6 +127,14 @@ void print_from_file();
 char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
 
+
+/**
+ * @brief 初始化玩家顺序
+ * 
+ * @param input 输入
+ */
+void initPlayersorder(const char* input);
+
 extern pPlayers now_user;
 extern Players players[4];
 #endif ///< PLAYERS_H

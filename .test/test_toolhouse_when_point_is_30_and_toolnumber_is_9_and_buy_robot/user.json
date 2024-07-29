@@ -6,34 +6,17 @@
 	"now_user":	"1",
 	"players":	[{
 			"alive":	1,
-<<<<<<<< HEAD:.test/test_roll_1/expected_output.json
-			"money":	0,
-			"point":	0,
-			"number":	1,
-			"tool1":	0,
-			"tool2":	0,
-========
 			"money":	1000,
 			"point":	30,
 			"number":	1,
 			"tool1":	0,
 			"tool2":	9,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_30_and_toolnumber_is_9_and_buy_robot/user.json
 			"tool3":	0,
 			"buff":	0,
 			"continue":	0,
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-<<<<<<<< HEAD:.test/test_roll_1/expected_output.json
-			"position":	1,
-			"properties":	[]
-		}, {
-			"alive":	2,
-			"money":	0,
-			"point":	0,
-			"number":	2,
-========
 			"position":	0,
 			"properties":	[]
 		}, {
@@ -71,7 +54,6 @@
 			"money":	0,
 			"point":	0,
 			"number":	0,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_30_and_toolnumber_is_9_and_buy_robot/user.json
 			"tool1":	0,
 			"tool2":	0,
 			"tool3":	0,

@@ -36,6 +36,23 @@ char *getPlayerName(uint8_t number) {
   }
 }
 
+void initPlayersorder(const char *input) {
+  // 计算字符串长度
+  int len = 0;
+  while (input[len] != '\0' && input[len] != '\n') {
+    len++;
+  }
+
+  for (int i = 0; i < len; ++i) {
+    // 将字符转换为对应的数字索引（假设输入字符串为1-indexed）
+    int players_index =
+        input[i] - '1'; // '1'对应0, '2'对应1, '3'对应2, '4'对应3
+    int index =
+        input[(i + 1) % len] - '1'; // '1'对应0, '2'对应1, '3'对应2, '4'对应3
+    players[players_index].next = index;
+  }
+}
+
 void initializePlayers(const char *json_data, Players players[],
                        int num_players, Map *map) {
   // printf("json_data: %s\n", json_data);
@@ -65,7 +82,7 @@ void initializePlayers(const char *json_data, Players players[],
     }
   }
 
-  cJSON *user_item = cJSON_GetObjectItem(root, "user");
+  cJSON *user_item = cJSON_GetObjectItem(root, "users");
   const char *user = cJSON_GetStringValue(user_item);
   // printf("user: %s\n", user ? user : "null");
   for (int i = 0; i < num_players; i++) {
@@ -95,6 +112,8 @@ void initializePlayers(const char *json_data, Players players[],
   } else if (contains_char(user, 'J')) {
     players[3].isPlaying = 1;
   }
+
+  initPlayersorder(user);
 
   cJSON *now_user_item = cJSON_GetObjectItem(root, "now_user");
   const char *now_user_name = cJSON_GetStringValue(now_user_item);
@@ -252,12 +271,14 @@ void printPlayers(Players players[], int num_players) {
     printf("位置：%d\n", player->position);
     printf("是否参与游戏：%d\n", player->isPlaying);
     printf("是否破产：%d\n", player->isBankrupt);
-    printf("资产：");
-    for (int i = 0; i < 70; i++) {
-      if (map.cells[i].owner == now_user->number) {
-        printf("%d ,", i);
-      }
-    }
+    printf("cap: %c\n", player->cap);
+    printf("下一个玩家: %d\n", player->next);
+    // printf("资产：");
+    // for (int i = 0; i < 70; i++) {
+    //   if (map.cells[i].owner == now_user->number) {
+    //     printf("%d ,", i);
+    //   }
+    // }
     printf("\n");
   }
 }
@@ -319,16 +340,24 @@ char *convertToJson(Players players[], int num_players, Map *map,
   // 将字符串添加到 JSON 对象中
   cJSON_AddStringToObject(root, "now_user", number_str);
 
-  // 添加 user 字段
-  char user_string[5] = "";
-  if ((players[QIAN_Madam - 1].isPlaying) == 1)
-    strcat(user_string, "1");
-  if ((players[ATUB - 1].isPlaying) == 1)
-    strcat(user_string, "2");
-  if ((players[SUN_Miss - 1].isPlaying) == 1)
-    strcat(user_string, "3");
-  if ((players[JIN_Bei - 1].isPlaying) == 1)
-    strcat(user_string, "4");
+  char user_string[5] = ""; // 初始化空字符串
+  int current = 0;          // 从第一个玩家开始
+  bool processed[4] = {false}; // 记录已经处理过的玩家
+
+    for (int i = 0; i < 4; ++i) {
+        if (players[i].isPlaying && !processed[i]) {
+            int current = i;
+            do {
+                if(processed[current]) {
+                    break;
+                }
+                char digit = '1' + current;
+                strncat(user_string, &digit, 1); // 将字符追加到字符串末尾
+                processed[current] = true; // 标记当前玩家为已处理
+                current = players[current].next; // 移动到下一个玩家
+            } while (current != i);
+        }
+    }
   cJSON_AddStringToObject(root, "users", user_string);
 
   // 添加 players

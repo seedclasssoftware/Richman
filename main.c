@@ -67,14 +67,6 @@ int main(int argc, char const *argv[], char const *envp[]) {
     initialize_Players();
     init_money(&initMoney); // 初始化金钱部分
     selectPlayers(&initMoney);
-    // 初始化选角色部分
-    now_user = &players[0];
-    for (int i = 0; i < 4; i++) {
-      if (players[i].isPlaying) {
-        now_user = &(players[i]);
-        break;
-      }
-    }
     map_init(&map);
     
     //初始化财神爷出现的倒计时
@@ -100,19 +92,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
     initializePlayers(json_data, players, 4, &map);
     // printf("初始化成功\n");
     free(json_data);
-    // printPlayers(players, 4);
-    // char *json = convertToJson(players, 4, &map, now_user);
-    // printf("%s\n", json);
-    // 创建expected_output.json
-    // FILE *fp2 = fopen("expected_output.json", "w");
-    // if (fp2 == NULL) {
-    //   printf("文件打开失败\n");
-    // }
-    // fwrite(json, 1, strlen(json), fp2);
-    // fclose(fp2);
-    // map_init(&map);
   }
-
   while (1) {
     map_print(&map);
     god_time(&map);
