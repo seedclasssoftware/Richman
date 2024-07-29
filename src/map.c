@@ -99,7 +99,7 @@ void map_print(Map *map) {
   {
     printf("\033[33m%c\033[33m", map->cells[0].show_char);
   } else if (map->cells[0].show_char == 'S' &&
-             players[2].position == 0 && players[2].isPlaying == 1 && now_user->number == 3
+             players[2].position == 0 && players[2].isPlaying == 1
              ) // 再次优先级，如果孙小美站在这，显示蓝色
   {
     printf("\033[34m%c\033[34m", map->cells[0].show_char);
