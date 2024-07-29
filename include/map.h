@@ -45,6 +45,8 @@ typedef struct Map {
 void map_init(Map *map);
 void map_print(Map *map);
 
+void changedisplay();
+
 extern Map map;
 
 #endif

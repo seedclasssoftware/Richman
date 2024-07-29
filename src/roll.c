@@ -122,9 +122,9 @@ void eventJudge(pPlayers now_user) {
   int rank = map.cells[now_user->position].rank;
   int owner = map.cells[now_user->position].owner;
   int has_tool= map.cells[now_user->position].has_tool;
-  int init_char = map.cells[now_user->position].init_char;
+  int init_char1 = map.cells[now_user->position].init_char;
   if (kind == 4) {
-    switch (init_char) {
+    switch (init_char1) {
     case 'T': {
       buy_tool(now_user);
       change_show(now_user);
