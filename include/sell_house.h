@@ -30,6 +30,6 @@
 #include "map.h"
 #include "players.h"
 
-void sell_house(Players *player, Map *map); // 卖房子函数
+void sell_house(Players *player, Map *map, int house); // 卖房子函数
 
 #endif
