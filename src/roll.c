@@ -109,6 +109,7 @@ void change_position(pPlayers now_user, int steps) {
     map.cells[now_user->position].show_char =
         temp[now_user->position][3] ? temp[now_user->position][3]
                                     : map.cells[now_user->position].init_char;
+
   }
 }
 
@@ -167,6 +168,7 @@ void eventJudge(pPlayers now_user) {
       map.cells[now_user->position].show_char =
           temp[now_user->position][3] ? temp[now_user->position][3]
                                       : map.cells[now_user->position].init_char;
+                                      
   } 
   if (owner == 0) {
       buy_earth(now_user, &map);
