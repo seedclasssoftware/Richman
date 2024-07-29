@@ -214,6 +214,7 @@ void handle_command(const char *command) {
     printf("当前玩家: %s\n", now_user->name);
   } else {
     printf("未知命令\n");
+    wait_for_input();
   }
 }
 
