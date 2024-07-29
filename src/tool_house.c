@@ -37,40 +37,48 @@
 // player,调用函数buy_tool(&player)；
 void buy_tool(pPlayers player) {
   if (player->point >= 30) {
+    int tool_number = player->block + player->robot;
+    if (tool_number == 10) { // 道具数为10
+      printf("您的道具数已达最大值，不能购买.\n");
+      return;
+    }
     char choice_tool = 'F';
     printf("欢迎光临道具屋，请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
     choice_tool = getchar();
     while (choice_tool != 'F') {
-      int tool_number = player->block + player->robot;
-      if (tool_number == 10) { // 道具数为10
-        printf("您的道具数已达最大值，不能购买.\n");
-        break;
-      } else {
-        printf("请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
-        choice_tool = getchar();
-        if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
-          player->point -= 30;
-          player->robot++;
-          printf("你已购买机器娃娃。\n");
-        }
-        else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
-          if (player->point >= 50) {
-            player->point -= 50;
-            player->block++;
-            printf("你已购买路障。\n");
-          } else {
-            printf("您当前剩余的点数为%u，不足以购买路障道具。\n",
-                   player->point);
+      tool_number = player->block + player->robot;
+      if (choice_tool == '2' && getchar() == '\n') { // 选择机器娃娃
+        player->point -= 30;
+        player->robot++;
+        tool_number++;
+        printf("你已购买机器娃娃。\n");
+      }
+      else if (choice_tool == '1' && getchar() == '\n') { // 选择路障
+        if (player->point >= 50) {
+          player->point -= 50;
+          player->block++;
+          tool_number++;
+          printf("你已购买路障。\n");
+        } else {
+            printf("您当前剩余的点数为%u，不足以购买路障道具。\n", player->point);
           }
-        }else { // 输入错误
-          printf("输入错误\n");
-          while ((choice_tool = getchar()) != '\n' && choice_tool != EOF);
-        }
+      }else { // 输入错误
+        printf("输入错误\n");
+        while ((choice_tool = getchar()) != '\n' && choice_tool != EOF);
       }
       if (player->point < 30)
       {
         printf("您所剩点数不足买任何道具，自动退出。\n");
-        break;
+        return;
+      }
+      else if(tool_number == 10)
+      {
+        printf("您的道具数已达10，不能继续购买，自动退出。\n");
+        return;
+      }
+      else {
+        printf("请选择您所需要的道具：1.路障 2.机器娃娃 F.退出\n");
+        choice_tool = getchar();
       }
     }
     getchar();//去除回车
