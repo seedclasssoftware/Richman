@@ -45,6 +45,7 @@ void gifthouse_event_process(Players *player) {
   switch (choice) {
   case 1:
     player->money += 2000;
+    printf("恭喜获得2000元。\n");
     break;
 
   //case 2:
@@ -52,7 +53,8 @@ void gifthouse_event_process(Players *player) {
   //  break;
 
   case 2:
-    player->point += 5;
+    player->point += 200;
+    printf("恭喜获得200点数。\n");
     break;
 
   default:
