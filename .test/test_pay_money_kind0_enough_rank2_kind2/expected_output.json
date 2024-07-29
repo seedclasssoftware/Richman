@@ -7,6 +7,7 @@
 	"players":	[ {
 			"alive":	0,
 			"money":	0,
+			"point":	0,
 			"number":	1,
 			"tool1":	0,
 			"tool2":	0,
@@ -18,7 +19,7 @@
 			"decontinue":	0,
 			"position":	29,
 			"properties":	[]
-		},{
+		}, {
 			"alive":	1,
 			"money":	0,
 			"point":	0,
@@ -32,7 +33,7 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-			"properties":	[[29,2]]
+			"properties":	[[2,2]]
 		}, {
 			"alive":	1,
 			"money":	0,
