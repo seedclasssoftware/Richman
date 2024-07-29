@@ -13,11 +13,11 @@
 			"tool2":	0,
 			"tool3":	0,
 			"buff":	1,
-			"continue":	2,
+			"continue":	1,
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-			"position":	33,
+			"position":	0,
 			"properties":	[]
 		}, {
 			"alive":	1,
