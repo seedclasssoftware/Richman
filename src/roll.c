@@ -146,7 +146,7 @@ void eventJudge(pPlayers now_user) {
     }
     
     case 'P': {
-      printf("来到了医院，休息一下~\n");
+      printf("来到了公园，小憩一下喵~\n");
       break;
     }
     case '$': {
