@@ -18,22 +18,4 @@ cmake .. -G "Ninja" ^
 
 cmake --build . --config Debug
 
-cd ../out
-
-@REM echo ============Running MyProject.exe=============
-
-@REM .\MyProject
-
-@REM echo ============Running MyProject.exe with argument=============
-
-@REM .\MyProject ".res/users.json"
-
-echo ============test MyProject.exe with parallel 10=============
-
-pause
-
-cd ../build
-
-ctest --parallel 10
-
 cd ..

@@ -5,49 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) 管道启动",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "输入程序名称，例如 ${workspaceFolder}/a.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
-                "pipeProgram": "<管道程序的完整路径，如 plink.exe>",
-                "pipeArgs": [],
-                "pipeCwd": ""
-            },
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "为 gdb 启用整齐打印",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "将反汇编风格设置为 Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "(gdb) 启动/.test/test_mine_64",
+            "name": "(gdb) 启动test",//配置名称,调试测试集
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/out/MyProject.exe",
             "args": [
-                "user.json"
+                "user.json",
+                "<",
+                "input.txt"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/.test/test_earth_up_rank_1_kind0_buy",
+            "cwd": "${workspaceFolder}/.test/test_mine_64",//工作目录,测试集目录
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",//gdb路径,可以使用Get-Command gdb查看
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
@@ -72,7 +44,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",//gdb路径,可以使用Get-Command gdb查看
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
