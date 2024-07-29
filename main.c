@@ -103,9 +103,11 @@ int main(int argc, char const *argv[], char const *envp[]) {
     god_init(all_players);
   }
   while (1) {
+    void changedisplay();
     map_print(&map);
     god_time(&map, players, 4);
     wait_for_input();
+    void changedisplay();
   }
   return 0;
 }
