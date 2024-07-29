@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 // 财神爷出现倒计时
 int god_countdown = 0;
 int god_position = -1;
@@ -23,10 +22,11 @@ void god_appear(Map *map) {
   }
   map->cells[god_position].show_char = 'F';
   map->cells[god_position].has_tool = 3;
+  // 打印白色转义符
+  printf("\033[0m");
   printf("财神爷出现在位置 %d\n", god_position);
 }
-void god_init(int player_count)
-{ // 初始化财神爷出现的倒计时
+void god_init(int player_count) { // 初始化财神爷出现的倒计时
   srand((unsigned)time(NULL));
   god_countdown = (rand() % 11) + 10;
   god_countdown = god_countdown * player_count;
@@ -44,6 +44,8 @@ void god_time(Map *map, Players players[], int player_count) {
 
   if (god_countdown > 0) {
     god_countdown--;
+    // 打印白色转义符
+    printf("\033[0m");
     printf("距离财神爷出现还有 %d 轮\n", god_countdown / all_players);
     if (god_countdown == 0) {
       god_appear(map);
