@@ -101,6 +101,15 @@ void change_position(pPlayers now_user, int steps) {
       flag = 1;
       break;
     }
+    else if(tool==3){
+    printf("恭喜你！财神附身，租金全免！\n");
+    now_user->god=5;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
+
+  } 
   }
   if (flag == 0) {
     now_user->position += steps;
@@ -160,22 +169,11 @@ void eventJudge(pPlayers now_user) {
     }
     }
   }
-  else {
-    if(has_tool==3){
-    printf("恭喜你！财神附身，租金全免！\n");
-    now_user->god=5;
-      change_show(now_user);
-      map.cells[now_user->position].show_char =
-          temp[now_user->position][3] ? temp[now_user->position][3]
-                                      : map.cells[now_user->position].init_char;
-                                      
-  } 
-  if (owner == 0) {
+  else if (kind!=4&&owner == 0) {
       buy_earth(now_user, &map);
-    } else if (owner == now_user->number) {
+    } else if (kind!=4&&owner == now_user->number) {
       earth_up(now_user, &map.cells[(*now_user).position]);
     } else {
       pay_money(players, &map.cells[(*now_user).position], now_user, &map);
     }
-  }
 }
