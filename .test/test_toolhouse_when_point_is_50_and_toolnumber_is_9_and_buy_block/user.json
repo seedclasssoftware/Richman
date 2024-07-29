@@ -2,37 +2,14 @@
 	"MAP":	{
 		"tool":	[]
 	},
-<<<<<<<< HEAD:.test/test_roll_2/expected_output.json
-	"now_user":	"3",
-	"users":	"123",
-	"players":	[{
-			"number":	1,
-			"money":	1000,
-			"point":	0,
-			"tool1":	0,
-			"tool2":	0,
-			"tool3":	0,
-			"buff":	0,
-			"continue":	0,
-			"debuff0":	0,
-			"debuff1":	0,
-			"decontinue":	0,
-			"position":	28,
-========
 	"users":	"12",
 	"now_user":	"1",
 	"players":	[{
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
 			"alive":	1,
 			"money":	1000,
-<<<<<<<< HEAD:.test/test_roll_2/expected_output.json
-			"point":	0,
-			"tool1":	0,
-========
 			"point":	50,
 			"number":	1,
 			"tool1":	9,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
 			"tool2":	0,
 			"tool3":	0,
 			"buff":	0,
@@ -41,18 +18,10 @@
 			"debuff1":	0,
 			"decontinue":	0,
 			"position":	0,
-<<<<<<<< HEAD:.test/test_roll_2/expected_output.json
-			"alive":	1,
-			"properties":	[]
-		}, {
-			"number":	3,
-			"money":	0,
-========
 			"properties":	[]
 		}, {
 			"alive":	1,
 			"money":	1000,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
 			"point":	0,
 			"number":	2,
 			"tool1":	0,
@@ -93,12 +62,7 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-<<<<<<<< HEAD:.test/test_roll_2/expected_output.json
-			"position":	1,
-			"alive":	1,
-========
 			"position":	0,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_toolhouse_when_point_is_50_and_toolnumber_is_9_and_buy_block/user.json
 			"properties":	[]
 		}]
 }

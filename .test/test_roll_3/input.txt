@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-Block 10
-=======
 step 3
->>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 Dump

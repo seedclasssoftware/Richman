@@ -7,11 +7,11 @@
 	"players":	[{
 			"alive":	1,
 			"money":	1000,
-			"point":	50,
+			"point":	49,
 			"number":	1,
 			"tool1":	0,
 			"tool2":	0,
-			"tool3":	9,
+			"tool3":	0,
 			"buff":	0,
 			"continue":	0,
 			"debuff0":	0,
