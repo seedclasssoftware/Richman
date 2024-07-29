@@ -25,12 +25,18 @@
  * 
  */
 
+#include "god_appear.h"
 #include "map.h"
-#include "god_appar.h"
+#include "players.h"
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
-void god_appar(Map *map)
+//财神爷出现倒计时
+int god_countdown = 0;
+int god_position = -1;
+
+void god_appear(Map *map)
 {
     srand((unsigned)time(NULL));
     int god_pos = rand() % 70;
@@ -41,4 +47,36 @@ void god_appar(Map *map)
         god_pos = rand() % 70;
     }
     map->cells[god_pos].show_char = 'F';
+    printf("财神爷出现在位置 %d\n",god_position);
+}
+
+void god_time(Map *map)
+{
+    if (god_countdown > 0) {
+        god_countdown--;
+        printf("距离财神爷出现还有 %d 轮\n", god_countdown);
+        if (god_countdown == 0) {
+            god_appear(map);
+        }
+    } else if (god_position != -1) {
+        for (int i = 0; i < 4; i++) {
+            if (players[i] .isPlaying && players[i]. position == god_position) {
+                players[i] .god = 1;
+                map->cells[god_position].show_char = ' ';
+                god_position = -1;
+                printf("%s 捡到了财神爷\n", players[i] . name);
+                break;
+            }
+        }
+        static int god_timer = 5;
+        if (god_position != -1) {
+            god_timer--;
+            if (god_timer == 0) {
+                map->cells[god_position].show_char = map->cells[god_position].init_char;
+                printf("财神爷消失了\n");
+                god_position = -1;
+                god_timer = 5;
+            }
+        }
+    }
 }

@@ -29,7 +29,12 @@
 #define GOD_APPAR_H
 
 #include "map.h"
+#include "players.h"
 
-void god_appar(Map *map);
+extern int god_countdown;
+extern int god_position;
+
+void god_appear(Map *map);
+void god_time(Map *map);
 
 #endif

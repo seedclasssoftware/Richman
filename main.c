@@ -41,6 +41,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
+#include <time.h>
+#include <stdlib.h>
+#include "god_appear.h"
 
 Map map;
 
@@ -49,6 +52,8 @@ Players players[4];
 pPlayers now_user;
 
 extern char temp[70][5];
+
+
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -71,6 +76,10 @@ int main(int argc, char const *argv[], char const *envp[]) {
       }
     }
     map_init(&map);
+    
+    //初始化财神爷出现的倒计时
+    srand((unsigned)time(NULL));
+    god_countdown = (rand() % 11) + 10;
 
   } else { /// 有参数,将第一个参数作为json文件地址(绝对路径或者相对路径)
     map_init(&map);
@@ -106,6 +115,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
 
   while (1) {
     map_print(&map);
+    god_time(&map);
     wait_for_input();
   }
   return 0;
