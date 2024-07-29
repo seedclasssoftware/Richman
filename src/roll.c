@@ -121,6 +121,7 @@ void eventJudge(pPlayers now_user) {
   int kind = map.cells[now_user->position].kind;
   int rank = map.cells[now_user->position].rank;
   int owner = map.cells[now_user->position].owner;
+  int has_tool= map.cells[now_user->position].has_tool;
   int init_char = map.cells[now_user->position].init_char;
   if (kind == 4) {
     switch (init_char) {
@@ -154,9 +155,12 @@ void eventJudge(pPlayers now_user) {
       map.cells[now_user->position].show_char =
           temp[now_user->position][3] ? temp[now_user->position][3]
                                       : map.cells[now_user->position].init_char;
+                                      break;
     }
     }
-  }else if(kind==3){
+  }
+  else {
+    if(has_tool==3){
     printf("恭喜你！财神附身，租金全免！\n");
     now_user->god=5;
       change_show(now_user);
@@ -164,8 +168,7 @@ void eventJudge(pPlayers now_user) {
           temp[now_user->position][3] ? temp[now_user->position][3]
                                       : map.cells[now_user->position].init_char;
   } 
-  else {
-    if (owner == 0) {
+  if (owner == 0) {
       buy_earth(now_user, &map);
     } else if (owner == now_user->number) {
       earth_up(now_user, &map.cells[(*now_user).position]);
