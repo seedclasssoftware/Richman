@@ -33,7 +33,7 @@ void earth_up(pPlayers player, Cell *cells) {
           char if_earth_up;
           if_earth_up = getchar();
           // 选择升级地产
-          if (if_earth_up == 'y' && getchar() == '\n') {
+          if ((if_earth_up == 'y' || if_earth_up == 'Y')&& getchar() == '\n') {
             if ((*cells).rank == 1) {
               (*player).money -= 200;
               (*cells).kind += 1;
@@ -52,7 +52,7 @@ void earth_up(pPlayers player, Cell *cells) {
             }
           }
           // 选择不升级地产
-          else if (if_earth_up == 'n' && getchar() == '\n') {
+          else if ((if_earth_up == 'n' || if_earth_up == 'N')&& getchar() == '\n') {
             return;
           }
           // 输入错误
