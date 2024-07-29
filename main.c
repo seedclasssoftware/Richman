@@ -133,7 +133,8 @@ int main(int argc, char const *argv[], char const *envp[]) {
             if (map.cells[i].owner == 0) {
                 map.cells[i].show_char = map.cells[i].init_char;
             } else {
-                map.cells[i].show_char = map.cells[i].init_char + map.cells[i].kind;
+                map.cells[i].show_char =  map.cells[i].kind == 4 ? map.cells[i].init_char : map.cells[i].init_char + map.cells[i].kind;
+                //map.cells[i].init_char + map.cells[i].kind;
             }
         }
     }
