@@ -29,15 +29,14 @@
 #include "players.h"
 #include "query.h"
 #include "roll.h"
-#include "useprops.h"
 #include "sell_house.h"
+#include "useprops.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
 
 extern pPlayers now_user;
 extern Map map;
@@ -61,33 +60,16 @@ void print_working_directory() {
   }
 }
 
-// 切换玩家
 void change_player() {
-// 切换到下一个玩家
-flag:
-  // printf("切换到玩家%d\n", now_user->number);
-  // printPlayers(players, 4);
-  if (((players[(now_user->number) % 4].hospital == 0) &&
-       (players[(now_user->number) % 4].prison == 0) &&
-       (players[(now_user->number) % 4].isPlaying == 1) &&
-       (players[(now_user->number) % 4].isBankrupt == 0)) == 1) {
-    now_user = &(players[(now_user->number) % 4]);
-    // printf("成功切换到玩家%d\n", now_user->number);
-  } else {
-    if ((players[(now_user->number) % 4].hospital != 0 &&
-         players[(now_user->number) % 4].prison != 0) == 1 &&
-        players[(now_user->number) % 4].isPlaying == 1) {
-      printf("玩家%d处于监狱或医院，跳过该玩家\n", now_user->number);
-      if (players[(now_user->number) % 4].hospital != 0) {
-        players[(now_user->number) % 4].hospital--;
-      }
-      if (players[(now_user->number) % 4].prison != 0)
-        players[(now_user->number) % 4].prison--;
-    }
-    now_user = &(players[(now_user->number) % 4]);
-    goto flag;
-  }
+    do {
+        // 切换到下一个玩家
+        now_user = &(players[now_user->next]);
+    } while (!now_user->isPlaying || now_user->isBankrupt);
+
+    // 切换成功后，可以输出当前玩家的信息
+    printf("切换到玩家%d\n", now_user->number);
 }
+
 // 处理 Step 命令
 void handle_step_command(const char *command) {
   // 检查 command 是否为 NULL 或长度不足

@@ -2,6 +2,7 @@ import subprocess
 import json
 import os
 import sys
+from deepdiff import DeepDiff
 
 # 设置 PYTHONIOENCODING 环境变量为 utf-8
 os.environ['PYTHONIOENCODING'] = 'utf-8'
@@ -85,6 +86,8 @@ def run_test(test_dir):
     # 比较 JSON 文件
     # with open(os.path.join(test_output_dir, "user.inputjson"), "r", encoding="utf-8") as actual_json_file:
     # 解析并比较 JSON 文件
+    # 比较 JSON 文件
+    # 比较 JSON 文件
     try:
         with open(output_json_path, "r", encoding="utf-8") as actual_json_file:
             actual_json = json.load(actual_json_file)
@@ -92,10 +95,13 @@ def run_test(test_dir):
         with open(expected_output_path, "r", encoding="utf-8") as expected_json_file:
             expected_json = json.load(expected_json_file)
 
-        if actual_json != expected_json:
+        diff = DeepDiff(expected_json, actual_json, ignore_order=True)
+
+        if diff:
             print(f"JSON Output in {test_dir} does not match expected output.")
-            print(f"Expected: {json.dumps(expected_json, indent=4)}")
-            print(f"Actual: {json.dumps(actual_json, indent=4)}")
+            # 将 PrettyOrderedSet 转换为列表以便 JSON 序列化
+            diff_serializable = json.loads(json.dumps(diff, default=lambda o: list(o) if isinstance(o, set) else str(o)))
+            print(f"Differences: {json.dumps(diff_serializable, indent=4)}")
             return False
 
         print(f"Test in {test_dir} Passed.")

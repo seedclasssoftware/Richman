@@ -89,6 +89,17 @@ enable_testing()
 # 查找 Python3
 find_package(Python3 REQUIRED)
 
+# 输出 Python3 的信息
+message(STATUS "Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
+
+# 安装 deepdiff 包
+execute_process(
+    COMMAND ${Python3_EXECUTABLE} -m pip install deepdiff
+    RESULT_VARIABLE _install_result
+    OUTPUT_VARIABLE _install_output
+    ERROR_VARIABLE _install_error
+)
+
 # 获取所有测试目录
 file(GLOB TEST_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/.test/*)
 
