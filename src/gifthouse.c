@@ -30,11 +30,11 @@
 void gifthouse_event_process(Players *player) {
   printf("欢迎光临礼品屋！\n");
 
-  printf("您有如下三个选项:\n");
-  printf("1. 2000 money\n");
-  printf("2. 200 points\n");
-  printf("3. 1 godBuff\n");
-  printf("请输入您的选项(1-3): ");
+  printf("您有如下2个选项:\n");
+  printf("1. 2000 马内\n");
+  printf("2. 200 点数\n");
+  //printf("3. 1 godBuff\n");
+  printf("请输入您的选项(1-2): ");
 
   int choice;
   // 读入用户的选择，并清除缓冲区
@@ -47,14 +47,19 @@ void gifthouse_event_process(Players *player) {
     player->money += 2000;
     break;
 
+  //case 2:
+  //  player->point += 200;
+  //  break;
+
   case 2:
-    player->point += 200;
+    player->point += 5;
     break;
 
-  case 3:
-    player->god = 5;
+  default:
+    printf("输入错误！视为放弃礼品\n");
+    return;
     break;
   }
+    printf("You have got your gift!\n");
+  }
 
-  printf("You have got your gift!\n");
-}
