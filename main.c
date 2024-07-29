@@ -53,6 +53,8 @@ pPlayers now_user;
 
 extern char temp[70][5];
 
+
+
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
@@ -103,11 +105,25 @@ int main(int argc, char const *argv[], char const *envp[]) {
     god_init(all_players);
   }
   while (1) {
-    void changedisplay();
+  for (int i = 0; i < 70; i++) {
+    // 如果当前位置没有玩家且没有道具, 则显示地图上的字符
+    if (players[0].position != i && players[1].position != i &&
+        players[2].position != i && players[3].position != i &&
+        map.cells[i].has_tool == 0 && map.cells[i].owner == 0) {
+      map.cells[i].show_char = map.cells[i].init_char;
+    }
+  }
     map_print(&map);
     god_time(&map, players, 4);
     wait_for_input();
-    void changedisplay();
-  }
+  for (int i = 0; i < 70; i++) {
+    // 如果当前位置没有玩家且没有道具, 则显示地图上的字符
+    if (players[0].position != i && players[1].position != i &&
+        players[2].position != i && players[3].position != i &&
+        map.cells[i].has_tool == 0 && map.cells[i].owner == 0) {
+      map.cells[i].show_char = map.cells[i].init_char;
+    }
+  }}
   return 0;
 }
+

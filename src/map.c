@@ -633,19 +633,3 @@ void map_print(Map *map) {
   }
   printf("\n");
 }
-
-#include "players.h"
-/**
- * @brief  更新地图显示
- *
- */
-void changedisplay() {
-  for (int i = 0; i < 70; i++) {
-    // 如果当前位置没有玩家且没有道具, 则显示地图上的字符
-    if (players[0].position != i && players[1].position != i &&
-        players[2].position != i && players[3].position != i &&
-        map.cells[i].has_tool == 0) {
-      map.cells[i].show_char = map.cells[i].init_char;
-    }
-  }
-}
