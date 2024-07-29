@@ -1,6 +1,6 @@
 /**
- * @file god_appar.h
- * @author 王航天 
+ * @file god_appar.c
+ * @author 王航天
  * @brief 
  * @version 0.1
  * @date 2024-07-29
@@ -25,11 +25,20 @@
  * 
  */
 
-#ifndef GOD_APPAR_H
-#define GOD_APPAR_H
-
 #include "map.h"
+#include "god_appar.h"
+#include <stdlib.h>
+#include <time.h>
 
-void god_appar(Map *map);
-
-#endif
+void god_appar(Map *map)
+{
+    srand((unsigned)time(NULL));
+    int god_pos = rand() % 70;
+    while ((map->cells[god_pos].kind == 4) || (map->cells[god_pos].has_tool != 0) || (map->cells[god_pos].show_char == 'Q') 
+    || (map->cells[god_pos].show_char == 'A') || (map->cells[god_pos].show_char == 'S')|| (map->cells[god_pos].show_char == 'J'))
+    {
+        srand((unsigned)time(NULL));
+        god_pos = rand() % 70;
+    }
+    map->cells[god_pos].show_char = 'F';
+}

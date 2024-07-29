@@ -29,7 +29,7 @@ set(SOURCES
     src/query.c
     src/init_play.c
     src/sell_house.c
-    src/god_appar.c
+    src/god_appear.c
     src/clean_body.c
 )
 
@@ -59,7 +59,7 @@ set(HEADERS
     include/query.h
     include/init_play.h
     include/sell_house.h
-    include/god_appar.h
+    include/god_appear.h
     include/clean_body.h
 )
 
@@ -90,6 +90,17 @@ enable_testing()
 
 # 查找 Python3
 find_package(Python3 REQUIRED)
+
+# 输出 Python3 的信息
+message(STATUS "Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
+
+# 安装 deepdiff 包
+execute_process(
+    COMMAND ${Python3_EXECUTABLE} -m pip install deepdiff
+    RESULT_VARIABLE _install_result
+    OUTPUT_VARIABLE _install_output
+    ERROR_VARIABLE _install_error
+)
 
 # 获取所有测试目录
 file(GLOB TEST_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/.test/*)

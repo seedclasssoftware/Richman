@@ -6,11 +6,7 @@
 	"now_user":	"2",
 	"players":	[{
 			"alive":	1,
-<<<<<<<< HEAD:.test/test_roll_3/expected_output.json
-			"money":	0,
-========
 			"money":	200,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_earth_up_rank_1_kind0_not_buy/expected_output.json
 			"point":	0,
 			"number":	1,
 			"tool1":	0,
@@ -21,13 +17,8 @@
 			"debuff0":	0,
 			"debuff1":	0,
 			"decontinue":	0,
-<<<<<<<< HEAD:.test/test_roll_3/expected_output.json
-			"position":	38,
-			"properties":	[]
-========
 			"position":	1,
 			"properties":	[[1,0]]
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_earth_up_rank_1_kind0_not_buy/expected_output.json
 		}, {
 			"alive":	1,
 			"money":	0,
@@ -43,45 +34,5 @@
 			"decontinue":	0,
 			"position":	0,
 			"properties":	[]
-<<<<<<< HEAD
-		}, {
-<<<<<<<< HEAD:.test/test_roll_3/expected_output.json
-			"alive":	1,
-			"money":	0,
-			"point":	0,
-			"number":	3,
-========
-			"alive":	0,
-			"money":	0,
-			"point":	0,
-			"number":	0,
-			"tool1":	0,
-			"tool2":	0,
-			"tool3":	0,
-			"buff":	0,
-			"continue":	0,
-			"debuff0":	0,
-			"debuff1":	0,
-			"decontinue":	0,
-			"position":	0,
-			"properties":	[]
-		}, {
-			"alive":	0,
-			"money":	0,
-			"point":	0,
-			"number":	0,
->>>>>>>> 88d419535eefbaf84e67a1f4f82ee96ae78ec5bd:.test/test_earth_up_rank_1_kind0_not_buy/expected_output.json
-			"tool1":	0,
-			"tool2":	0,
-			"tool3":	0,
-			"buff":	0,
-			"continue":	0,
-			"debuff0":	0,
-			"debuff1":	0,
-			"decontinue":	0,
-			"position":	1,
-			"properties":	[]
-=======
->>>>>>> b5865a676641be732d838edab5a9c74dac682ac0
 		}]
 }
