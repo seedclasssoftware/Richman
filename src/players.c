@@ -51,6 +51,8 @@ void initPlayersorder(const char *input) {
         input[(i + 1) % len] - '1'; // '1'对应0, '2'对应1, '3'对应2, '4'对应3
     players[players_index].next = index;
   }
+  extern int start_player;
+  start_player = input[0] - '1';
 }
 
 void initializePlayers(const char *json_data, Players players[],
@@ -343,8 +345,8 @@ char *convertToJson(Players players[], int num_players, Map *map,
   char user_string[5] = "";    // 初始化空字符串
   int current = 0;             // 从第一个玩家开始
   bool processed[4] = {false}; // 记录已经处理过的玩家
-
-  for (int i = 0; i < 4; ++i) {
+  extern int start_player;
+  for (int i = start_player; i < 4; ++i) {
     if (players[i].isPlaying && !processed[i]) {
       int current = i;
       do {
@@ -360,49 +362,105 @@ char *convertToJson(Players players[], int num_players, Map *map,
   }
   cJSON_AddStringToObject(root, "users", user_string);
 
+  for (int i = 0; i < 4; i++) {
+    processed[i] = false;
+  }
+
   // 添加 players
   cJSON *players_array = cJSON_CreateArray();
-  for (int i = 0; i < num_players; i++) {
-    if (i < num_players && i >= 0) {
-      if (players[i].isPlaying) {
-        cJSON *player_json = cJSON_CreateObject();
-        cJSON_AddNumberToObject(player_json, "number", players[i].number);
-        cJSON_AddNumberToObject(player_json, "money", players[i].money);
-        cJSON_AddNumberToObject(player_json, "point", players[i].point);
-        cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
-        cJSON_AddNumberToObject(player_json, "tool2", 0);
-        cJSON_AddNumberToObject(player_json, "tool3", players[i].robot);
-        cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
-        cJSON_AddNumberToObject(player_json, "continue", players[i].god);
-        cJSON_AddNumberToObject(player_json, "debuff0",
-                                !((0) == (players[i].prison)));
-        cJSON_AddNumberToObject(player_json, "debuff1",
-                                !((0) == (players[i].hospital)));
-        cJSON_AddNumberToObject(player_json, "decontinue",
-                                (players[i].prison > players[i].hospital)
-                                    ? players[i].prison
-                                    : players[i].hospital);
-        cJSON_AddNumberToObject(player_json, "position", players[i].position);
-        cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
-        extern Map map;
-        cJSON *properties_array = cJSON_CreateArray();
-        for (int j = 0; j < 70; j++) {
-          if ((map.cells[j].owner - 1) == i) {
-            cJSON *property_item = cJSON_CreateArray();
-            cJSON_AddItemToArray(property_item, cJSON_CreateNumber(j));
-            cJSON_AddItemToArray(property_item,
-                                 cJSON_CreateNumber(map.cells[j].kind == 4
-                                                        ? 0
-                                                        : map.cells[j].kind));
-            cJSON_AddItemToArray(properties_array, property_item);
-          }
-        }
-        cJSON_AddItemToObject(player_json, "properties", properties_array);
 
-        cJSON_AddItemToArray(players_array, player_json);
-      }
+  for (int i = start_player; i < 4; ++i) {
+    if (players[i].isPlaying && !processed[i]) {
+      int current = i;
+      do {
+        if (processed[current]) {
+          break;
+        }
+        if (players[current].isPlaying) {
+          cJSON *player_json = cJSON_CreateObject();
+          cJSON_AddNumberToObject(player_json, "number", players[current].number);
+          cJSON_AddNumberToObject(player_json, "money", players[current].money);
+          cJSON_AddNumberToObject(player_json, "point", players[current].point);
+          cJSON_AddNumberToObject(player_json, "tool1", players[current].block);
+          cJSON_AddNumberToObject(player_json, "tool2", 0);
+          cJSON_AddNumberToObject(player_json, "tool3", players[current].robot);
+          cJSON_AddNumberToObject(player_json, "buff",
+                                  ((0) != (players[current].god)));
+          cJSON_AddNumberToObject(player_json, "continue", players[current].god);
+          cJSON_AddNumberToObject(player_json, "debuff0",
+                                  !((0) == (players[current].prison)));
+          cJSON_AddNumberToObject(player_json, "debuff1",
+                                  !((0) == (players[current].hospital)));
+          cJSON_AddNumberToObject(player_json, "decontinue",
+                                  (players[current].prison > players[current].hospital)
+                                      ? players[current].prison
+                                      : players[current].hospital);
+          cJSON_AddNumberToObject(player_json, "position", players[current].position);
+          cJSON_AddNumberToObject(player_json, "alive", !players[current].isBankrupt);
+          extern Map map;
+          cJSON *properties_array = cJSON_CreateArray();
+          for (int j = 0; j < 70; j++) {
+            if ((map.cells[j].owner - 1) == current) {
+              cJSON *property_item = cJSON_CreateArray();
+              cJSON_AddItemToArray(property_item, cJSON_CreateNumber(j));
+              cJSON_AddItemToArray(property_item,
+                                   cJSON_CreateNumber(map.cells[j].kind == 4
+                                                          ? 0
+                                                          : map.cells[j].kind));
+              cJSON_AddItemToArray(properties_array, property_item);
+            }
+          }
+          cJSON_AddItemToObject(player_json, "properties", properties_array);
+
+          cJSON_AddItemToArray(players_array, player_json);
+        }
+
+        processed[current] = true;       // 标记当前玩家为已处理
+        current = players[current].next; // 移动到下一个玩家
+      } while (current != i);
     }
   }
+  // for (int i = start_player; i < num_players; i++) {
+  //   if (i < num_players && i >= 0) {
+  //     if (players[i].isPlaying) {
+  //       cJSON *player_json = cJSON_CreateObject();
+  //       cJSON_AddNumberToObject(player_json, "number", players[i].number);
+  //       cJSON_AddNumberToObject(player_json, "money", players[i].money);
+  //       cJSON_AddNumberToObject(player_json, "point", players[i].point);
+  //       cJSON_AddNumberToObject(player_json, "tool1", players[i].block);
+  //       cJSON_AddNumberToObject(player_json, "tool2", 0);
+  //       cJSON_AddNumberToObject(player_json, "tool3", players[i].robot);
+  //       cJSON_AddNumberToObject(player_json, "buff", ((0) != (players[i].god)));
+  //       cJSON_AddNumberToObject(player_json, "continue", players[i].god);
+  //       cJSON_AddNumberToObject(player_json, "debuff0",
+  //                               !((0) == (players[i].prison)));
+  //       cJSON_AddNumberToObject(player_json, "debuff1",
+  //                               !((0) == (players[i].hospital)));
+  //       cJSON_AddNumberToObject(player_json, "decontinue",
+  //                               (players[i].prison > players[i].hospital)
+  //                                   ? players[i].prison
+  //                                   : players[i].hospital);
+  //       cJSON_AddNumberToObject(player_json, "position", players[i].position);
+  //       cJSON_AddNumberToObject(player_json, "alive", !players[i].isBankrupt);
+  //       extern Map map;
+  //       cJSON *properties_array = cJSON_CreateArray();
+  //       for (int j = 0; j < 70; j++) {
+  //         if ((map.cells[j].owner - 1) == i) {
+  //           cJSON *property_item = cJSON_CreateArray();
+  //           cJSON_AddItemToArray(property_item, cJSON_CreateNumber(j));
+  //           cJSON_AddItemToArray(property_item,
+  //                                cJSON_CreateNumber(map.cells[j].kind == 4
+  //                                                       ? 0
+  //                                                       : map.cells[j].kind));
+  //           cJSON_AddItemToArray(properties_array, property_item);
+  //         }
+  //       }
+  //       cJSON_AddItemToObject(player_json, "properties", properties_array);
+
+  //       cJSON_AddItemToArray(players_array, player_json);
+  //     }
+  //   }
+  // }
   cJSON_AddItemToObject(root, "players", players_array);
 
   // 转换为字符串

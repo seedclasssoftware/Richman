@@ -53,6 +53,8 @@ pPlayers now_user;
 
 extern char temp[70][5];
 
+int start_player = 0;
+
 int main(int argc, char const *argv[], char const *envp[]) {
 
   SetConsoleOutputCP(
