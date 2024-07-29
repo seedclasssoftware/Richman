@@ -178,8 +178,7 @@ void selectPlayers(uint32_t *initMoney) {
   printf("\n");
   // 根据input初始化next
   initPlayersorder(input);
-
-  // printPlayers(players, 4);
-
-  // system("pause");
+  // 根据input初始化now_user
+  int index = input[0] - '1';
+  now_user = &players[index];
 }
