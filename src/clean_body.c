@@ -34,6 +34,7 @@ extern int temp[70][4];
 void clean_body(Map *map, Players *player)
 {
     printf("%c被抬走了\n", map->cells[player->position].show_char);
-    change_show(player);
-    map->cells[player->position].show_char=temp[player->position][3];
-}
+    change_now(player);
+      map->cells[player->position].show_char =
+      temp[player->position][3] ? temp[now_user->position][3]
+                                  : map->cells[player->position].init_char;}
