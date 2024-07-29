@@ -26,6 +26,7 @@
  */
 
 #include "map.h"
+#include "players.h"
 #include <stdio.h>
 
 void map_init(Map *map) {
@@ -89,18 +90,19 @@ void map_print(Map *map) {
   if (map->cells[0].show_char == 'Q') // 最高优先级，如果钱夫人站在这，显示红色
   {
     printf("\033[31m%c\033[31m", map->cells[0].show_char);
-  }
-
-  else if (map->cells[0].show_char ==
-           'A') // 次优先级，如果阿土伯站在这，显示绿色
+  } else if (map->cells[0].show_char ==
+             'A') // 次优先级，如果阿土伯站在这，显示绿色
   {
     printf("\033[32m%c\033[32m", map->cells[0].show_char);
-  }
-
-  else if (map->cells[0].show_char ==
-           'J') // 最次优先级，如果金贝贝站在这，显示黄色
+  } else if (map->cells[0].show_char ==
+             'J') // 最次优先级，如果金贝贝站在这，显示黄色
   {
     printf("\033[33m%c\033[33m", map->cells[0].show_char);
+  } else if (map->cells[0].show_char == 'S' &&
+             players[2].position == 0 && players[2].isPlaying == 1
+             ) // 再次优先级，如果孙小美站在这，显示蓝色
+  {
+    printf("\033[34m%c\033[34m", map->cells[0].show_char);
   } else {
     printf("\033[0m%c\033[0m", map->cells[0].show_char);
   }

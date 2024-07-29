@@ -31,7 +31,7 @@ void gifthouse_event_process(Players *player) {
   printf("欢迎光临礼品屋！\n");
 
   printf("您有如下2个选项:\n");
-  printf("1. 2000 马内\n");
+  printf("1. 2000 元\n");
   printf("2. 200 点数\n");
   //printf("3. 1 godBuff\n");
   printf("请输入您的选项(1-2): ");
@@ -62,6 +62,6 @@ void gifthouse_event_process(Players *player) {
     return;
     break;
   }
-    printf("You have got your gift!\n");
+    printf("礼物已到账!\n");
   }
 
