@@ -38,7 +38,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-
 extern pPlayers now_user;
 extern Map map;
 // 退出游戏的实现
@@ -89,7 +88,7 @@ void handle_step_command(const char *command) {
   if ((strncmp(command, "Step ", 5) == 0 ||
        strncmp(command, "step ", 5) == 0)) {
     // 检查空格后是否跟随数字
-    char *num_str = command + 5;
+    char *num_str = (char *)(command + 5);
     char *endptr;
     int n = strtol(num_str, &endptr, 10); // 转换字符串为整数
 
