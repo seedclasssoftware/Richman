@@ -2,6 +2,7 @@ import subprocess
 import json
 import os
 import sys
+from deepdiff import DeepDiff
 
 # 设置 PYTHONIOENCODING 环境变量为 utf-8
 os.environ['PYTHONIOENCODING'] = 'utf-8'
@@ -29,16 +30,18 @@ def run_test(test_dir):
 
     actual_output_path = os.path.join(test_output_dir, "output.txt")
     actual_error_path = os.path.join(test_output_dir, "error.txt")
+
     # 输出路径output与error.txt
     print(f"Output path: {actual_output_path}")
     print(f"Error path: {actual_error_path}")
 
+
     # 删除旧的 output.txt 和 output.json
     if os.path.exists(actual_output_path):
         os.remove(actual_output_path)
-    if os.path.exists(actual_output_json_path):
-        os.remove(actual_output_json_path)
-
+    if os.path.exists(output_json_path):
+        os.remove(output_json_path)
+    
     # 使用 subprocess 重定向 stdout 和 stderr
     executable_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out', 'MyProject.exe')
     print(f"Executable path: {executable_path}")
@@ -57,31 +60,48 @@ def run_test(test_dir):
             stderr=error_file,
             text=True,
         )
-        process.communicate(input=input_data)
+        try:
+            process.communicate(input=input_data, timeout=3)
+        except subprocess.TimeoutExpired:
+            print(f"Process timed out after 15 seconds.")
+            process.terminate()
+            return False
 
+            
     # # 比较实际输出和预期输出
     # with open(actual_output_path, "r", encoding="utf-8") as output_file:
     #     actual_output = output_file.read()
 
-    # with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
-    #     expected_output = expected_output_file.read()
+    with open(expected_output_txt_path, "r", encoding="utf-8") as expected_output_file:
+        expected_output = expected_output_file.read()
 
-    # if actual_output.strip() != expected_output.strip():
-    #     print(f"Test in {test_dir} Failed.")
-    #     return False
-
-    # 比较 JSON 文件
-    # with open(os.path.join(test_output_dir, "user.inputjson"), "r", encoding="utf-8") as actual_json_file:
-    with open(output_json_path, "r", encoding="utf-8") as actual_json_file:
-        actual_json = json.load(actual_json_file)
-
-    with open(expected_output_path, "r", encoding="utf-8") as expected_json_file:
-        expected_json = json.load(expected_json_file)
-
-    if actual_json != expected_json:
-        print(f"JSON Output in {test_dir} does not match expected output.")
+    if actual_output.strip() != expected_output.strip():
+        print(f"Test in {test_dir} Failed.")
         return False
 
+    # 比较实际输出和预期输出json
+    try:
+        with open(output_json_path, "r", encoding="utf-8") as actual_json_file:
+            actual_json = json.load(actual_json_file)
+
+        with open(expected_output_path, "r", encoding="utf-8") as expected_json_file:
+            expected_json = json.load(expected_json_file)
+
+        diff = DeepDiff(expected_json, actual_json, ignore_order=True)
+
+        if diff:
+            print(f"JSON Output in {test_dir} does not match expected output.")
+            # 将 PrettyOrderedSet 转换为列表以便 JSON 序列化
+            diff_serializable = json.loads(json.dumps(diff, default=lambda o: list(o) if isinstance(o, set) else str(o)))
+            print(f"Differences: {json.dumps(diff_serializable, indent=4)}")
+            return False
+
+        print(f"Test in {test_dir} Passed.")
+        return True
+    except Exception as e:
+        print(f"Error reading or parsing JSON files: {e}")
+        return False
+        
     print(f"Test in {test_dir} Passed.")
     return True
 
