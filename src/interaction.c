@@ -146,7 +146,7 @@ void handle_command(const char *command) {
   } else if (strcmp(command, "Quit") == 0 || strcmp(command, "quit") == 0) {
     exit_game();
   } else if (strcmp(command, "Dump") == 0 || strcmp(command, "dump") == 0) {
-    printPlayers(players, 4);
+    // printPlayers(players, 4);
     printf("Dumping game data...\n");
     char *json = convertToJson(players, 4, &map, now_user);
     // 创建output.json
