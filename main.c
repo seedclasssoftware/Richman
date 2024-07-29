@@ -95,7 +95,7 @@ int main(int argc, char const *argv[], char const *envp[]) {
   }
   while (1) {
     map_print(&map);
-    god_time(&map);
+    god_time( &map,  players,  4);
     wait_for_input();
   }
   return 0;

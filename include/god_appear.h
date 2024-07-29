@@ -30,3 +30,6 @@
 #include <time.h>
 
 void god_appear(Map *map);
+void god_time(Map *map, Players players[], int player_count);
+
+#endif
