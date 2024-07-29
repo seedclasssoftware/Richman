@@ -29,7 +29,7 @@
 #define GOD_APPAR_H
 
 #include "map.h"
-#include "players.h"
+//#include "players.h"
 
 extern int god_countdown;
 extern int god_position;
