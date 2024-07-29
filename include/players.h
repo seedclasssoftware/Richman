@@ -73,7 +73,7 @@ typedef struct Players {
   uint8_t magic;
   uint8_t position;
   /// 是否参与游戏
-  _Bool isPlaying;   
+  _Bool isPlaying;
   /// 是否破产
   _Bool isBankrupt;
   char cap;
@@ -127,13 +127,12 @@ void print_from_file();
 char *convertToJson(Players players[], int num_players, Map *map,
                     pPlayers now_user);
 
-
 /**
  * @brief 初始化玩家顺序
- * 
+ *
  * @param input 输入
  */
-void initPlayersorder(const char* input);
+void initPlayersorder(const char *input);
 
 extern pPlayers now_user;
 extern Players players[4];
