@@ -18,7 +18,7 @@
 			"decontinue":	0,
 			"position":	36,
 			"alive":	1,
-			"properties":	[[36, -1]]
+			"properties":	[[36, 0]]
 		}, {
 			"number":	2,
 			"money":	1000,
