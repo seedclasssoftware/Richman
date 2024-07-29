@@ -110,7 +110,8 @@ void useblock(Players *player, Map *map, int place_position) {
     //printf("please select a position to place your block:-10~10\n");
     while (place_position > 10 || place_position < -10) {
       printf("非法的位置输入！\n");
-      scanf("%d", &place_position);
+      return;
+      //scanf("%d", &place_position);
     }
     place_position = (player->position + place_position) > 0
                          ? (player->position + place_position) % 69
@@ -144,7 +145,8 @@ void usebomb(Players *player, Map *map, int place_position) {
     //printf("please select a position to place your bomb:-10~10\n");
     while (place_position > 10 || place_position < -10) {
       printf("非法的位置输入！\n");
-      scanf("%d", &place_position);
+      return;
+      //scanf("%d", &place_position);
     }
     place_position = (player->position + place_position) > 0
                          ? (player->position + place_position) % 69
