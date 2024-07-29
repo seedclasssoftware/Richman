@@ -61,7 +61,7 @@ enum Players_Name {
  */
 typedef struct Players {
   char *name;
-  uint32_t money;
+  int money;
   uint32_t point;
   uint8_t number;
   uint8_t block;
