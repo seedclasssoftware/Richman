@@ -71,6 +71,7 @@ void change_player() {
     map.cells[now_user->position].show_char=now_user->cap;
     if(now_user->god>0){
         now_user->god--;
+        printf("财神爷上身，剩余回合数：%d\n",now_user->god);
     }
 }
 
