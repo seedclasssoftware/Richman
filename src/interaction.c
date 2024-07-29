@@ -68,6 +68,7 @@ void change_player() {
 
     // 切换成功后，可以输出当前玩家的信息
     printf("切换到玩家%d\n", now_user->number);
+    map.cells[now_user->position].show_char=now_user->cap;
 }
 
 // 处理 Step 命令
