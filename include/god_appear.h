@@ -24,7 +24,8 @@
  *   under the License.
  * 
  */
-
+#ifndef GOD_APPEAR_H
+#define GOD_APPEAR_H
 #include "map.h"
 #include "players.h"
 
