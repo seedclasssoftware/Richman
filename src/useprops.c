@@ -131,6 +131,7 @@ void userobot(Players *player, Map *map) {
   if (player->robot > 0) {
     for (int i = 1; i < 11; i++) {
       map->cells[i + player->position].has_tool = 0;
+      map->cells[i + player->position].show_char = map->cells[i + player->position].init_char;
     }
     printf("你使用了机器人！\n");
     player->robot--;

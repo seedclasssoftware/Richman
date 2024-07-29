@@ -100,7 +100,7 @@ void change_position(pPlayers now_user, int steps) {
                                       : map.cells[now_user->position].init_char;
       flag = 1;
       break;
-  }
+    }
   }
   if (flag == 0) {
     now_user->position += steps;
@@ -126,21 +126,45 @@ void eventJudge(pPlayers now_user) {
     switch (init_char) {
     case 'T': {
       buy_tool(now_user);
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
       break;
     }
     case 'G': {
       gifthouse_event_process(now_user);
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
       break;
     }
     case 'P': {
       printf("来到了公园，小憩一下喵~\n");
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
       break;
     }
     case '$': {
       mining_for_point(now_user, map.cells, now_user->position);
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
     }
     }
-  } else {
+  }else if(kind==3){
+    printf("恭喜你！财神附身，租金全免！\n");
+    now_user->god=5;
+      change_show(now_user);
+      map.cells[now_user->position].show_char =
+          temp[now_user->position][3] ? temp[now_user->position][3]
+                                      : map.cells[now_user->position].init_char;
+  } 
+  else {
     if (owner == 0) {
       buy_earth(now_user, &map);
     } else if (owner == now_user->number) {
