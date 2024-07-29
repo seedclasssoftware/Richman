@@ -46,7 +46,7 @@ void god_time(Map *map, Players players[], int player_count) {
     god_countdown--;
     // 打印白色转义符
     printf("\033[0m");
-    printf("距离财神爷出现还有 %d 轮\n", god_countdown / all_players);
+    printf("距离财神爷出现还有 %d 轮\n", (god_countdown / all_players) + 1);
     if (god_countdown == 0) {
       god_appear(map);
     }
