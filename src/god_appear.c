@@ -22,10 +22,10 @@ void god_appear(Map *map) {
     god_position = rand() % 70;
   }
    for (int i = 0; i < 3; i++) {
-    temp[now_user->position][i] = temp[now_user->position][i + 1];
+    temp[god_position][i] = temp[god_position][i + 1];
   }
-  temp[now_user->position][3] = 'F';
-  map->cells[now_user->position].show_char='F';
+  temp[god_position][3] = 'F';
+  map->cells[god_position].show_char='F';
   map->cells[god_position].has_tool = 3;
   // 打印白色转义符
   printf("\033[0m");
