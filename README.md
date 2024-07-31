@@ -1,6 +1,6 @@
 # MyProject
 
-这是一个使用 C 语言开发的示例工程，适用于 Windows 环境,采用 CMake 生成构建工程,conan管理依赖项,VSCode编辑器开发,ninja构建工程.
+这是一个使用 C 语言开发的大富翁示例工程，适用于 Windows 环境,采用 CMake 生成构建工程,conan管理依赖项,VSCode编辑器开发,ninja构建工程.
 
 ## 目录结构
 
