@@ -1,6 +1,6 @@
 # MyProject
 
-这是一个使用 KMP 算法的 C 语言示例工程，适用于 Windows 环境,采用 CMake 生成构建工程,conan管理依赖项,VSCode编辑器开发,ninja构建工程.
+这是一个使用 C 语言开发的示例工程，适用于 Windows 环境,采用 CMake 生成构建工程,conan管理依赖项,VSCode编辑器开发,ninja构建工程.
 
 ## 目录结构
 
@@ -191,6 +191,7 @@ cd out
 - conan_profile_x64：Conan 依赖项配置文件。
 - README.md：项目说明文件。
 - C project.code-workspace：VSCode 工作区配置文件。
+- doc/：文档目录。内含燃尽图与状态墙
 
 ## 参考测试用例
 
@@ -200,7 +201,6 @@ cd out
 │   │   ├── expected_output.json
 │   │   ├── output.txt
 │   │   ├── error.txt
-│   │   └── .res/
-│   │       └── user.json
+│   │   └── user.json
 ├── test2/
 ```
