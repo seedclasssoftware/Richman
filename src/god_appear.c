@@ -8,6 +8,7 @@
 // 财神爷出现倒计时
 int god_countdown = 0;
 int god_position = -1;
+extern char temp[70][4];
 
 void god_appear(Map *map) {
   srand((unsigned)time(NULL));
@@ -20,7 +21,11 @@ void god_appear(Map *map) {
          (map->cells[god_position].show_char == 'J')) {
     god_position = rand() % 70;
   }
-  map->cells[god_position].show_char = 'F';
+   for (int i = 0; i < 3; i++) {
+    temp[god_position][i] = temp[god_position][i + 1];
+  }
+  temp[god_position][3] = 'F';
+  map->cells[god_position].show_char='F';
   map->cells[god_position].has_tool = 3;
   // 打印白色转义符
   printf("\033[0m");

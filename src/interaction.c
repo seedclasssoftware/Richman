@@ -38,7 +38,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-
 extern pPlayers now_user;
 extern Map map;
 // 退出游戏的实现
@@ -89,7 +88,7 @@ void handle_step_command(const char *command) {
   if ((strncmp(command, "Step ", 5) == 0 ||
        strncmp(command, "step ", 5) == 0)) {
     // 检查空格后是否跟随数字
-    char *num_str = command + 5;
+    char *num_str = (char *)(command + 5);
     char *endptr;
     int n = strtol(num_str, &endptr, 10); // 转换字符串为整数
 
@@ -133,20 +132,25 @@ void handle_command(const char *command) {
              strncmp(command, "sell", 4) == 0) {
     int n = atoi(command + 5);
     sell_house(now_user, &map, n);
+    wait_for_input();
   } else if (strncmp(command, "Block", 5) == 0 ||
              strncmp(command, "block", 5) == 0) {
     int n = atoi(command + 6);
     useblock(now_user, &map, n);
+    wait_for_input();
   } else if (strncmp(command, "Bomb", 4) == 0 ||
              strncmp(command, "bomb", 4) == 0) {
     int n = atoi(command + 5);
     usebomb(now_user, &map, n);
+    wait_for_input();
   } else if (strcmp(command, "Robot") == 0 || strcmp(command, "robot") == 0) {
     userobot(now_user, &map);
   } else if (strcmp(command, "Query") == 0 || strcmp(command, "query") == 0) {
     query(now_user);
+    wait_for_input();
   } else if (strcmp(command, "Help") == 0 || strcmp(command, "help") == 0) {
     help();
+    wait_for_input();
   } else if (strncmp(command, "Step", 4) == 0 ||
              strncmp(command, "step", 4) == 0) {
     handle_step_command(command);
@@ -169,6 +173,7 @@ void handle_command(const char *command) {
     fclose(fp);
     printf("已将游戏数据保存到output.json\n");
     free(json);
+    wait_for_input();
   } else if (strncmp(command, "load ", 5) == 0 ||
              strncmp(command, "Load ", 5) == 0) {
     const char *path = command + 5;
@@ -212,6 +217,7 @@ void handle_command(const char *command) {
     }
     printf("游戏数据已加载\n");
     printf("当前玩家: %s\n", now_user->name);
+    wait_for_input();
   } else {
     printf("未知命令\n");
     wait_for_input();
