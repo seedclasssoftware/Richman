@@ -104,11 +104,8 @@ void change_position(pPlayers now_user, int steps) {
     else if(tool==3){
     printf("恭喜你！财神附身，租金全免！\n");
     now_user->god=5;
-      change_show(now_user);
-      map.cells[now_user->position].show_char =
-          temp[now_user->position][3] ? temp[now_user->position][3]
-                                      : map.cells[now_user->position].init_char;
-
+     map.cells[now_user->position].show_char=now_user->cap;
+  map.cells[now_user->position].has_tool=0;
   } 
   }
   if (flag == 0) {
